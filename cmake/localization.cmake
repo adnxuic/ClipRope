@@ -1,0 +1,18 @@
+find_package(Python3 3.10 COMPONENTS Interpreter REQUIRED)
+option(CLIPROPE_I18N_STRICT "Require complete translations in every shipped language" ON)
+set(i18n_output "${CMAKE_CURRENT_BINARY_DIR}/generated/i18n")
+set(i18n_arguments --resources "${PROJECT_SOURCE_DIR}/resources/i18n" --output "${i18n_output}")
+if(NOT CLIPROPE_I18N_STRICT)
+    list(APPEND i18n_arguments --allow-incomplete)
+endif()
+add_custom_command(OUTPUT "${i18n_output}/translation_keys.hpp" "${i18n_output}/translation_catalog.cpp"
+    COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/check_i18n.py" ${i18n_arguments}
+    DEPENDS tools/check_i18n.py resources/i18n/en-US.json resources/i18n/zh-CN.json VERBATIM)
+add_library(cliprope_localization STATIC src/localization/localization.cpp "${i18n_output}/translation_catalog.cpp")
+target_include_directories(cliprope_localization PUBLIC src "${i18n_output}")
+if(BUILD_TESTING)
+    add_executable(cliprope_localization_test tests/unit/localization.cpp)
+    target_link_libraries(cliprope_localization_test PRIVATE cliprope_localization)
+    add_test(NAME I18N-01.manager COMMAND cliprope_localization_test)
+    add_test(NAME I18N-01.resources COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tests/unit/i18n_resources.py")
+endif()

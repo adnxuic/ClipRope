@@ -1,0 +1,116 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 3
+  },
+  "configurePresets": [
+    {
+      "name": "windows-rc",
+      "displayName": "Production (single development output)",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64,version=10.0.22621.0",
+      "toolset": "v143",
+      "binaryDir": "${sourceDir}/build/cmake",
+      "cacheVariables": {
+        "BUILD_TESTING": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_DESKTOP_PROBES": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_TEST_DESKTOP_INPUT": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_TEST_TRAY_ICON": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_TEST_OFFICE": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_TEST_OFFICE_MATRIX": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_ANALYZE": {
+          "type": "BOOL",
+          "value": "OFF"
+        },
+        "CLIPROPE_PIN_RELEASE": {
+          "type": "BOOL",
+          "value": "ON"
+        },
+        "CLIPROPE_I18N_STRICT": {
+          "type": "BOOL",
+          "value": "ON"
+        }
+      }
+    },
+    {
+      "name": "windows-qualification",
+      "inherits": "windows-rc",
+      "cacheVariables": {
+        "BUILD_TESTING": {
+          "type": "BOOL",
+          "value": "ON"
+        },
+        "CLIPROPE_DESKTOP_PROBES": {
+          "type": "BOOL",
+          "value": "ON"
+        }
+      }
+    },
+    {
+      "name": "windows-ci",
+      "inherits": "windows-qualification",
+      "architecture": "x64",
+      "cacheVariables": {
+        "CLIPROPE_PIN_RELEASE": {
+          "type": "BOOL",
+          "value": "OFF"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-rc",
+      "configurePreset": "windows-rc",
+      "configuration": "Release",
+      "targets": [
+        "cliprope_desktop",
+        "cliprope_headless",
+        "cliprope_profile_support"
+      ]
+    },
+    {
+      "name": "windows-qualification",
+      "configurePreset": "windows-qualification",
+      "configuration": "Release"
+    },
+    {
+      "name": "windows-ci",
+      "configurePreset": "windows-ci",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows-qualification",
+      "configurePreset": "windows-qualification",
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error"
+      }
+    }
+  ]
+}

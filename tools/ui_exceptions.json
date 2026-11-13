@@ -1,0 +1,261 @@
+[
+  {
+    "rule": "native-selection",
+    "path": "src/platform_win/fluent_list.cpp",
+    "anchor": "child(parent,L\"LISTBOX\",",
+    "reason": "Shared owner-draw adapter retains native HASSTRINGS, keyboard and accessibility semantics.",
+    "review_when": "Review creation and native provider coverage whenever this adapter changes."
+  },
+  {
+    "rule": "native-selection",
+    "path": "src/platform_win/fluent_list.cpp",
+    "anchor": "child(parent,L\"COMBOBOX\",",
+    "reason": "Shared owner-draw adapter retains native HASSTRINGS, keyboard and accessibility semantics.",
+    "review_when": "Review creation and native provider coverage whenever this adapter changes."
+  },
+  {
+    "rule": "system-dialog",
+    "path": "src/host/desktop.cpp",
+    "anchor": "MessageBoxW(nullptr,text.c_str(),L\"ClipRope\",MB_OK|MB_ICONERROR)",
+    "reason": "Last-resort startup failure reporting before a GUI surface is available.",
+    "review_when": "Remove if startup establishes the shared UI before this failure boundary."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "chevron_down = 0xe70d",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "chevron_up = 0xe70e",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "edit = 0xe70f",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "add = 0xe710",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "close = 0xe711",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "settings = 0xe713",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "link = 0xe71b",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "search = 0xe721",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "refresh = 0xe72c",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "lock = 0xe72e",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "remove = 0xe738",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "check = 0xe73e",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "up = 0xe74a",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "down = 0xe74b",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "erase = 0xe74d",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "keyboard = 0xe765",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "appearance = 0xe790",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "opacity = 0xe793",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "rebin = 0xe7b8",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "exit = 0xe7e8",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "overview = 0xe80a",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "first = 0xe80f",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "clear = 0xe894",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "document = 0xe8a5",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "copy = 0xe8a7",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "density = 0xe8a9",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "save_as = 0xe8b3",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "folder = 0xe8b7",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "ink = 0xe8d3",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "bold = 0xe8dd",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "font_size = 0xe8e9",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "rope = 0xe8fd",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "information = 0xe946",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  },
+  {
+    "rule": "icon-codepoint",
+    "path": "src/platform_win/fluent_icons.hpp",
+    "anchor": "general = 0xe77f",
+    "reason": "The central semantic Icon registry owns this font mapping.",
+    "review_when": "Verify the Microsoft name and shared fallback when the icon mapping changes."
+  }
+]

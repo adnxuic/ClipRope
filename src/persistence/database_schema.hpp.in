@@ -1,0 +1,4 @@
+#pragma once
+namespace cliprope::persistence::schema {
+inline constexpr char v11[] = R"ClipRopeSQL(@CLIPROPE_SCHEMA_V11@)ClipRopeSQL";
+}

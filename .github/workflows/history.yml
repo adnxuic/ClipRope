@@ -1,0 +1,36 @@
+name: History core
+on: [push, pull_request]
+jobs:
+  data-core:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Enforce UI source and visual review contracts
+        shell: pwsh
+        env:
+          UI_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          $base = $env:UI_BASE
+          if (-not $base -or $base -match '^0+$') {
+            # A new branch has no previous tip. Check changes since its initial snapshot.
+            $base = git rev-list --first-parent --max-parents=0 HEAD
+            if ($LASTEXITCODE) { throw 'Cannot resolve the initial commit' }
+          }
+          python tools/check_ui.py --base $base
+          if ($LASTEXITCODE) { throw 'UI acceptance gate failed' }
+      - name: Build and test the single development runtime
+        shell: pwsh
+        run: |
+          $architecture = @(
+            'ARCH-11.pure_linkage', 'ARCH-11.pure_invocations', 'P1-04.atomic_commands',
+            'ARCH-15.repeated_promotion', 'ARCH-08.read_projections',
+            'ARCH-06.admission_mutex', 'ARCH-06.admission_order', 'AR2-01.shared_contracts',
+            'AR2-07.command_order', 'AR2-09.search_preparation',
+            'AR3.target_supervision', 'AR3.target_replies'
+          )
+          ./tools/build.ps1 -Action Test -CI -RequiredTests $architecture -TestRegex '^(I18N-|COLOR-|UI-(06|17|18|19)[.]|UI-11[.]button_paint|FIND-06[.]popup_appearance)'

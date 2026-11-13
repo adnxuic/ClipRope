@@ -1,0 +1,11 @@
+ClipRope_Long_Term_Implementation_Plan.md
+
+
+/build/
+/.local-artifacts/
+**/__pycache__/
+/temp_pic/
+temp.md
+UI_temp.md
+bug_temp.md
+/releases/

@@ -1,0 +1,26 @@
+ClipRope · Windows x64 release
+
+ClipRope program, test fixtures and procedural UI artwork
+The first-party source and graphics were developed in this repository.
+This evaluation package does not grant an open-source license for the
+first-party work. The original design reference image is not bundled.
+
+SQLite 3.54.1
+The SQLite authors dedicated the deliverable SQLite source to the public
+domain. ClipRope statically links the unmodified amalgamation with extension
+loading disabled. https://www.sqlite.org/copyright.html
+
+NSIS 3.13
+Copyright (C) 1999-2026 Contributors. The installer uses the unmodified
+NSIS installer stub, Unicode instructions, System, nsExec and zlib compression.
+NSIS and its zlib module use the zlib/libpng license.
+https://nsis.sourceforge.io/License
+
+Microsoft Visual C++ and Windows
+The Release binaries use the static multithreaded MSVC runtime supplied
+with Visual Studio 2022. Windows provides OLE, Shell, SQLite-independent
+system services, Direct2D, WIC and system fonts. No Windows DLL, font file,
+Office component or Visual Studio redistributable installer is bundled.
+https://learn.microsoft.com/cpp/windows/redistributing-visual-cpp-files
+
+CopyQ was used for coexistence testing. Its code and assets are not bundled.

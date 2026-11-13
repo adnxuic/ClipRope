@@ -1,0 +1,4 @@
+#include <winuser.h>
+#include "platform_win/app_icon_resource.h"
+
+IDI_CLIPROPE ICON "icons/cliprope.ico"

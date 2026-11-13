@@ -1,0 +1,8 @@
+if(BUILD_TESTING)
+    add_executable(cliprope_integrity_test tests/compatibility/integrity.cpp tests/compatibility/delivery_fields.cpp)
+    target_link_libraries(cliprope_integrity_test PRIVATE cliprope_delivery cliprope_clipboard advapi32)
+    if(CLIPROPE_TEST_DESKTOP_INPUT)
+        add_test(NAME P6-06.higher_integrity COMMAND cliprope_integrity_test --input-in-disposable-session)
+        set_tests_properties(P6-06.higher_integrity PROPERTIES TIMEOUT 30 RUN_SERIAL TRUE)
+    endif()
+endif()
