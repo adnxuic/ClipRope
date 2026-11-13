@@ -21,7 +21,16 @@ jobs:
             $base = git rev-list --first-parent --max-parents=0 HEAD
             if ($LASTEXITCODE) { throw 'Cannot resolve the initial commit' }
           }
-          python tools/check_ui.py --base $base
+          $commit = git rev-parse --verify --quiet "${base}^{commit}"
+          if ($LASTEXITCODE) {
+            # A moved annotated tag's previous object is no longer advertised by checkout.
+            git fetch --no-tags --no-recurse-submodules origin $base
+            if ($LASTEXITCODE) { throw "Cannot fetch the event comparison base $base" }
+            $commit = git rev-parse --verify "${base}^{commit}"
+            if ($LASTEXITCODE) { throw "Comparison base $base does not resolve to a commit" }
+          }
+          Write-Host "Checking UI changes since $commit"
+          python tools/check_ui.py --base $commit
           if ($LASTEXITCODE) { throw 'UI acceptance gate failed' }
       - name: Build and test the single development runtime
         shell: pwsh
