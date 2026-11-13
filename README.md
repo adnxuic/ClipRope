@@ -4,7 +4,7 @@
 <h1 align="center">ClipRope</h1>
 <p align="center">A clipboard history manager for Windows. Hang clips on ropes or pull them onto your desktop.</p>
 <p align="center"><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
-<p align="center"><a href="#quick-start">Quick start</a> · <a href="#mouse-gestures">Mouse gestures</a> · <a href="#shortcuts">Shortcuts</a> · <a href="#build-from-source">Build from source</a></p>
+<p align="center"><a href="https://github.com/adnxuic/ClipRope/releases/tag/v0.1.0">Download for Windows x64</a> · <a href="https://adnxuic.github.io/ClipRope/website/?lang=en">Try the demo</a> · <a href="https://adnxuic.github.io/ClipRope/user/en/ClipRope-Docs.html">Read the user guide</a> · <a href="https://github.com/adnxuic/ClipRope/issues">Report an issue</a></p>
 
 <p align="center">
   <img src="resources/cliprope-demo.gif" width="960" alt="On the Field notes rope, a copied sentence becomes a card. Double-clicking it pastes the sentence into the editor. A lighthouse image and a narrow snip hang beside it. The snip is dragged onto the desktop, then returned to the rope before switching back to main.">
@@ -12,9 +12,15 @@
 
 Copy a paragraph, a screenshot, or a group of files. Each copy becomes a **Hanging card** on the active rope. Keep one rope for research and another for writing, or pull a card off the rope to keep it beside the document you’re working on. Your ropes and **Floating cards** are saved locally and return when you restart ClipRope.
 
-## Quick start
+## Install on Windows x64
 
-Under **Releases → v0.1.0 → Assets**, download and run `ClipRope-0.1.0-windows-x64.exe`. Open **ClipRope** from the Start menu. To build your own copy, follow the [source instructions](#build-from-source).
+Under **Assets** on the v0.1.0 release page, download `ClipRope-0.1.0-windows-x64.exe` and its companion `.exe.sha256` file. Run the command below in PowerShell from your download folder. Compare the **Hash** with the 64 hexadecimal digits at the start of the checksum file. If they match, run the installer and open **ClipRope** from the Start menu.
+
+```powershell
+Get-FileHash -Algorithm SHA256 .\ClipRope-0.1.0-windows-x64.exe
+```
+
+## Quick start
 
 1. In a text editor, copy two different lines, one at a time. Leave the caret where you want to paste.
 2. Press **Ctrl+Shift+V** or left-click the tray icon. Find the card showing the first line you copied and double-click its paper with the left button. The card moves to the front of its rope, the workspace hides, and ClipRope sends **Ctrl+V** if the original editor is still a valid destination. You can also paste the restored text manually.
@@ -22,39 +28,15 @@ Under **Releases → v0.1.0 → Assets**, download and run `ClipRope-0.1.0-windo
 
 Prefer to paste by hand? In **Global settings → Cards**, set **Hanging double-click** to **Copy only**.
 
-## Mouse gestures
+## Everyday gestures
 
-**Drag** means hold the left mouse button, move the pointer, and release at the destination. You can start moving immediately. For a copy, hold **Ctrl before you start dragging**. Press **Esc** before dropping to cancel.
-
-### Cards
-
-| Gesture | Result |
+| To | Gesture |
 | --- | --- |
-| Double-click the center of a Hanging card | Restores the saved content, moves the card to the front of its own rope, and hides the workspace. By default, ClipRope sends **Ctrl+V** to the original editor if it is still eligible. If an Explorer folder had focus, it can receive files, folders, or a screenshot PNG. |
-| Double-click the center of a Floating card | Text opens for editing (**Ctrl+S** saves, **Esc** cancels). A file or screenshot opens in its default app. A folder or file group is revealed in Explorer. Other content opens Card information. |
-| Drag a card by its center and release in a visible rope row | Drop into the gap that opens between neighboring cards. On the same rope this reorders the card. In overview, drop on another rope to move it there. A Floating card hangs at the indicated position. |
-| Drag a card by its center and release outside all rope rows | A Hanging card becomes a Floating card. A Floating card moves to the new desktop position. |
-| Click **Return** at the upper left of a Floating card | Hangs the card at the front of the rope that is collecting **when you click**, even if the workspace is hidden. |
-| **Ctrl** + drag a card by its center in **single-rope view** | Drop into an editor or Explorer folder that accepts the content. A file card copies the original files, and a screenshot drops into a folder as a PNG. This also works from a Floating card while the workspace is hidden. |
-| **Ctrl** + drag a card by its center in **overview** | Drop in a slot on any visible rope to create a copy there. Dropping outside the rows cancels the copy. |
-| Drag a card edge | On Hanging paper, grab a side, the bottom, or a bottom corner. On a Floating text card, grab any edge or corner. Release at the desired size. |
-| Right-click a card | Opens its content menu. To edit Hanging text in place, choose **Edit text…**. |
-| Click **×** on a card | Hover a Hanging card to reveal **×**. By default it deletes that card directly. On a Floating card, **×** moves the card to **ReBin**. On ReBin itself, **×** permanently deletes the card. |
-| Hover over a screenshot | Keep the pointer still on the image for half a second to see the full preview. Move away to dismiss it. |
+| Reorder a card | Drag its center into a gap between cards on the same rope. |
+| Move a card to another rope | Press **Ctrl+Tab** to open the overview, then drag the card into a gap on the destination rope. |
+| Edit saved text | Double-click a Floating text card and press **Ctrl+S** to save. For a Hanging text card, right-click and choose **Edit text…**. |
 
-To reach a slot offscreen, keep holding the card near the left or right end of the target row. The row scrolls under the pointer. Move inward, then release when you see the slot you want. On a full rope, inserting a card can evict the last one.
-
-### Ropes and scrolling
-
-Point at the rope line or its central wooden name plaque to act on the rope itself. For wheel gestures, the pointer can be anywhere in the row, including the gaps between cards.
-
-| Gesture | Single-rope view | Overview |
-| --- | --- | --- |
-| Roll the wheel over a row | Browse cards along the rope. | Browse cards along the row under the pointer. |
-| Hold **Ctrl** and roll the wheel | Up selects the previous collecting rope. Down selects the next. | Scroll the list of ropes vertically. The same rope keeps collecting. |
-| Drag the rope line or plaque up or down | Release to save the rope’s height on the desktop. | Release between rows to reorder the ropes. The first rope in the new order collects future copies. |
-
-Double-click a rope line or plaque in overview to select that rope and open it in single-rope view. Right-click either one to open its menu. Choose **Add new rope** to create a rope, then **Yes** to start collecting on it.
+For cross-app drag and drop, ReBin, and scrolling, see the [user guide](https://adnxuic.github.io/ClipRope/user/en/ClipRope-Docs.html).
 
 ## Shortcuts
 
@@ -94,4 +76,18 @@ pwsh -File tools/build.ps1 -Action Test
 pwsh -File tools/build.ps1 -Action Package
 ```
 
-The test and packaging steps use NSIS 3.13. The build verifies its archive before use. For offline builds, place `nsis-3.13.zip` in `.local-artifacts/` first. The installer is written to `build/packages/ClipRope-0.1.0-windows-x64.exe`. See the [third-party notices](packaging/windows/ThirdPartyNotices.txt) for the components used in the release.
+The test and packaging steps use NSIS 3.13. The build verifies its archive before use. For offline builds, place `nsis-3.13.zip` in `.local-artifacts/` first. The installer is written to `build/packages/ClipRope-0.1.0-windows-x64.exe`.
+
+## Report a problem
+
+Include your Windows version, ClipRope version, and steps to reproduce the problem using sample text or files. Describe what you expected and what happened. [Open an issue](https://github.com/adnxuic/ClipRope/issues)
+
+## Acknowledgments
+
+Thank you to **Tendedero** for inspiring the look of ClipRope’s main workspace, especially the idea of hanging copied items on a line. [Tendedero](https://github.com/alejandrobujan/tendedero)
+
+Thank you to **CopyQ** for inspiring the way ClipRope saves, searches, and reuses clipboard history. [CopyQ](https://github.com/hluk/CopyQ)
+
+## License
+
+ClipRope’s original code and accompanying documentation are available under the MIT License. Bundled third-party components retain their respective terms. [MIT License](LICENSE) · [Third-party notices](packaging/windows/ThirdPartyNotices.txt)
