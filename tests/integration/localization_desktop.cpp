@@ -12,6 +12,17 @@
 
 namespace {
 using namespace workspace_fixture;
+DWORD clipboard_sequence() {
+    require(until([] { return OpenClipboard(nullptr) != FALSE; }), "Cannot open clipboard for observation");
+    const auto sequence = GetClipboardSequenceNumber();
+    // A fresh runner can have an accessible, empty clipboard with sequence zero.
+    SetLastError(ERROR_SUCCESS);
+    const bool observable = sequence != 0 || (EnumClipboardFormats(0) == 0 && GetLastError() == ERROR_SUCCESS);
+    const bool closed = CloseClipboard() != FALSE;
+    require(observable && closed, "Cannot observe clipboard sequence or confirm an empty clipboard");
+    return sequence;
+}
+
 std::wstring text(HWND window) {
     wchar_t buffer[4096]{};
     SendMessageW(window, WM_GETTEXT, std::size(buffer), LPARAM(buffer));
@@ -464,8 +475,7 @@ void run(const fs::path& executable, const fs::path& snapshots) {
     const auto original_draft = text(field);
     const auto original_selection = SendMessageW(field, EM_GETSEL, 0, 0);
     const auto before = observer.history();
-    const auto clipboard = GetClipboardSequenceNumber();
-    require(clipboard != 0, "Clipboard sequence observer unavailable");
+    const auto clipboard = clipboard_sequence();
     click_language(choice, 2);
     require(until([&] { return text(settings) == L"ClipRope 设置" && text(information) == L"卡片信息" &&
                               text(GetDlgItem(editor, IDOK)) == L"保存"; }), "Open windows did not switch to Chinese");
@@ -479,7 +489,7 @@ void run(const fs::path& executable, const fs::path& snapshots) {
     require(SendMessageW(field, EM_GETSEL, 0, 0) == original_selection, "Language switch changed the native selection");
     require(text(GetDlgItem(information, 1701)).find(L"捕获详情") != std::wstring::npos,
             "Information report did not reformat its semantic labels");
-    require(observer.history() == before && GetClipboardSequenceNumber() == clipboard &&
+    require(observer.history() == before && clipboard_sequence() == clipboard &&
             listener == owned_window(pid, L"ClipRope.Listener"), "Switch changed history, clipboard or listener identity");
     settings_capture(settings, snapshots, "zh-CN");
     capture(information, snapshots, "zh-CN-information");

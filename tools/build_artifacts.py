@@ -76,7 +76,7 @@ def inventory(root: Path, allow_empty: bool = False) -> dict:
 
 def archive(root: Path, destination: Path) -> dict:
     build = root / 'build'
-    if not destination.resolve().is_relative_to(root / '.local-artifacts') or destination.exists():
+    if not destination.resolve().is_relative_to(root.resolve() / '.local-artifacts') or destination.exists():
         raise ValueError('Use a new archive under .local-artifacts.')
     files = ordinary_tree(build)
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -141,7 +141,7 @@ def verify(root: Path, publish: bool = False) -> dict:
 
 
 def check_archive(root: Path, destination: Path) -> dict:
-    if not destination.is_relative_to(root / '.local-artifacts'):
+    if not destination.resolve().is_relative_to(root.resolve() / '.local-artifacts'):
         raise ValueError('Backup must be under .local-artifacts.')
     receipt_path = destination.with_suffix('.json')
     saved = json.loads(receipt_path.read_text(encoding='utf-8'))

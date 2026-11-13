@@ -76,7 +76,7 @@ pwsh -File tools/build.ps1 -Action Test
 pwsh -File tools/build.ps1 -Action Package
 ```
 
-测试与打包会使用 NSIS 3.13，构建脚本会在使用前校验压缩包。离线构建时，请先将 `nsis-3.13.zip` 放入 `.local-artifacts/`。生成的安装程序为 `build/packages/ClipRope-0.1.0-windows-x64.exe`。
+测试与打包使用仓库自带的 NSIS 3.13 编译器。构建脚本会在解压前校验 SHA-256。生成的安装程序位于 `build/packages/ClipRope-0.1.0-windows-x64.exe`。
 
 ## 问题反馈
 

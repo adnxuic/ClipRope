@@ -57,9 +57,11 @@ class BuildArtifacts(unittest.TestCase):
         history = self.app / 'history.db'
         history.write_bytes(b'Synthetic history remains recoverable')
         destination = self.root / '.local-artifacts/backup.zip'
-        result = artifacts.archive(self.root, destination)
+        # Windows runners can spell TEMP differently from its resolved path.
+        root_alias = self.app / '..' / '..'
+        result = artifacts.archive(root_alias, destination)
         self.assertTrue(result['verified'])
-        artifacts.check_archive(self.root, destination)
+        artifacts.check_archive(root_alias, destination)
         history.write_bytes(b'changed')
         with self.assertRaises(ValueError):
             artifacts.check_archive(self.root, destination)

@@ -190,7 +190,7 @@ individual preview without an unsafe decoder fallback. Packaging requires the ca
 identity. Validate these changes only with the guarded installer rehearsal in an empty
 test account. [Preview implementation and acceptance](../../Tasks/PREVIEW-screenshot-hover.md)
 
-Qualification includes opt-in real applications, input and synthetic clipboard writes. The [packaging script](../../packaging/windows/package.ps1) verifies the portable NSIS 3.13 archive by SHA-256 and writes the per-user installer under `build/packages`. The compiler archive can be pre-staged at `.local-artifacts/nsis-3.13.zip` to build offline. Capture and restore on an installed system use local files and Windows IPC. [NSIS release files](https://sourceforge.net/projects/nsis/files/NSIS%203/3.13/) · [SQLite pin](../../third_party/sqlite/README.md)
+Qualification includes opt-in real applications, input and synthetic clipboard writes. The [packaging script](../../packaging/windows/package.ps1) verifies the bundled `third_party/nsis/nsis-3.13.zip` by SHA-256 before extracting the compiler. The upstream archive includes its license in `nsis-3.13/COPYING`. Packaging writes the per-user installer under `build/packages`. Capture and restore on an installed system use local files and Windows IPC. [NSIS release files](https://sourceforge.net/projects/nsis/files/NSIS%203/3.13/) · [SQLite pin](../../third_party/sqlite/README.md)
 
 ```powershell
 pwsh -File tools/build.ps1 -Action Publish

@@ -76,7 +76,7 @@ pwsh -File tools/build.ps1 -Action Test
 pwsh -File tools/build.ps1 -Action Package
 ```
 
-The test and packaging steps use NSIS 3.13. The build verifies its archive before use. For offline builds, place `nsis-3.13.zip` in `.local-artifacts/` first. The installer is written to `build/packages/ClipRope-0.1.0-windows-x64.exe`.
+Testing and packaging use the bundled NSIS 3.13 compiler. The build checks its SHA-256 before extraction. The installer is written to `build/packages/ClipRope-0.1.0-windows-x64.exe`.
 
 ## Report a problem
 
