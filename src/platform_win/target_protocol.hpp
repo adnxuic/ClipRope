@@ -3,7 +3,7 @@
 #include <cstdint>
 
 namespace cliprope::win::target {
-inline constexpr DWORD signature = 0x31544754;
+inline constexpr DWORD signature = 0x32544754;
 inline constexpr DWORD bind_ms = 500, delivery_ms = 1500;
 enum class Kind : DWORD { none, uia, office, folder, warm };
 enum class Verdict : DWORD { refused, accepted, lost, replaced };
@@ -13,7 +13,7 @@ enum class Verdict : DWORD { refused, accepted, lost, replaced };
 struct Channel {
     DWORD magic{signature}, size{sizeof(Channel)};
     std::uint64_t serial{}, foreground{}, field{}, bind_deadline{};
-    DWORD pid{}, tid{}, input_tick{}, warm{}, guarded_office_press{};
+    DWORD pid{}, tid{}, input_tick{}, warm{}, guarded_card_press{};
     std::uint64_t bound_serial{}, bound_at{};
     Kind kind{};
     char description[96]{};
@@ -21,6 +21,7 @@ struct Channel {
     std::uint64_t verify_deadline{}, reply_serial{}, replied_at{};
     Verdict verdict{};
 };
+inline bool guarded_editor(Kind kind) { return kind == Kind::uia || kind == Kind::office; }
 inline bool valid_focus(const Channel& c) {
     HWND root = reinterpret_cast<HWND>(c.foreground), field = reinterpret_cast<HWND>(c.field);
     GUITHREADINFO info{sizeof(info)};

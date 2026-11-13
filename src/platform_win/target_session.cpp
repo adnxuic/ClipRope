@@ -48,7 +48,7 @@ struct TargetSession::State {
         return c.magic == submitted.magic && c.size == submitted.size && c.serial == submitted.serial &&
                c.foreground == submitted.foreground && c.field == submitted.field && c.pid == submitted.pid &&
                c.tid == submitted.tid && c.input_tick == submitted.input_tick && c.warm == submitted.warm &&
-               c.bind_deadline == submitted.bind_deadline && c.guarded_office_press == submitted.guarded_office_press;
+               c.bind_deadline == submitted.bind_deadline && c.guarded_card_press == submitted.guarded_card_press;
     }
     State() {
         SECURITY_ATTRIBUTES sa{sizeof(sa), nullptr, TRUE};
@@ -147,7 +147,7 @@ TargetSession::TargetSession(HWND foreground, HWND field, DWORD pid, DWORD tid, 
     c.pid = pid; c.tid = tid; c.warm = warm;
     c.input_tick = input.dwTime;
     state.card_input = std::move(card_input);
-    c.guarded_office_press = state.card_input != nullptr;
+    c.guarded_card_press = state.card_input != nullptr;
     c.bind_deadline = deadline;
     state.submitted = c;
     auto owner = std::make_unique<std::shared_ptr<State>>(state_);
@@ -172,9 +172,16 @@ std::optional<target::Kind> TargetSession::binding() const {
         if (s.matches_request() && c.bound_serial == s.submitted.serial &&
             c.bound_at >= s.submitted.bind_deadline - target::bind_ms && c.bound_at <= s.submitted.bind_deadline &&
             c.kind <= target::Kind::warm && (c.kind != target::Kind::warm || c.warm)) {
-            if (c.kind == target::Kind::office && c.guarded_office_press) {
+            if (target::guarded_editor(c.kind) && s.submitted.guarded_card_press) {
                 if (!s.press_accepted.has_value()) {
-                    s.press_accepted = s.card_input && s.card_input->permits(s.submitted.input_tick);
+                    if (!s.card_input) return target::Kind::none;
+                    const bool timed_out = s.card_input->awaiting_hook() && GetTickCount64() >= s.submitted.bind_deadline;
+                    const bool accepted = !timed_out && s.card_input->permits(s.submitted.input_tick);
+                    // Windows can advance the session input clock before the hook handling
+                    // the same mouse-up returns. Only an exact witnessed tick can finish binding.
+                    if (!accepted && s.card_input->awaiting_hook() && GetTickCount64() < s.submitted.bind_deadline)
+                        return {};
+                    s.press_accepted = accepted;
                     s.card_input.reset();
                 }
                 if (!*s.press_accepted) return target::Kind::none;

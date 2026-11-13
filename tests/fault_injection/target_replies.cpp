@@ -9,11 +9,28 @@
 namespace {
 using namespace cliprope::win;
 using probe::require;
-constexpr wchar_t sample[] = L"ClipRope AR3 private receiver sample";
+constexpr wchar_t sample[] = L"\u6837\u4f8b";
 unsigned inputs{};
 std::wstring received;
 DWORD fixture_tick{};
+bool host_sampled_clock{};
+HWND selected_edit{}, other_edit{};
+unsigned selected_pastes{}, other_pastes{};
+WNDPROC edit_proc{};
+LRESULT CALLBACK count_pastes(HWND window, UINT message, WPARAM w, LPARAM l) {
+    if (message == WM_PASTE) {
+        if (window == selected_edit) ++selected_pastes;
+        if (window == other_edit) ++other_pastes;
+    }
+    return CallWindowProcW(edit_proc, window, message, w, l);
+}
+std::wstring field_text(HWND field) {
+    wchar_t value[128]{};
+    GetWindowTextW(field, value, int(std::size(value)));
+    return value;
+}
 BOOL WINAPI read_fixture_input(PLASTINPUTINFO info) {
+    host_sampled_clock = true;
     info->dwTime = fixture_tick;
     return TRUE;
 }
@@ -21,6 +38,7 @@ BOOL WINAPI read_fixture_input(PLASTINPUTINFO info) {
 LRESULT CALLBACK recipient(HWND window, UINT message, WPARAM w, LPARAM l) {
     if (message == WM_PASTE) {
         ++inputs;
+        if (selected_edit) return SendMessageW(selected_edit, message, w, l);
         if (OpenClipboard(window)) {
             HANDLE handle = GetClipboardData(CF_UNICODETEXT);
             if (auto* text = handle ? static_cast<const wchar_t*>(GlobalLock(handle)) : nullptr) {
@@ -79,6 +97,74 @@ void exercise(const wchar_t* point, DeliveryResult expected) {
     require(probe::clear_private_sample(sample), "Manual paste sample unavailable");
     std::wcout << point << L" received=" << inputs << L'\n';
 }
+enum class InputChange { local, pending_hook, keyboard, outside_click, unwitnessed, later_local, missing_hooks };
+void uia_press(const wchar_t* stage, InputChange change) {
+    require(SetEnvironmentVariableW(L"CLIPROPE_TEST_TARGET_HOLD", stage), "No synchronized UIA fixture");
+    HWND field = CreateWindowW(L"ClipRope.TargetFixture", L"", WS_POPUP, 0, 0, 50, 50,
+                               nullptr, nullptr, GetModuleHandleW(nullptr), nullptr);
+    require(field != nullptr, "Missing UIA receiver");
+    struct Close {
+        HWND field;
+        ~Close() { DestroyWindow(field); selected_edit = other_edit = nullptr; probe::clear_private_sample(sample); }
+    } close{field};
+    auto edit = [&](const wchar_t* value) {
+        return CreateWindowW(L"EDIT", value, WS_CHILD | ES_AUTOHSCROLL, 0, 0, 100, 30,
+                             field, nullptr, GetModuleHandleW(nullptr), nullptr);
+    };
+    selected_edit = edit(L"\u5de6X\u53f3");
+    other_edit = edit(L"other");
+    require(selected_edit && other_edit, "Missing independent receiver fields");
+    edit_proc = reinterpret_cast<WNDPROC>(SetWindowLongPtrW(selected_edit, GWLP_WNDPROC, LONG_PTR(count_pastes)));
+    require(edit_proc && SetWindowLongPtrW(other_edit, GWLP_WNDPROC, LONG_PTR(count_pastes)), "Cannot count receiver pastes");
+    SendMessageW(selected_edit, EM_SETSEL, 1, 2);
+    selected_pastes = other_pastes = 0;
+    target::Handle ready(CreateEventW(nullptr, FALSE, FALSE, target_fixture::press_event(field, L"ready").c_str()));
+    target::Handle resume(CreateEventW(nullptr, FALSE, FALSE, target_fixture::press_event(field, L"resume").c_str()));
+    require(ready.value && resume.value && SetPropW(field, target_fixture::selection, HANDLE(1)), "Missing press events");
+    inputs = 0;
+    received.clear();
+    auto input = std::make_shared<CardPressInput>(nullptr, read_fixture_input);
+    EditGesture gesture;
+    gesture.begin_bind(false, change == InputChange::missing_hooks ? nullptr : input);
+    require(WaitForSingleObject(ready.value, 1000) == WAIT_OBJECT_0, "Worker did not reach requested binding phase");
+    require(SetPropW(field, target_fixture::changed_input, HANDLE(1)), "Could not advance worker input clock");
+    if (change == InputChange::keyboard) input->interrupt();
+    if (change == InputChange::outside_click) {
+        HWND other = CreateWindowW(L"STATIC", nullptr, WS_POPUP, 0, 0, 20, 20, nullptr, nullptr, nullptr, nullptr);
+        require(other != nullptr, "No external mouse target");
+        const bool local = input->local_recipient(field, other, nullptr, WM_LBUTTONDOWN);
+        DestroyWindow(other);
+        require(!local, "External click counted as a workspace press");
+        input->interrupt();
+    }
+    // The final local release must never erase an earlier interruption.
+    fixture_tick = DWORD(reinterpret_cast<UINT_PTR>(GetPropW(field, target_fixture::next_tick)));
+    const bool delayed = change == InputChange::pending_hook || change == InputChange::later_local;
+    if (!delayed && change != InputChange::unwitnessed) input->local_pointer(fixture_tick);
+    require(SetEvent(resume.value), "Worker did not resume");
+    if (delayed) {
+        host_sampled_clock = false;
+        const auto limit = GetTickCount64() + 750;
+        while (!host_sampled_clock && GetTickCount64() < limit) {
+            require(!gesture.binding_ready(), "Binding completed before the hook witnessed the new tick");
+            Sleep(1);
+        }
+        require(host_sampled_clock, "Host did not sample the changed input clock");
+        if (change == InputChange::later_local) ++fixture_tick;
+        input->local_pointer(fixture_tick);
+    }
+    publish(field);
+    const auto sequence = GetClipboardSequenceNumber();
+    auto current = [&] { return sequence == GetClipboardSequenceNumber(); };
+    const auto result = gesture.deliver(current, PastePayload::text);
+    const bool sent = change == InputChange::local || change == InputChange::pending_hook;
+    std::wcout << stage << L" change=" << int(change) << L" outcome=" << int(result) << L" received=" << inputs << std::endl;
+    require(result == (sent ? DeliveryResult::shortcut_sent : DeliveryResult::no_field), "UIA press binding rejected or misdirected");
+    require(gesture.deliver(current, PastePayload::text) == DeliveryResult::consumed, "Repeated UIA dispatch");
+    require(inputs == unsigned(sent) && selected_pastes == unsigned(sent) && other_pastes == 0 &&
+            field_text(selected_edit) == (sent ? L"\u5de6\u6837\u4f8b\u53f3" : L"\u5de6X\u53f3") &&
+            field_text(other_edit) == L"other", "Wrong UIA receiver field, selected text or paste count");
+}
 void office_press(bool interrupted) {
     require(SetEnvironmentVariableW(L"CLIPROPE_TEST_TARGET_HOLD", L"office-stable"), "No Office fixture");
     HWND field = CreateWindowW(L"ClipRope.TargetFixture", L"", WS_POPUP, 0, 0, 50, 50,
@@ -128,6 +214,14 @@ int wmain(int argc, wchar_t** argv) {
         wc.hInstance = GetModuleHandleW(nullptr);
         wc.lpszClassName = L"ClipRope.TargetFixture";
         require(RegisterClassW(&wc), "No receiver class");
+        if (argc == 2 && std::wstring_view(argv[1]) == L"--uia-press") {
+            for (const auto stage : {L"uia-before", L"uia-reading"})
+                for (auto change : {InputChange::local, InputChange::pending_hook, InputChange::keyboard,
+                                    InputChange::outside_click, InputChange::unwitnessed,
+                                    InputChange::later_local, InputChange::missing_hooks})
+                    uia_press(stage, change);
+            return 0;
+        }
         if (argc == 2 && std::wstring_view(argv[1]) == L"--missing") {
             exercise(L"uia-missing", DeliveryResult::no_field);
             return 0;

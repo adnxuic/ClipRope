@@ -1,0 +1,81 @@
+{
+  "status": "accepted_with_open_checks",
+  "reviewer": "Codex",
+  "review": "Tasks/paste-uia.md",
+  "conclusion": "Card release retains the original editor. The reviewed workspace and Floating surfaces match their references.",
+  "sources": {
+    "src/platform_win/card_press_input.hpp": "8e99114394f8ab131db5d6bbf3e604541543161b41846124ebd85c4e8e3334c3",
+    "src/platform_win/delivery.cpp": "16ed527b68954df50fc51947f67366f84968d256adfe96dae62767911e633eed",
+    "src/platform_win/target_session.cpp": "e08a8a1390c0b8b4cf7c367ccdfb6895e205ee5e8573ab094ee3c7cbcc172979",
+    "src/platform_win/target_protocol.hpp": "2d81e59f22e45c3307aca90d709cbc461f92228453e2ad8b9701c70dfa98dc4f",
+    "src/host/target_worker.cpp": "371830960d011e611196ffe9489446c847d12aba37f5875fc7838f1a8b2d319e"
+  },
+  "screenshots": {
+    "before": [
+      "Tasks/paste-evidence/workspace-before.png",
+      "Tasks/paste-evidence/floating-before.png"
+    ],
+    "after": [
+      "Tasks/paste-evidence/workspace-after.png",
+      "Tasks/paste-evidence/floating-after.png"
+    ]
+  },
+  "checks": [
+    "Compared both pairs of decoded RGB images.",
+    "Checked independent receiver data on first open and reopen in Edge and a WPF Group.",
+    "Checked cancellation, publication and durable history independently."
+  ],
+  "checklist": {
+    "shared_components": {
+      "status": "passed",
+      "evidence": "The existing card press hooks, supervised worker and shortcut sender own this gesture."
+    },
+    "control_states": {
+      "status": "passed",
+      "evidence": "First open and reopen exercised the active Hanging body and workspace collapse."
+    },
+    "edge_states": {
+      "status": "passed",
+      "evidence": "Read-only, password and changed fields received zero native paste events."
+    },
+    "input": {
+      "status": "passed",
+      "evidence": "Real Windows mouse input and independent DOM and WPF counters showed one native paste per valid gesture."
+    },
+    "accessibility": {
+      "status": "passed",
+      "evidence": "UI Automation bound an Edge editor and a value-only WPF Group in a shared HWND."
+    },
+    "localization_layout": {
+      "status": "not_applicable",
+      "evidence": "This change introduces no UI labels or layout. Unicode receiver contents were compared exactly."
+    },
+    "failure": {
+      "status": "passed",
+      "evidence": "Target supervision, clipboard replacement and failed publication and history commands were exercised."
+    },
+    "resources": {
+      "status": "passed",
+      "evidence": "The held-provider test reaps the verified worker job. The shared draw fixture recorded stable GDI and USER counts across recovery."
+    },
+    "visual_review": {
+      "status": "passed",
+      "evidence": "Reviewed the rope, plaque, hook and card body and the Floating toolbar and text. Both pairs of recovered RGB frames matched."
+    },
+    "performance": {
+      "status": "not_applicable",
+      "evidence": "The existing worker deadlines govern this change. The implementation adds no timers or drawing calls."
+    },
+    "physical": {
+      "status": "open",
+      "evidence": "Foreground double-click tests ran at the host DPI. Mixed DPI, high contrast, IME and screen-reader use were not exercised."
+    },
+    "automation": {
+      "status": "passed",
+      "evidence": "The deterministic UIA press test passed both timings, with original-target and interrupted cases."
+    }
+  },
+  "open_checks": [
+    "Physical mixed DPI, high contrast, IME and screen-reader interactions."
+  ]
+}

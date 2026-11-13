@@ -61,6 +61,9 @@ if(CLIPROPE_DESKTOP_PROBES)
     add_executable(cliprope_transfer_flow ../compatibility/transfer_flow.cpp ../compatibility/delivery_fields.cpp)
     target_link_libraries(cliprope_transfer_flow PRIVATE cliprope_hotkey_settings cliprope_history cliprope_clipboard advapi32)
     if(CLIPROPE_TEST_DESKTOP_INPUT)
+        add_test(NAME PASTE.desktop_commands COMMAND cliprope_workspace_flow
+            "$<TARGET_FILE:cliprope_desktop>" --paste-delivery)
+        set_tests_properties(PASTE.desktop_commands PROPERTIES TIMEOUT 100 RUN_SERIAL TRUE)
         add_test(NAME ARCH-06.deferred_receiver COMMAND cliprope_workspace_flow
             "$<TARGET_FILE:cliprope_desktop>" --deferred-recall)
         set_tests_properties(ARCH-06.deferred_receiver PROPERTIES TIMEOUT 60 RUN_SERIAL TRUE)

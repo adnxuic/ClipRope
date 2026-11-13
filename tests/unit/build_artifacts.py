@@ -90,7 +90,20 @@ class BuildArtifacts(unittest.TestCase):
                 test_file.write_text(json.dumps(dict(status=status,source_fingerprint=source)))
                 with self.assertRaises(ValueError):
                     artifacts.verify(self.root, publish=True)
-            test_file.write_text(json.dumps(dict(status='passed',source_fingerprint='current')))
+            required = ['PASTE.uia_press', 'AR3.target_supervision', 'AR3.target_replies',
+                        'P0-05.unselected_private', 'ARCH-11.pure_invocations', 'PASTE.desktop_commands']
+            cases = ['edge.first','edge.reopen','custom.first','custom.reopen','edge.change','edge.readonly','edge.password','edge.interrupt']
+            observed = dict(source_fingerprint='current', payload={}, cases=cases)
+            valid = dict(status='passed', source_fingerprint='current', interactive=True,
+                         passed_tests=required, release_paste=observed)
+            for changes in [{'release_paste': {}}, {'interactive': False}, {'passed_tests': required[1:]},
+                            {'release_paste': dict(observed, cases=cases[:-1])},
+                            {'release_paste': dict(observed, source_fingerprint='old')},
+                            {'release_paste': dict(observed, payload={'ClipRope.exe':'previous'})}]:
+                with self.subTest(changes=changes), self.assertRaises(ValueError):
+                    test_file.write_text(json.dumps(dict(valid, **changes)))
+                    artifacts.verify(self.root, publish=True)
+            test_file.write_text(json.dumps(valid))
             artifacts.verify(self.root, publish=True)
             record['variant'] = 'Qualification'
             (self.root / 'build/build-receipt.json').write_text(json.dumps(record))

@@ -108,7 +108,9 @@ void EditGesture::begin_bind(bool warm, std::shared_ptr<CardPressInput> input) {
         if (auto field = target_fixture::receiver()) {
             foreground_ = field;
             tid_ = GetWindowThreadProcessId(field, &pid_);
-            session_ = std::make_unique<TargetSession>(field, field, pid_, tid_);
+            // Supervisor fixtures post window messages without a physical card gesture.
+            if (!target_fixture::synchronized_press()) input.reset();
+            session_ = std::make_unique<TargetSession>(field, field, pid_, tid_, false, std::move(input));
             field_ = field;
             return;
         }
@@ -132,7 +134,8 @@ void EditGesture::begin_bind(bool warm, std::shared_ptr<CardPressInput> input) {
     GetClassNameW(gui.hwndFocus, cls, int(std::size(cls)));
     if (!_wcsicmp(cls, L"Button") || !_wcsicmp(cls, L"#32768") || !accessible(pid_) || IsHungAppWindow(foreground_)) return;
     try {
-        if (!office_view) input.reset();
+        // Explorer binds a Shell view under its own strict input policy.
+        if (!_wcsicmp(app.c_str(), L"explorer.exe")) input.reset();
         session_ = std::make_unique<TargetSession>(foreground_, gui.hwndFocus, pid_, tid_, warm, std::move(input));
         field_ = gui.hwndFocus;
     } catch (const std::exception&) { target_status_ = "verification-unavailable"; }

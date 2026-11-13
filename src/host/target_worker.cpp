@@ -143,13 +143,23 @@ template<class F> auto in_mta(F work) {
         throw std::runtime_error("UIA completion wait failed");
     return result.get();
 }
-bool stayed_at_binding(const Channel& c, bool guarded_office = false) {
-#ifdef CLIPROPE_DESKTOP_PROBES
-    if (auto receiver = target_fixture::receiver())
-        return reinterpret_cast<UINT_PTR>(receiver) == c.field && GetTickCount64() <= c.bind_deadline;
-#endif
+bool stayed_at_binding(const Channel& c, bool witnessed_press) {
     LASTINPUTINFO input{sizeof(input)};
-    return valid_focus(c) && (guarded_office || (GetLastInputInfo(&input) && input.dwTime == c.input_tick)) &&
+    bool same_focus;
+    bool have_input;
+#ifdef CLIPROPE_DESKTOP_PROBES
+    if (auto receiver = target_fixture::receiver()) {
+        same_focus = reinterpret_cast<UINT_PTR>(receiver) == c.field;
+        input.dwTime = c.input_tick + (GetPropW(receiver, target_fixture::changed_input) ? 1 : 0);
+        have_input = true;
+    } else
+#endif
+    {
+        same_focus = valid_focus(c);
+        have_input = GetLastInputInfo(&input) != FALSE;
+    }
+    // The desktop checks all observed input before accepting a witnessed binding.
+    return same_focus && (witnessed_press || (have_input && input.dwTime == c.input_tick)) &&
            GetTickCount64() <= c.bind_deadline;
 }
 void hold_probe([[maybe_unused]] const wchar_t* point) {
@@ -160,7 +170,7 @@ void hold_probe([[maybe_unused]] const wchar_t* point) {
 // The apartment retaining the original selection performs both checks.
 template<class Check>
 void exchange(Channel& c, HANDLE bound, HANDLE request, HANDLE reply, Kind kind, Check check) {
-    c.kind = stayed_at_binding(c, kind == Kind::office && c.guarded_office_press) ? kind : Kind::none;
+    c.kind = stayed_at_binding(c, guarded_editor(kind) && c.guarded_card_press) ? kind : Kind::none;
     c.bound_serial = c.serial;
     c.bound_at = GetTickCount64();
     if (!SetEvent(bound) || c.kind == Kind::none || c.kind == Kind::warm) return;
@@ -192,8 +202,12 @@ void exchange(Channel& c, HANDLE bound, HANDLE request, HANDLE reply, Kind kind,
     SetEvent(reply);
 }
 int run(Channel& c, HANDLE bound, HANDLE request, HANDLE reply) {
+#ifdef CLIPROPE_DESKTOP_PROBES
+    if (auto receiver = target_fixture::receiver())
+        if (!target_fixture::release_at(receiver, L"uia-before", c.input_tick)) return 2;
+#endif
     if (c.magic != signature || c.size != sizeof(c) || !c.serial || c.bind_deadline > GetTickCount64()+bind_ms ||
-        !stayed_at_binding(c, c.guarded_office_press != 0)) return 2;
+        !stayed_at_binding(c, c.guarded_card_press != 0)) return 2;
     const HWND root = reinterpret_cast<HWND>(c.foreground), field = reinterpret_cast<HWND>(c.field);
 #ifdef CLIPROPE_DESKTOP_PROBES
     if (target_fixture::receiver() == field) {
@@ -206,6 +220,7 @@ int run(Channel& c, HANDLE bound, HANDLE request, HANDLE reply) {
         auto probe = [&] {
             hold_probe((adapter + L"-bind").c_str());
             const auto identity = GetPropW(field, target_fixture::selection);
+            if (!target_fixture::release_at(field, L"uia-reading", c.input_tick)) return 2;
             exchange(c, bound, request, reply, kind, [&](auto, const auto&) {
                 hold_probe((adapter + L"-verify").c_str());
                 if (!identity || GetPropW(field, target_fixture::selection) != identity) return Verdict::lost;

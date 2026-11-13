@@ -16,6 +16,12 @@ English is the working language of the project. Write new specifications, code i
 
 For implementation work, use the [phase plans and completed-task ledger](Tasks/README.md). Record each verified task there and close each phase with its own Git commit.
 
+Preserve Hanging double-click paste on every change. Run the mandatory regression
+gate even for a narrow test selection. Before packaging or publishing, run
+`pwsh -File tools/build.ps1 -Action Test -Interactive` on an unlocked Windows test
+desktop. The actual Production Release must paste exactly once into the selected
+Edge and custom editor fields on first open and reopen. See the [release checks](docs/developer/build.md).
+
 ## Building and running
 
 Use `pwsh -File tools/build.ps1` for all builds. One checkout has one CMake tree

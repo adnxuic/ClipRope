@@ -1,10 +1,11 @@
 #pragma once
 #include <windows.h>
 #include <atomic>
+#include <optional>
 
 namespace cliprope::win {
 // The workspace hooks observe both mouse and keyboard while a card press binds
-// an Office selection. A release on the nonactivating card cannot move the Office caret.
+// an editor selection. A release on the nonactivating card leaves the original caret in place.
 class CardPressInput {
 public:
     explicit CardPressInput(HWND drag_input, decltype(&GetLastInputInfo) read_input = GetLastInputInfo)
@@ -17,15 +18,30 @@ public:
     }
     void local_pointer(DWORD tick) { last_pointer_ = tick; }
     void interrupt() { interrupted_ = true; }
-    bool permits(DWORD first) const {
+    bool permits(DWORD first) {
         LASTINPUTINFO latest{sizeof(latest)};
-        return read_input_(&latest) && (first == latest.dwTime || last_pointer_.load() == latest.dwTime) &&
-               !interrupted_.load();
+        if (!read_input_(&latest)) { interrupt(); return false; }
+        if (interrupted_.load()) return false;
+        const auto observed = last_pointer_.load();
+        if (awaiting_tick_ && *awaiting_tick_ != latest.dwTime && observed != *awaiting_tick_) {
+            interrupt();
+            return false;
+        }
+        if (first == latest.dwTime || observed == latest.dwTime) {
+            awaiting_tick_.reset();
+            return !interrupted_.load();
+        }
+        // The session clock may advance before this event's low-level hook returns.
+        // Remember that exact tick. A subsequent local event cannot excuse a gap.
+        awaiting_tick_ = latest.dwTime;
+        return false;
     }
+    bool awaiting_hook() const { return awaiting_tick_.has_value() && !interrupted_.load(); }
 private:
     const HWND drag_input_;
     decltype(&GetLastInputInfo) read_input_;
     std::atomic<ULONGLONG> last_pointer_{~ULONGLONG{0}};
     std::atomic<bool> interrupted_{};
+    std::optional<DWORD> awaiting_tick_; // Only the binding thread reads or writes this value.
 };
 }

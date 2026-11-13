@@ -18,6 +18,27 @@ inline std::wstring gate() {
 inline HWND receiver() {
     return gate().empty() ? nullptr : FindWindowW(L"ClipRope.TargetFixture", nullptr);
 }
+inline constexpr wchar_t changed_input[] = L"ClipRope.TargetFixture.InputChanged";
+inline constexpr wchar_t next_tick[] = L"ClipRope.TargetFixture.NextTick";
+inline bool synchronized_press() {
+    const auto stage = gate();
+    return stage == L"uia-before" || stage == L"uia-reading";
+}
+inline std::wstring press_event(HWND field, const wchar_t* phase) {
+    DWORD pid{};
+    GetWindowThreadProcessId(field, &pid);
+    return L"Local\\ClipRope.Press." + std::to_wstring(pid) + L"." + phase;
+}
+inline bool release_at(HWND field, const wchar_t* stage, DWORD initial_tick) {
+    if (gate() != stage) return true;
+    if (!SetPropW(field, next_tick, reinterpret_cast<HANDLE>(UINT_PTR(initial_tick) + 1))) return false;
+    HANDLE ready = OpenEventW(EVENT_MODIFY_STATE, FALSE, press_event(field, L"ready").c_str());
+    HANDLE resume = OpenEventW(SYNCHRONIZE, FALSE, press_event(field, L"resume").c_str());
+    const bool ok = ready && resume && SetEvent(ready) && WaitForSingleObject(resume, 450) == WAIT_OBJECT_0;
+    if (resume) CloseHandle(resume);
+    if (ready) CloseHandle(ready);
+    return ok;
+}
 inline void signal_hold(const wchar_t* point) {
     if (gate() != point) return;
     const auto window = receiver();

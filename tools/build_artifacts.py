@@ -130,6 +130,16 @@ def verify(root: Path, publish: bool = False) -> dict:
         tests = json.loads((root / 'build/test-receipt.json').read_text(encoding='utf-8-sig'))
         if tests.get('status') != 'passed' or tests.get('source_fingerprint') != current['source_fingerprint']:
             raise ValueError('A successful test receipt for these sources is required.')
+        required = {'PASTE.uia_press', 'AR3.target_supervision', 'AR3.target_replies',
+                    'P0-05.unselected_private', 'ARCH-11.pure_invocations', 'PASTE.desktop_commands'}
+        observed = tests.get('release_paste') or {}
+        cases = {'edge.first', 'edge.reopen', 'edge.readonly', 'edge.password', 'edge.change', 'edge.interrupt',
+                 'custom.first', 'custom.reopen'}
+        if (tests.get('interactive') is not True or not required.issubset(tests.get('passed_tests', []))
+                or set(observed.get('cases', [])) != cases
+                or observed.get('source_fingerprint') != current['source_fingerprint']
+                or observed.get('payload') != current['payload']):
+            raise ValueError('Run Test -Interactive on these Production Release binaries before packaging.')
         cache = (root / 'build/cmake/CMakeCache.txt').read_text(encoding='utf-8-sig')
         for option in ('BUILD_TESTING', 'CLIPROPE_DESKTOP_PROBES', 'CLIPROPE_TEST_DESKTOP_INPUT',
                        'CLIPROPE_TEST_TRAY_ICON', 'CLIPROPE_TEST_OFFICE', 'CLIPROPE_TEST_OFFICE_MATRIX'):

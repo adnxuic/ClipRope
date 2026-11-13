@@ -301,7 +301,9 @@ void delivery(const fs::path& exe, const fs::path& profile, Fields& fields) {
                 "External fixture could not take clipboard ownership");
         require(until([&] { return host.contains("invoke double-click " + c + " published replaced committed"); }),
                 "A newer clipboard owner did not cancel delivery");
-        require(fields.get(Query::a_unchanged) && !fields.get(Query::changes_b), "An obsolete publication edited a field");
+        require(fields.get(Query::a_unchanged) && !fields.get(Query::changes_a) && !fields.get(Query::changes_b),
+                "An obsolete publication edited a field");
+        require(until([&] { return clipboard_text_is(L"new copy"); }), "Delivery overwrote the newer clipboard content");
     }
     std::cout << "Manual paste, lost target, uncertain acknowledgement, publish and commit failure passed\n";
 }
@@ -313,7 +315,8 @@ int wmain(int argc, wchar_t** argv) {
     const bool menus = argc == 3 && std::wstring_view(argv[2]) == L"--menu-focus";
     const bool follow = argc == 3 && std::wstring_view(argv[2]) == L"--follow-head";
     const bool deferred = argc == 3 && std::wstring_view(argv[2]) == L"--deferred-recall";
-    if (argc != 3 || (!menus && !follow && !deferred && std::wstring_view(argv[2]) != L"--desktop-input") || FAILED(OleInitialize(nullptr))) return 2;
+    const bool paste = argc == 3 && std::wstring_view(argv[2]) == L"--paste-delivery";
+    if (argc != 3 || (!menus && !follow && !deferred && !paste && std::wstring_view(argv[2]) != L"--desktop-input") || FAILED(OleInitialize(nullptr))) return 2;
     POINT cursor{};
     const bool restore = GetCursorPos(&cursor) != FALSE;
     int result = 0;
@@ -321,7 +324,8 @@ int wmain(int argc, wchar_t** argv) {
         history_fixture::Directory temporary;
         Fields fields;
         fields.start();
-        if (deferred) {
+        if (paste) delivery(argv[1], temporary.path / "delivery", fields);
+        else if (deferred) {
             deferred_delivery(argv[1], temporary.path / "accepted", fields, false);
             deferred_delivery(argv[1], temporary.path / "replaced", fields, true);
         } else if (menus) menu_focus(argv[1], temporary.path / "menu", fields);

@@ -199,3 +199,13 @@ link. [Evidence schema](../../tests/compatibility/fluent/evidence/README.md). Pr
 before/after screenshots, a separate review conclusion, raw resource/timing observations
 and explicit open physical checks. The 24 synthetic language/theme/DPI contexts do not
 replace actual mixed-monitor, Windows high contrast, keyboard or IME qualification.
+
+## Hanging double-click regression
+
+The mandatory `PASTE.uia_press` fixture releases the card before worker startup
+validation and during field binding. A synchronized synthetic clock uses the
+production timestamp decision in both cases. Interrupted and unwitnessed input
+must leave the receiver untouched. `PASTE.desktop_commands` checks clipboard
+replacement, copy only, and independent publication and history failures on the
+interactive desktop. The [release gate](build.md) also reads the selected text
+and counts native paste events in independent Edge and WPF processes.

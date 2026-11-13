@@ -205,7 +205,10 @@ function Build-Runtime([string]$Kind, [string]$Config) {
 }
 function Test-Runtime {
     if ($Interactive) { Assert-Idle -IncludeDaily }
-    $requiredCases = @((@('AR3.history_link', 'AR3.history_closure') + $RequiredTests) | Select-Object -Unique)
+    $requiredCases = @('AR3.history_link', 'AR3.history_closure', 'PASTE.uia_press', 'AR3.target_supervision',
+        'AR3.target_replies', 'P0-05.unselected_private', 'ARCH-11.pure_invocations') + $RequiredTests
+    if ($Interactive) { $requiredCases += 'PASTE.desktop_commands' }
+    $requiredCases = @($requiredCases | Select-Object -Unique)
     $fingerprint = Read-Helper @('fingerprint')
     $report = [ordered]@{status='failed';source_fingerprint=$fingerprint;regex=$coreTests;interactive=[bool]$Interactive;utc=[DateTime]::UtcNow.ToString('o')}
     Save-Json $report (Join-Path $build 'test-receipt.json')
@@ -229,7 +232,7 @@ function Test-Runtime {
             if ($name -cnotin $passed) { throw "Required test did not pass: $name" }
         }
         if ((Read-Helper @('fingerprint')) -ne $fingerprint) { throw 'Sources changed while tests were running.' }
-        $report.status = 'passed'
+        $report.passed_tests = $passed
     } catch { $failed = $_; $report.status = 'failed' }
     finally {
         # Restore the non-probe runtime even when tests fail. A restoration failure is fatal.
@@ -238,7 +241,27 @@ function Test-Runtime {
         Save-Json $report (Join-Path $build 'test-receipt.json')
     }
     if ($failed) { throw $failed }
-    if (!$CI) { [void](Read-Helper @('verify','--publish')) }
+    $production = Read-Helper @('verify')
+    if ($production.source_fingerprint -ne $fingerprint) { throw 'Source changed during Production restoration.' }
+    if ($Interactive) {
+        Assert-Idle -IncludeDaily
+        $observations = @()
+        foreach ($receiver in @('edge', 'custom')) {
+            $rows = @(& python (Join-Path $root 'tests/compatibility/release_paste.py') --interactive --receiver $receiver)
+            $rows | ForEach-Object { Write-Host $_ }
+            if ($LASTEXITCODE -ne 0) { throw "Production paste failed in $receiver." }
+            $observations += @(ConvertFrom-Json -InputObject $rows[-1])
+        }
+        $after = Read-Helper @('verify')
+        if ($after.source_fingerprint -ne $fingerprint -or
+            ($production.payload | ConvertTo-Json -Compress) -ne ($after.payload | ConvertTo-Json -Compress)) {
+            throw 'The tested Production runtime changed during foreground verification.'
+        }
+        $report.release_paste = @{cases=$observations;payload=$production.payload;source_fingerprint=$fingerprint}
+    }
+    $report.status = 'passed'
+    Save-Json $report (Join-Path $build 'test-receipt.json')
+    if (!$CI -and $Interactive) { [void](Read-Helper @('verify','--publish')) }
 }
 function Clean-Build {
     Assert-Idle

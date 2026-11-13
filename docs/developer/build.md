@@ -53,16 +53,29 @@ installer. Each installed executable retains its tested Release bytes.
 `-Variant Qualification` enables probes; `-Configuration Debug` selects Debug. Both
 replace the same development image. Finish with Test, which restores Production
 Release even after a test failure and retains the failed test status. Publish
-requires a pinned Production Release, matching fingerprints and a successful test
-receipt. CI uses `-CI` and cannot produce a publishable receipt.
+requires a pinned Production Release, matching fingerprints and a successful interactive
+test receipt bound to the tested payload hashes. CI uses an unpinned preset.
 
 Test always runs BUILD, core P1, catalog, UI source and uninstall regressions. Use
 `-TestRegex` to add cases. Receipts retain the selected scope: the core gate does not
 close Office, physical-display, performance or other outstanding release gates.
 `-Interactive` explicitly opts into active-desktop, tray and Office configuration;
-select the desired cases with TestRegex as well. The daily process must be stopped
+select additional cases with TestRegex. The daily process must be stopped
 for these tests. Prefer private-window-station fixtures; never fall back to the
 user's clipboard when the isolated station is unavailable.
+
+Every Test run requires the named UIA press races, target timeouts and one-shot
+delivery tests, including on push and pull request CI. For Package and Publish run
+`pwsh -File tools/build.ps1 -Action Test -Interactive`. Use an unlocked test
+session with Microsoft Edge, Windows .NET Framework 4.x WPF, and Python with
+pywin32 and websocket-client. The fixture replaces the session clipboard with
+synthetic data and uses temporary ClipRope and Edge profiles. After Qualification
+and the transaction tests, the script restores Production Release and double-clicks
+real Hanging cards in Edge and a two-field WPF editor. It checks receiver text,
+shortcut and paste counts, clipboard publication, rope order and workspace collapse.
+The receipt records the exact passing cases and hashes of the tested runtime.
+Noninteractive tests establish a development result. Repeat the interactive gate
+after changing sources or rebuilding a different payload before packaging.
 
 An uninstalled desktop without an explicit profile exits with code 2 before opening
 history or initializing startup. RunDev supplies the profile and refuses to run
