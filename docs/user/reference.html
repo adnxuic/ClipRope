@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="查默认键位、确认手势的生效范围，或根据屏幕上的结果定位粘贴问题。">
+  <title>操作速查 · ClipRope 用户手册</title>
+  <link rel="alternate" hreflang="en" href="en/reference.html">
+  <link rel="icon" type="image/x-icon" href="../website/assets/cliprope.ico">
+  <link rel="stylesheet" href="css/manual.css">
+  <script defer src="js/search-index.js"></script>
+  <script defer src="js/manual.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <div class="bar-inner">
+      <button class="icon-button menu-toggle" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="site-nav" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="ClipRope-Docs.html" aria-label="ClipRope 手册首页"><img src="../website/assets/cliprope.png" width="38" height="38" alt=""><span>ClipRope</span></a>
+      <span class="brand-context">用户手册</span>
+      <div class="tools">
+        <a class="toolbar-demo" href="../website/index.html?lang=zh-CN" title="交互演示" aria-label="交互演示">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 8 6 4-6 4z"/></svg><span>交互演示</span>
+        </a>
+        <a class="language-link" href="en/reference.html" hreflang="en" lang="en">English</a>
+        <button class="search-trigger" type="button" aria-label="搜索文档" aria-haspopup="dialog" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="icon fluent-icon glyph-search" aria-hidden="true"></span></span><span>搜索文档</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-button theme-toggle" type="button" aria-label="切换手册主题" title="切换手册主题" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17Z" fill="currentColor" stroke="none"/></svg><span class="icon fluent-icon glyph-appearance" aria-hidden="true"></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" id="site-nav" aria-label="手册目录">
+      <p class="nav-label">手册目录</p>
+      <a href="ClipRope-Docs.html"><span class="icon fluent-icon glyph-overview" aria-hidden="true"></span><span>手册首页</span></a>
+      <a href="getting-started.html"><span class="icon fluent-icon glyph-information" aria-hidden="true"></span><span>快速开始</span></a>
+      <p class="nav-label">使用指南</p>
+      <a href="cards.html"><span class="icon fluent-icon glyph-document" aria-hidden="true"></span><span>使用卡片</span></a>
+      <a href="ropes.html"><span class="icon fluent-icon glyph-rope" aria-hidden="true"></span><span>整理绳子</span></a>
+      <a href="settings.html"><span class="icon fluent-icon glyph-settings" aria-hidden="true"></span><span>设置与隐私</span></a>
+      <p class="nav-label">参考</p>
+      <a href="reference.html" aria-current="page"><span class="icon fluent-icon glyph-keyboard" aria-hidden="true"></span><span>操作速查</span></a>
+    </nav>
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置"><a href="ClipRope-Docs.html">手册首页</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">操作速查</span></nav>
+      <div class="article-head"><h1>操作速查</h1><p>查默认键位、确认手势的生效范围，或根据屏幕上的结果定位粘贴问题。</p></div>
+      <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
+        <li><a href="#shortcuts">默认快捷键与生效范围</a></li>
+        <li><a href="#find">在桌面应用中查找卡片</a></li>
+        <li><a href="#troubleshooting">双击后没有看到粘贴内容</a></li>
+        <li><a href="#faq">常见问题</a></li>
+      </ul></nav>
+      <section class="doc-section" id="shortcuts" tabindex="-1"><h2>默认快捷键与生效范围</h2>
+        <table class="key-table"><caption>ClipRope 桌面应用的默认键位</caption><thead><tr><th scope="col">快捷键</th><th scope="col">操作</th><th scope="col">生效范围</th></tr></thead><tbody>
+        <tr><th scope="row"><kbd>Ctrl+Shift+V</kbd></th><td>显示或收起工作区</td><td>全局</td></tr>
+        <tr><th scope="row"><kbd>Ctrl+Shift+Space</kbd></th><td>新建悬浮快速笔记</td><td>全局</td></tr>
+        <tr><th scope="row"><kbd>Tab</kbd></th><td>切换到下一条收集绳</td><td>指针位于可见绳子行，或工作区获得焦点</td></tr>
+        <tr><th scope="row"><kbd>Ctrl+Tab</kbd></th><td>切换单绳视图与总览</td><td>与 Tab 相同</td></tr>
+        <tr><th scope="row"><kbd>Ctrl+F</kbd></th><td>查找卡片</td><td>与 Tab 相同</td></tr>
+        <tr><th scope="row"><kbd>Ctrl+S</kbd> / <kbd>Esc</kbd></th><td>保存 / 取消本次文字编辑</td><td>卡片文字编辑器</td></tr></tbody></table>
+        <p>网页手册用 <kbd>Ctrl+K</kbd> 搜索文档。桌面应用的默认组合键可在<strong>全局设置 → 快捷键</strong>中调整。</p>
+      </section>
+      <section class="doc-section" id="find" tabindex="-1"><h2>在桌面应用中查找卡片</h2>
+        <p>打开工作区，将指针移到绳子行上并按 <kbd>Ctrl+F</kbd>，或在绳子菜单选择<strong>查找卡片</strong>。输入文字、链接或部分文件路径，按 <kbd>Enter</kbd> 跳到下一处，按 <kbd>Shift+Enter</kbd> 回到上一处，按 <kbd>Esc</kbd> 关闭查找。</p>
+        <p>单绳视图只查找当前绳上的卡片。总览可跨绳查找，回收绳显示时也在范围内。查找依据卡片已保存的信息，不会读取文件正文或识别截图中的文字；浏览匹配项会保留收集绳和剪贴板。</p>
+      </section>
+      <section class="doc-section" id="troubleshooting" tabindex="-1"><h2>双击后没有看到粘贴内容</h2>
+        <dl class="definitions"><dt>卡片回到绳首，目标位置仍为空</dt><dd>先在<strong>全局设置 → 卡片</strong>检查是否选择了“仅复制”。如果已复制，点回正确的输入位置按 <kbd>Ctrl+V</kbd>。自动粘贴要求原输入区域仍然有效。</dd>
+        <dt>看到“已复制，已发送粘贴快捷键。”</dt><dd>先检查目标位置，避免重复粘贴。目标应用决定接收哪种格式；可以用记事本验证文字，用资源管理器的文件夹接收文件、文件夹或截图 PNG。</dd>
+        <dt>看到“剪贴板发布失败，卡片仍然可用。”</dt><dd>此次未能恢复卡片内容。回到绳上重试；如果卡片引用文件，可先确认原文件仍在原位置并且可以访问。</dd></dl>
+      </section>
+      <section class="doc-section" id="faq" tabindex="-1"><h2>常见问题</h2>
+        <dl class="definitions"><dt>关闭的悬浮卡片在哪里？</dt><dd>默认在回收绳的首位。<a href="cards.html#rebin">显示回收绳并找回卡片</a></dd>
+        <dt>为什么滚动时切换了绳子？</dt><dd>单绳视图中普通滚轮浏览卡片，按住 Ctrl 滚动会切换收集绳。<a href="ropes.html#overview">查看两种视图的滚轮操作</a></dd>
+        <dt>重启后还能找到卡片吗？</dt><dd>已保存的绳上记录和悬浮卡片会随本机历史重新加载。引用外部文件的卡片仍依赖原文件。<a href="settings.html#storage">查找当前数据目录</a></dd></dl>
+      </section>
+      <nav class="page-turn" aria-label="相邻章节"><a href="settings.html"><small>上一页</small><strong>设置与隐私</strong></a></nav>
+      <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>
+    </main>
+  </div>
+</body>
+</html>

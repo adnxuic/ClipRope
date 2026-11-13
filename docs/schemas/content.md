@@ -1,0 +1,9 @@
+# Representation bytes and publication leases
+
+Each saved representation refers to a SHA-256 content ID. The store keeps up to 4 KiB inline. Larger immutable payloads live at `blobs/<first two hex digits>/<64 hex digits>.blob`. Different snapshots and independently owned entries may share these bytes.
+
+A writer validates the manifest, writes an exclusive file in the store's staging directory, flushes it, and renames it on the same volume before a committed SQLite reference can become visible. The profile admits one writer process. A failed transaction leaves the previous rope order and membership available. On reopening, collection removes abandoned staging files and unreferenced installed blobs. The store only sweeps names matching its staging and content layouts.
+
+The storage boundary allows up to 256 descriptors, 64 MiB per payload and 128 MiB of saved bytes per snapshot. Capture adapters impose their own narrower limits. An ordinal fixes representation order. Standard format IDs or registered format names identify formats across restart. The writer includes the ordered descriptor fields, outcome and content IDs in a length-prefixed manifest digest. Loading checks the SHA-256 manifest digest and each referenced payload’s size and hash. An empty or incorrect digest fails both loading and verification of any backup containing that snapshot. A missing or invalid payload raises a damaged-content error and preserves the entry for recovery.
+
+A successful load returns verified bytes and a shared lease. The publisher passes that lease to the OLE data object. While it is live, collection protects inline and external data by content ID; a read handle also prevents removal of a leased external file. Deleting the last card releases its persistent reference. Collection can reclaim its bytes after the last publication lease ends. [Storage integration test](../../tests/integration/content_store.cpp)

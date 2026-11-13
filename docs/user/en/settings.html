@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Right-click the tray icon and open Global settings to change double-click behavior, exclude apps from capture or move your local history.">
+  <title>Settings and privacy · ClipRope User Guide</title>
+  <link rel="alternate" hreflang="zh-CN" href="../settings.html">
+  <link rel="icon" type="image/x-icon" href="../../website/assets/cliprope.ico">
+  <link rel="stylesheet" href="../css/manual.css">
+  <script defer src="../js/search-index.en.js"></script>
+  <script defer src="../js/manual.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="bar-inner">
+      <button class="icon-button menu-toggle" type="button" aria-label="Open table of contents" aria-expanded="false" aria-controls="site-nav" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="ClipRope-Docs.html" aria-label="ClipRope guide home"><img src="../../website/assets/cliprope.png" width="38" height="38" alt=""><span>ClipRope</span></a>
+      <span class="brand-context">User guide</span>
+      <div class="tools">
+        <a class="toolbar-demo" href="../../website/index.html?lang=en" title="Open demo" aria-label="Open demo">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 8 6 4-6 4z"/></svg><span>Open demo</span>
+        </a>
+        <a class="language-link" href="../settings.html" hreflang="zh-CN" lang="zh-CN">简体中文</a>
+        <button class="search-trigger" type="button" aria-label="Search the guide" aria-haspopup="dialog" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="icon fluent-icon glyph-search" aria-hidden="true"></span></span><span>Search the guide</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-button theme-toggle" type="button" aria-label="Switch guide theme" title="Switch guide theme" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17Z" fill="currentColor" stroke="none"/></svg><span class="icon fluent-icon glyph-appearance" aria-hidden="true"></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" id="site-nav" aria-label="Contents">
+      <p class="nav-label">Contents</p>
+      <a href="ClipRope-Docs.html"><span class="icon fluent-icon glyph-overview" aria-hidden="true"></span><span>Guide home</span></a>
+      <a href="getting-started.html"><span class="icon fluent-icon glyph-information" aria-hidden="true"></span><span>Getting started</span></a>
+      <p class="nav-label">Using ClipRope</p>
+      <a href="cards.html"><span class="icon fluent-icon glyph-document" aria-hidden="true"></span><span>Working with cards</span></a>
+      <a href="ropes.html"><span class="icon fluent-icon glyph-rope" aria-hidden="true"></span><span>Organizing ropes</span></a>
+      <a href="settings.html" aria-current="page"><span class="icon fluent-icon glyph-settings" aria-hidden="true"></span><span>Settings and privacy</span></a>
+      <p class="nav-label">Reference</p>
+      <a href="reference.html"><span class="icon fluent-icon glyph-keyboard" aria-hidden="true"></span><span>Quick reference</span></a>
+    </nav>
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="ClipRope-Docs.html">Guide home</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">Settings and privacy</span></nav>
+      <div class="article-head"><h1>Settings and privacy</h1><p>Right-click the tray icon and open Global settings to change double-click behavior, exclude apps from capture or move your local history.</p></div>
+      <nav class="on-page" aria-label="On this page"><strong>On this page</strong><ul>
+        <li><a href="#paste-mode">Set double-click to Copy only</a></li>
+        <li><a href="#follow">Choose when the first card updates the clipboard</a></li>
+        <li><a href="#privacy">Exclude an app from clipboard capture</a></li>
+        <li><a href="#storage">Find or move your history folder</a></li>
+        <li><a href="#shortcuts-settings">Customize shortcuts and appearance</a></li>
+      </ul></nav>
+      <section class="doc-section" id="paste-mode" tabindex="-1"><h2>Set double-click to Copy only</h2>
+        <p>Open <strong>Global settings → Cards → Hanging double-click</strong>. The default, <strong>Copy and paste</strong>, sends a paste to the original destination if it can still accept one. Choose <strong>Copy only</strong> to restore the contents to the clipboard, move the card to the front of its rope and hide the workspace. Click where you want the contents and press <kbd>Ctrl+V</kbd>.</p>
+        <p>On the same page, <strong>Hanging card deletion</strong> and <strong>Floating card deletion</strong> control what × does in each form. <a href="cards.html#rebin">See which closed cards you can recover from ReBin.</a></p>
+      </section>
+      <section class="doc-section" id="follow" tabindex="-1"><h2>Choose when the first card updates the clipboard</h2>
+        <dl class="definitions"><dt>Ropes → Update clipboard when switching ropes</dt><dd>On by default. Switching to a nonempty collecting rope copies its first card to the clipboard for your next manual paste.</dd><dt>Cards → Update clipboard when the first card changes</dt><dd>On by default. When you rearrange the current collecting rope and a different card becomes first, its contents are copied. Saving an edit to the first card’s text also updates the clipboard.</dd></dl>
+        <p>Scrolling through cards, canceling a drag or switching to an empty rope leaves the clipboard as it was. Neither setting sends a paste shortcut to another window.</p>
+      </section>
+      <section class="doc-section" id="privacy" tabindex="-1"><h2>Exclude an app from clipboard capture</h2>
+        <ol><li>Open <strong>Storage &amp; Privacy → Clipboard capture exclusions</strong> and choose <strong>Edit list…</strong>.</li><li>Enter the app’s executable name, such as <code>KeePass.exe</code>, and choose <strong>Add</strong>. Enter the filename without its folder path.</li><li>Choose <strong>Save</strong>. Future copies from the listed apps are skipped. Cards already in your history stay there.</li></ol>
+      </section>
+      <section class="doc-section" id="storage" tabindex="-1"><h2>Find or move your history folder</h2>
+        <p>The default data folder is <code>%LOCALAPPDATA%\ClipRope</code>. Open <strong>Storage &amp; Privacy</strong> to see the active <strong>Data folder</strong> and its <strong>Disk usage</strong>. ClipRope stores history and Floating card positions on this PC. Referenced files remain in their original locations.</p>
+        <p>Choose <strong>Browse…</strong> beside <strong>Data folder</strong> and select an empty folder. Choose <strong>Restart now</strong> to start the move, or <strong>Later</strong> to keep using the current folder until the next launch. Use <strong>Cancel move</strong> to cancel a pending migration.</p>
+      </section>
+      <section class="doc-section" id="shortcuts-settings" tabindex="-1"><h2>Customize shortcuts and appearance</h2>
+        <p>On the <strong>Shortcuts</strong> page, select an action, record a key combination and choose <strong>Check</strong> to see whether it is available. If another app already uses the workspace shortcut, you can still open ClipRope from the tray. <a href="reference.html#shortcuts">See default shortcuts and where they work.</a></p>
+        <p>Under <strong>Appearance → Theme</strong>, select <strong>Light</strong>, <strong>Dark</strong> or <strong>System</strong>. <strong>Find highlight color</strong> marks the current match on a card. The theme button at the top of this guide changes the guide’s appearance only.</p>
+      </section>
+      <nav class="page-turn" aria-label="Adjacent chapters"><a href="ropes.html"><small>Previous</small><strong>Organizing ropes</strong></a><a href="reference.html"><small>Next</small><strong>Quick reference <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
+      <footer class="page-footer" id="developer"><span>ClipRope User Guide</span><a href="../../developer/README.md">Developer guide</a></footer>
+    </main>
+  </div>
+</body>
+</html>

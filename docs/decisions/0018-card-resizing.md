@@ -1,0 +1,9 @@
+# ADR 0018 · Resize a card by its border
+
+**Accepted · 2026-11-03.** The entry owns two scale factors shared by its Hanging and Floating presentations. Both default to 1 and range from 0.75 to 2. Regular paper measures 172 × 148 DIP at 100%, compact paper 86 × 148, and a Floating text window 240 × 160. For example, widening regular paper to 258 DIP gives it a 360-DIP window when detached. Text wraps at the chosen width using its saved font.
+
+Drag either side, the bottom or a bottom corner of a Hanging paper. The top stays under the wood. Both sides expand around the hook contact while the lower edge extends down. The wooden bar overhangs paper by 4 DIP per side. The bar profile retains its height, hook, number and glyph. Rope spacing follows the actual hanger. The tallest realized paper sets the additional clearance required below a row. The Floating window accepts all four edges and corners. Grab within 6 DIP of the edge. Tiny images reserve the center for double-click and Ctrl-drag. Buttons take priority.
+
+Screenshots and individual image files use one factor for both dimensions. Regular and compact image bars retain their respective 160 and 80 DIP minima. The Floating image toolbar stays 38 DIP high and at least 144 DIP wide. Monitor fitting affects the displayed rectangle. The entry keeps its preferred scale when the work area changes. [Image geometry](0009-adaptive-image-cards.md) · [Rope density](0013-rope-menu.md)
+
+A gesture previews in memory and commits once on release against the bound entry and membership. Escape, loss of capture or a rejected write restores the prior layout. A Floating resize writes its monitor-relative rectangle in the same transaction. Moving, reordering, returning and recycling preserve scale. An explicit card copy inherits the source scale and then changes independently. Clipboard publication and history order require their own commands. [Schema](../schemas/history.md)

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="用不同的绳子整理不同任务。当前收集绳接收新复制的内容，每根普通绳子有自己的顺序和容量。">
+  <title>整理绳子 · ClipRope 用户手册</title>
+  <link rel="alternate" hreflang="en" href="en/ropes.html">
+  <link rel="icon" type="image/x-icon" href="../website/assets/cliprope.ico">
+  <link rel="stylesheet" href="css/manual.css">
+  <script defer src="js/search-index.js"></script>
+  <script defer src="js/manual.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <div class="bar-inner">
+      <button class="icon-button menu-toggle" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="site-nav" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="ClipRope-Docs.html" aria-label="ClipRope 手册首页"><img src="../website/assets/cliprope.png" width="38" height="38" alt=""><span>ClipRope</span></a>
+      <span class="brand-context">用户手册</span>
+      <div class="tools">
+        <a class="toolbar-demo" href="../website/index.html?lang=zh-CN" title="交互演示" aria-label="交互演示">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 8 6 4-6 4z"/></svg><span>交互演示</span>
+        </a>
+        <a class="language-link" href="en/ropes.html" hreflang="en" lang="en">English</a>
+        <button class="search-trigger" type="button" aria-label="搜索文档" aria-haspopup="dialog" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="icon fluent-icon glyph-search" aria-hidden="true"></span></span><span>搜索文档</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-button theme-toggle" type="button" aria-label="切换手册主题" title="切换手册主题" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17Z" fill="currentColor" stroke="none"/></svg><span class="icon fluent-icon glyph-appearance" aria-hidden="true"></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" id="site-nav" aria-label="手册目录">
+      <p class="nav-label">手册目录</p>
+      <a href="ClipRope-Docs.html"><span class="icon fluent-icon glyph-overview" aria-hidden="true"></span><span>手册首页</span></a>
+      <a href="getting-started.html"><span class="icon fluent-icon glyph-information" aria-hidden="true"></span><span>快速开始</span></a>
+      <p class="nav-label">使用指南</p>
+      <a href="cards.html"><span class="icon fluent-icon glyph-document" aria-hidden="true"></span><span>使用卡片</span></a>
+      <a href="ropes.html" aria-current="page"><span class="icon fluent-icon glyph-rope" aria-hidden="true"></span><span>整理绳子</span></a>
+      <a href="settings.html"><span class="icon fluent-icon glyph-settings" aria-hidden="true"></span><span>设置与隐私</span></a>
+      <p class="nav-label">参考</p>
+      <a href="reference.html"><span class="icon fluent-icon glyph-keyboard" aria-hidden="true"></span><span>操作速查</span></a>
+    </nav>
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置"><a href="ClipRope-Docs.html">手册首页</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">整理绳子</span></nav>
+      <div class="article-head"><h1>整理绳子</h1><p>用不同的绳子整理不同任务。当前收集绳接收新复制的内容，每根普通绳子有自己的顺序和容量。</p></div>
+      <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
+        <li><a href="#collector">创建、切换收集绳</a></li>
+        <li><a href="#overview">在总览中浏览和排序</a></li>
+        <li><a href="#move">移动或复制卡片</a></li>
+        <li><a href="#capacity">绳满时会移除哪张卡片？</a></li>
+      </ul></nav>
+      <section class="doc-section" id="collector" tabindex="-1"><h2>创建、切换收集绳</h2>
+        <p>右键单击绳线或中央的木质名牌，选择<strong>新建绳子…</strong>。填好名称和容量并保存，在切换提示中选择<strong>是</strong>，之后复制的内容就会挂到新绳上。</p>
+        <p>指针位于绳子行上或工作区获得焦点时，按 <kbd>Tab</kbd> 选择下一条收集绳。在单绳视图里也可按住 <kbd>Ctrl</kbd> 滚动滚轮：向上切到上一条，向下切到下一条。切到非空绳子时，默认会把新绳的首张卡片复制到剪贴板。<a href="settings.html#follow">调整绳首与剪贴板的联动</a></p>
+      </section>
+      <section class="doc-section" id="overview" tabindex="-1"><h2>在总览中浏览和排序</h2>
+        <p>将指针移到绳子行上，按 <kbd>Ctrl+Tab</kbd> 切换单绳视图与总览。在总览中双击某行的绳线或名牌，可把它选为收集绳并进入单绳视图。</p>
+        <table><caption>在两种视图中操作绳线或名牌</caption><thead><tr><th scope="col">手势</th><th scope="col">单绳视图</th><th scope="col">多绳总览</th></tr></thead><tbody>
+        <tr><th scope="row">滚动滚轮</th><td>沿当前绳子浏览卡片。</td><td>沿指针所在的行浏览卡片。</td></tr>
+        <tr><th scope="row">Ctrl + 滚轮</th><td>切换收集绳。</td><td>上下浏览绳子列表，收集绳保持不变。</td></tr>
+        <tr><th scope="row">上下拖动绳线或名牌</th><td>保存这根绳子在屏幕上的高度。</td><td>拖到行间调整绳子顺序。排在首位的绳子负责收集。</td></tr></tbody></table>
+      </section>
+      <section class="doc-section" id="move" tabindex="-1"><h2>移动或复制卡片</h2>
+        <p><strong>移动：</strong>按住卡片中央，拖到目标绳内，等相邻卡片让出空位再松手。要放到当前看不见的位置，可把指针停在目标行的左端或右端，等待该行滚动。拖动中按 <kbd>Esc</kbd> 可取消。</p>
+        <p><strong>在绳上创建副本：</strong>在总览中，先按住 <kbd>Ctrl</kbd> 再拖动卡片中央，在任一可见绳子的空位松开。在所有绳子行外松开会取消复制。</p>
+        <p><strong>复制到其他应用：</strong>在单绳视图中，按住 <kbd>Ctrl</kbd> 拖到接收应用。文件可拖到资源管理器的文件夹，截图拖入文件夹会生成 PNG。工作区收起时，悬浮卡片也支持这样拖出。</p>
+      </section>
+      <section class="doc-section" id="capacity" tabindex="-1"><h2>绳满时会移除哪张卡片？</h2>
+        <p>每根普通绳子单独计算容量。第 1 张位于绳首，最后一张位于绳尾。新复制或通过回绳按钮返回的卡片加入首位，超出容量时移除这根绳子末尾的卡片。</p>
+        <figure class="order-example"><figcaption>示例：将悬浮卡片 D 放回容量为 3 的收集绳</figcaption><ol class="order-row"><li class="order-label">回绳前</li><li>A <small>绳首</small></li><li>B</li><li>C <small>绳尾</small></li></ol><ol class="order-row"><li class="order-label">回绳后</li><li class="new-card">D <small>绳首</small></li><li>A</li><li>B <small>绳尾</small></li></ol></figure>
+        <p>原先排在末尾的 C 被移除。其他绳子上的卡片不受影响。如果回绳操作保存失败，A、B、C 保持原顺序，D 仍在桌面上。</p>
+        <p>调整现有绳子的容量，可右键单击绳线或名牌，选择<strong>编辑样式…</strong>。缩减容量需要确认。<strong>全局设置 → 绳子 → 新绳默认容量</strong>用于之后新建的绳子。</p>
+      </section>
+      <nav class="page-turn" aria-label="相邻章节"><a href="cards.html"><small>上一页</small><strong>使用卡片</strong></a><a href="settings.html"><small>下一页</small><strong>设置与隐私 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
+      <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>
+    </main>
+  </div>
+</body>
+</html>

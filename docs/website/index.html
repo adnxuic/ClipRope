@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-i18n="pageTitle">ClipRope · Windows 11 晾衣绳式剪贴板历史管理器</title>
+  <meta name="description" content="ClipRope 是一款面向 Windows 11 的高性能持久化剪贴板历史管理器，采用温暖拟物的麻绳、木夹与纸张卡片工作区，并支持桌面独立悬浮卡片。" data-i18n="description:content">
+  <meta name="theme-color" content="#f5f4f0">
+  <link rel="icon" type="image/x-icon" href="assets/cliprope.ico">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/controls.css">
+  <script defer src="js/i18n.js"></script>
+  <script defer src="js/workspace-paint.js"></script>
+  <script defer src="js/history.js"></script>
+  <script defer src="js/samples.js"></script>
+  <script defer src="js/sample-view.js"></script>
+  <script defer src="js/surfaces.js"></script>
+  <script defer src="js/workspace.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <div class="page-tools">
+    <a id="guide-link" href="../user/ClipRope-Docs.html" target="_blank" rel="noopener"
+       title="用户手册（在新标签页中打开）" aria-label="用户手册（在新标签页中打开）" data-i18n="openGuide:title openGuide:aria-label">
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M10 5C7.8 3.5 4.5 3.1 1.8 3.9v11c2.7-.8 6-.4 8.2 1.1 2.2-1.5 5.5-1.9 8.2-1.1v-11C15.5 3.1 12.2 3.5 10 5Zm0 0v11"/></svg>
+      <span data-i18n="guideLabel">用户手册</span>
+    </a>
+    <button id="language-switch" type="button" lang="en" aria-label="切换到 English">
+      <span class="language-full">English</span><span class="language-short" aria-hidden="true">EN</span>
+    </button>
+  </div>
+  <h1 class="visually-hidden" data-i18n="pageTitle">ClipRope · Windows 11 晾衣绳式剪贴板历史管理器</h1>
+  <p class="visually-hidden" data-i18n="intro">
+    ClipRope 主工作区将每一次复制的文本、文件与截图挂在屏幕顶部的麻绳上。双击卡片即可粘贴回原窗口，拖下晾衣绳即可变为独立置顶悬浮便签。
+  </p>
+
+  <!-- Windows 11 Desktop Backdrop with Centered Project Icon -->
+  <div id="desktop" aria-label="Windows 11 桌面环境" data-i18n="desktopEnvironment:aria-label">
+    <div id="desktop-backdrop" aria-hidden="true">
+      <div class="backdrop-halo"></div>
+      <div class="backdrop-grain"></div>
+    </div>
+
+    <div id="desktop-centerpiece">
+      <img
+        id="project-logo"
+        src="assets/cliprope.png"
+        width="188"
+        height="188"
+        alt="ClipRope 项目图标"
+        draggable="false"
+        data-i18n="logo:alt"
+      >
+    </div>
+
+    <!-- Desktop Folder Icons -->
+    <nav id="desktop-icons" aria-label="桌面文件夹" data-i18n="desktopFolders:aria-label">
+      <button type="button" class="desktop-folder" data-folder-id="specs" aria-label="打开试用指南文件夹">
+        <span class="desktop-folder-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path d="M5 11.5A3.5 3.5 0 0 1 8.5 8h10c1.1 0 2.15.5 2.83 1.37l2.24 2.86c.42.53 1.06.84 1.73.84H39.5A3.5 3.5 0 0 1 43 16.57v21.93A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5v-27Z" fill="#d9880f"/>
+            <rect x="8" y="13.5" width="32" height="8" rx="1.8" fill="#fffdf8" opacity="0.92"/>
+            <path d="M5 18.2A3.2 3.2 0 0 1 8.2 15h12.3c.92 0 1.8-.33 2.5-.93l1.7-1.44A3.2 3.2 0 0 1 26.77 12H39.8a3.2 3.2 0 0 1 3.2 3.2v23.3A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5V18.2Z" fill="#f7c137"/>
+            <path d="M8 15.8h12.4c.95 0 1.86-.34 2.58-.95l1.62-1.38c.6-.5 1.35-.77 2.13-.77H39.8" fill="none" stroke="#fff5c0" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </span>
+        <span class="desktop-folder-name">试用指南</span>
+      </button>
+
+      <button type="button" class="desktop-folder" data-folder-id="screenshots" aria-label="打开测试截图文件夹">
+        <span class="desktop-folder-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path d="M5 11.5A3.5 3.5 0 0 1 8.5 8h10c1.1 0 2.15.5 2.83 1.37l2.24 2.86c.42.53 1.06.84 1.73.84H39.5A3.5 3.5 0 0 1 43 16.57v21.93A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5v-27Z" fill="#d9880f"/>
+            <rect x="8" y="13.5" width="32" height="8" rx="1.8" fill="#fffdf8" opacity="0.92"/>
+            <path d="M5 18.2A3.2 3.2 0 0 1 8.2 15h12.3c.92 0 1.8-.33 2.5-.93l1.7-1.44A3.2 3.2 0 0 1 26.77 12H39.8a3.2 3.2 0 0 1 3.2 3.2v23.3A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5V18.2Z" fill="#f7c137"/>
+            <path d="M8 15.8h12.4c.95 0 1.86-.34 2.58-.95l1.62-1.38c.6-.5 1.35-.77 2.13-.77H39.8" fill="none" stroke="#fff5c0" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </span>
+        <span class="desktop-folder-name">测试截图</span>
+      </button>
+
+      <button type="button" class="desktop-folder" data-folder-id="mockups" aria-label="打开设计素材文件夹">
+        <span class="desktop-folder-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path d="M5 11.5A3.5 3.5 0 0 1 8.5 8h10c1.1 0 2.15.5 2.83 1.37l2.24 2.86c.42.53 1.06.84 1.73.84H39.5A3.5 3.5 0 0 1 43 16.57v21.93A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5v-27Z" fill="#d9880f"/>
+            <rect x="8" y="13.5" width="32" height="8" rx="1.8" fill="#fffdf8" opacity="0.92"/>
+            <path d="M5 18.2A3.2 3.2 0 0 1 8.2 15h12.3c.92 0 1.8-.33 2.5-.93l1.7-1.44A3.2 3.2 0 0 1 26.77 12H39.8a3.2 3.2 0 0 1 3.2 3.2v23.3A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5V18.2Z" fill="#f7c137"/>
+            <path d="M8 15.8h12.4c.95 0 1.86-.34 2.58-.95l1.62-1.38c.6-.5 1.35-.77 2.13-.77H39.8" fill="none" stroke="#fff5c0" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </span>
+        <span class="desktop-folder-name">设计素材</span>
+      </button>
+
+      <button type="button" class="desktop-folder" data-folder-id="release" aria-label="打开会前材料文件夹">
+        <span class="desktop-folder-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48">
+            <path d="M5 11.5A3.5 3.5 0 0 1 8.5 8h10c1.1 0 2.15.5 2.83 1.37l2.24 2.86c.42.53 1.06.84 1.73.84H39.5A3.5 3.5 0 0 1 43 16.57v21.93A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5v-27Z" fill="#d9880f"/>
+            <rect x="8" y="13.5" width="32" height="8" rx="1.8" fill="#fffdf8" opacity="0.92"/>
+            <path d="M5 18.2A3.2 3.2 0 0 1 8.2 15h12.3c.92 0 1.8-.33 2.5-.93l1.7-1.44A3.2 3.2 0 0 1 26.77 12H39.8a3.2 3.2 0 0 1 3.2 3.2v23.3A3.5 3.5 0 0 1 39.5 42h-31A3.5 3.5 0 0 1 5 38.5V18.2Z" fill="#f7c137"/>
+            <path d="M8 15.8h12.4c.95 0 1.86-.34 2.58-.95l1.62-1.38c.6-.5 1.35-.77 2.13-.77H39.8" fill="none" stroke="#fff5c0" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+        </span>
+        <span class="desktop-folder-name">会前材料</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Windows 11 File Explorer Window (Always below ClipRope main workspace & floating cards) -->
+  <section id="win11-explorer" aria-label="Windows 11 文件资源管理器" aria-hidden="true" data-i18n="explorerWindow:aria-label">
+    <!-- Title Bar & Folder Tabs -->
+    <header id="explorer-titlebar">
+      <div id="explorer-tabs" role="tablist" aria-label="文件夹标签页" data-i18n="folderTabs:aria-label"></div>
+      <div class="explorer-window-controls">
+        <button type="button" id="explorer-min-btn" class="win-caption-btn" aria-label="最小化到任务栏" title="最小化" data-i18n="minimize:title minimizeToTray:aria-label">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M2 6h8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" id="explorer-max-btn" class="win-caption-btn" aria-label="最大化或还原窗口" title="最大化" data-i18n="maximize:title maximizeOrRestore:aria-label">
+          <svg id="explorer-max-icon" viewBox="0 0 12 12" aria-hidden="true">
+            <rect x="2.2" y="2.2" width="7.6" height="7.6" rx="1" fill="none" stroke="currentColor" stroke-width="1.1"/>
+          </svg>
+        </button>
+        <button type="button" id="explorer-close-btn" class="win-caption-btn win-close-btn" aria-label="关闭文件资源管理器" title="关闭" data-i18n="close:title closeExplorer:aria-label">
+          <svg viewBox="0 0 12 12" aria-hidden="true">
+            <path d="M2.5 2.5 9.5 9.5M9.5 2.5 2.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Address Bar -->
+    <div class="explorer-navbar">
+      <button id="files-copy" class="app-action" data-i18n="copySelection">复制所选</button><button id="files-paste" class="app-action" data-i18n="paste">粘贴</button>
+      <div class="explorer-addressbar" id="explorer-addressbar">
+        <span class="address-crumb" data-i18n="thisPC">此电脑</span>
+        <span class="address-sep">›</span>
+        <span class="address-crumb" data-i18n="desktop">桌面</span>
+        <span class="address-sep">›</span>
+        <strong class="address-current" id="explorer-current-folder-crumb">试用指南</strong>
+      </div>
+    </div>
+
+    <!-- Main Body: Left Folder Switcher Sidebar + Right Files Grid -->
+    <div class="explorer-body">
+      <aside class="explorer-sidebar" aria-label="导航窗格" data-i18n="navigationPane:aria-label">
+        <div class="sidebar-group-title" data-i18n="desktop">桌面</div>
+        <div id="explorer-sidebar-list" class="sidebar-list"></div>
+      </aside>
+
+      <div class="explorer-content-wrap">
+        <div class="explorer-column-header" aria-hidden="true">
+          <span data-i18n="name">名称</span>
+          <span data-i18n="type">类型</span>
+          <span data-i18n="size">大小</span>
+        </div>
+        <div aria-multiselectable="true" id="explorer-files-list" class="explorer-files-list" role="listbox" aria-label="当前文件夹内容" data-i18n="folderContents:aria-label"></div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <footer class="explorer-statusbar">
+      <span id="explorer-item-count">4 个项目</span>
+      <span id="explorer-focus-status" class="explorer-focus-badge">已选择 1 个项目</span>
+    </footer>
+  </section>
+
+  <!-- Windows 11 WeChat-Style Desktop Chat Window (Always below ClipRope main workspace & floating cards) -->
+  <section id="win11-wechat" aria-label="微信聊天窗口" aria-hidden="true" data-i18n="wechatWindow:aria-label">
+    <!-- Left Dark Icon Rail -->
+    <aside class="wechat-nav-rail" aria-hidden="true">
+      <div class="wechat-my-avatar">A</div>
+      <div class="wechat-rail-icon is-active">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.4 4.7 3.6 6.2L4.8 21l4.1-2.1c1 .2 2 .3 3.1.3 5.5 0 10-3.6 10-8.2S17.5 3 12 3z" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="wechat-rail-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- Middle Session List -->
+    <aside class="wechat-session-pane" aria-label="聊天会话列表" data-i18n="chatList:aria-label">
+      <div class="wechat-search-bar" aria-hidden="true">
+        <div class="wechat-search-box" data-i18n="search">搜索</div>
+      </div>
+      <div id="wechat-sessions" class="wechat-sessions" role="listbox" aria-label="会话列表" data-i18n="conversationList:aria-label"></div>
+    </aside>
+
+    <!-- Right Main Chat Pane -->
+    <div class="wechat-chat-main">
+      <header id="wechat-titlebar">
+        <div class="wechat-title-wrap">
+          <span id="wechat-chat-title">楼下喝点啥（4）</span>
+        </div>
+        <div class="explorer-window-controls">
+          <button type="button" id="wechat-min-btn" class="win-caption-btn" aria-label="最小化到任务栏" title="最小化" data-i18n="minimize:title minimizeToTray:aria-label">
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2 6h8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button type="button" id="wechat-max-btn" class="win-caption-btn" aria-label="最大化或还原窗口" title="最大化" data-i18n="maximize:title maximizeOrRestore:aria-label">
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <rect x="2.2" y="2.2" width="7.6" height="7.6" rx="1" fill="none" stroke="currentColor" stroke-width="1.1"/>
+            </svg>
+          </button>
+          <button type="button" id="wechat-close-btn" class="win-caption-btn win-close-btn" aria-label="关闭聊天窗口" title="关闭" data-i18n="close:title closeChat:aria-label">
+            <svg viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2.5 2.5 9.5 9.5M9.5 2.5 2.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Scrollable Message History -->
+      <div id="wechat-messages" class="wechat-messages" role="log" aria-live="polite" aria-label="聊天消息记录" data-i18n="messages:aria-label"></div>
+
+      <!-- Bottom Input Composer -->
+      <div class="wechat-composer">
+        <div id="wechat-draft-attachments" class="wechat-draft-attachments" hidden></div>
+        <textarea
+          id="wechat-input"
+          class="wechat-input"
+          rows="3"
+          placeholder="输入消息…"
+          aria-label="聊天消息输入框"
+          data-i18n="composer:aria-label messagePlaceholder:placeholder"
+        ></textarea>
+        <div class="wechat-composer-footer">
+          <button id="chat-copy" class="app-action" data-i18n="copySelectedText">复制所选文字</button><button id="chat-paste" class="app-action" data-i18n="paste">粘贴</button>
+          <button type="button" id="wechat-send-btn" class="wechat-send-btn" data-i18n="send">发送(S)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Hanging Rope Workspace -->
+  <main id="workspace-stage" aria-label="ClipRope 主工作区" data-i18n="workspace:aria-label">
+    <canvas id="workspace-canvas" aria-label="晾衣绳工作区" data-i18n="ropeWorkspace:aria-label"></canvas>
+  </main>
+
+  <!-- Desktop Floating Cards Layer (WS_EX_TOPMOST pinned notes) -->
+  <div id="floating-layer" aria-label="桌面置顶悬浮卡片层" data-i18n="floatingLayer:aria-label"></div>
+
+  <!-- Screenshot Hover Full-Size Preview Window (ClipRope.ScreenshotPreview from src/platform_win/screenshot_hover.cpp) -->
+  <div id="screenshot-hover-preview" aria-hidden="true">
+    <canvas id="screenshot-hover-canvas"></canvas>
+  </div>
+
+  <!-- Full-Screen Drag Overlay Canvas (prevents clipping when dragging cards between rope and desktop) -->
+  <canvas id="drag-overlay-canvas" aria-hidden="true"></canvas>
+
+  <!-- Bottom Windows 11 Taskbar (File Explorer & Snipping Tool) -->
+  <footer id="win11-taskbar" aria-label="Windows 11 任务栏" data-i18n="taskbar:aria-label">
+    <div class="taskbar-left" aria-hidden="true"></div>
+
+    <nav id="taskbar-apps" aria-label="任务栏应用" data-i18n="taskbarApps:aria-label">
+      <!-- Windows 11 File Explorer -->
+      <button
+        type="button"
+        id="taskbar-explorer-btn"
+        class="taskbar-app"
+        data-app="explorer"
+        aria-label="文件资源管理器（点击打开或切换文件夹焦点）"
+        data-i18n="explorerLauncher:aria-label"
+      >
+        <span class="taskbar-tooltip" role="tooltip" data-i18n="explorer">文件资源管理器</span>
+        <svg class="taskbar-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="fe-back" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f7b529" />
+              <stop offset="100%" stop-color="#d9860b" />
+            </linearGradient>
+            <linearGradient id="fe-front" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffde6a" />
+              <stop offset="55%" stop-color="#f8c234" />
+              <stop offset="100%" stop-color="#e39d14" />
+            </linearGradient>
+            <linearGradient id="fe-clasp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2ea3ff" />
+              <stop offset="100%" stop-color="#0067c0" />
+            </linearGradient>
+          </defs>
+          <!-- Folder back & tab -->
+          <path
+            d="M3.5 7.5A2.5 2.5 0 0 1 6 5h6.4c.75 0 1.47.34 1.95.92l1.55 1.88c.28.34.7.53 1.14.53H26A2.5 2.5 0 0 1 28.5 10.8v14.7A2.5 2.5 0 0 1 26 28H6a2.5 2.5 0 0 1-2.5-2.5V7.5Z"
+            fill="url(#fe-back)"
+          />
+          <!-- Inner paper highlight -->
+          <rect x="5.5" y="9" width="21" height="6" rx="1.2" fill="#fffdf7" opacity="0.92" />
+          <!-- Folder front pocket -->
+          <path
+            d="M3.5 12.2A2.2 2.2 0 0 1 5.7 10h8.1c.62 0 1.22-.22 1.7-.62l1.15-.96a2.2 2.2 0 0 1 1.4-.52H26.3a2.2 2.2 0 0 1 2.2 2.2v15.4A2.5 2.5 0 0 1 26 28H6a2.5 2.5 0 0 1-2.5-2.5V12.2Z"
+            fill="url(#fe-front)"
+          />
+          <!-- Top bevel highlight on front flap -->
+          <path
+            d="M5.5 10.6h8.2c.65 0 1.27-.23 1.76-.64l1.1-.92c.4-.33.9-.5 1.42-.5h8.2"
+            fill="none"
+            stroke="#fff6c5"
+            stroke-width="0.9"
+            stroke-linecap="round"
+            opacity="0.8"
+          />
+          <!-- Signature Windows 11 Blue Bottom Clasp -->
+          <path
+            d="M10.5 21.5h11a1.5 1.5 0 0 1 1.5 1.5v5H9v-5a1.5 1.5 0 0 1 1.5-1.5Z"
+            fill="url(#fe-clasp)"
+          />
+          <rect x="11.5" y="23.5" width="9" height="1.8" rx="0.9" fill="#99d3ff" opacity="0.85" />
+        </svg>
+        <span class="taskbar-indicator" aria-hidden="true"></span>
+      </button>
+
+      <!-- Windows 11 Snipping Tool -->
+      <button
+        type="button"
+        id="taskbar-snipping-btn"
+        class="taskbar-app"
+        data-app="snipping"
+        aria-label="截图工具（点击框选网页截图并自动挂上晾衣绳）"
+        data-i18n="snipLauncher:aria-label"
+      >
+        <span class="taskbar-tooltip" role="tooltip" data-i18n="snippingTool">截图工具</span>
+        <svg class="taskbar-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="st-bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff7b54" />
+              <stop offset="55%" stop-color="#ea4c27" />
+              <stop offset="100%" stop-color="#c22d0f" />
+            </linearGradient>
+            <linearGradient id="st-blade" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#dce4ec" />
+            </linearGradient>
+          </defs>
+          <!-- Rounded app tile -->
+          <rect x="3.5" y="4.5" width="25" height="23" rx="5.5" fill="url(#st-bg)" />
+          <!-- Dashed selection corner inside tile -->
+          <path
+            d="M8.5 13V9.8c0-.72.58-1.3 1.3-1.3H13M19 8.5h3.2c.72 0 1.3.58 1.3 1.3V13M23.5 17.5v2.7c0 .72-.58 1.3-1.3 1.3H19"
+            fill="none"
+            stroke="#ffe8df"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-dasharray="2.4 2.4"
+          />
+          <!-- Scissors blades & handles -->
+          <path
+            d="M11.6 19.2 21.8 11.2M11.6 13.4l10.2 8"
+            fill="none"
+            stroke="url(#st-blade)"
+            stroke-width="2.2"
+            stroke-linecap="round"
+          />
+          <circle cx="10.2" cy="12.6" r="2.6" fill="none" stroke="#ffffff" stroke-width="2" />
+          <circle cx="10.2" cy="20.0" r="2.6" fill="none" stroke="#ffffff" stroke-width="2" />
+          <circle cx="15.4" cy="16.3" r="1.15" fill="#ffffff" />
+        </svg>
+        <span class="taskbar-indicator" aria-hidden="true"></span>
+      </button>
+
+      <!-- Windows 11 WeChat-Style Chat App -->
+      <button
+        type="button"
+        id="taskbar-wechat-btn"
+        class="taskbar-app"
+        data-app="wechat"
+        aria-label="微信（点击打开聊天对话框，支持粘贴与拖入文本、图片、文件并发送）"
+        data-i18n="wechatLauncher:aria-label"
+      >
+        <span class="taskbar-tooltip" role="tooltip" data-i18n="wechat">微信</span>
+        <svg class="taskbar-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="wc-bg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2bd979" />
+              <stop offset="100%" stop-color="#07c160" />
+            </linearGradient>
+          </defs>
+          <!-- Back larger bubble -->
+          <path
+            d="M12.6 5.2C6.9 5.2 2.3 9.1 2.3 13.9c0 2.7 1.4 5.1 3.7 6.7l-.95 3.1 3.35-1.7c1.3.4 2.7.6 4.2.6.5 0 1-.03 1.5-.08-.3-.95-.5-1.95-.5-3 0-4.9 4.5-8.9 10.1-8.9.4 0 .8.02 1.2.06C23.9 7.5 18.8 5.2 12.6 5.2Z"
+            fill="url(#wc-bg)"
+          />
+          <circle cx="9.1" cy="11.8" r="1.25" fill="#ffffff" />
+          <circle cx="15.5" cy="11.8" r="1.25" fill="#ffffff" />
+          <!-- Front smaller bubble -->
+          <path
+            d="M21.2 12.4c-4.7 0-8.5 3.2-8.5 7.2 0 4 3.8 7.2 8.5 7.2 1.1 0 2.2-.18 3.2-.52l2.75 1.42-.78-2.55c2.03-1.35 3.33-3.34 3.33-5.55 0-4-3.8-7.2-8.5-7.2Z"
+            fill="#ffffff"
+            stroke="#07c160"
+            stroke-width="1.1"
+          />
+          <circle cx="18.4" cy="18.6" r="1.05" fill="#07c160" />
+          <circle cx="23.8" cy="18.6" r="1.05" fill="#07c160" />
+        </svg>
+        <span class="taskbar-indicator" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <div id="taskbar-tray" aria-label="系统托盘" data-i18n="tray:aria-label">
+      <button type="button" class="tray-item tray-chevron" aria-label="显示隐藏的图标" title="显示隐藏的图标" data-i18n="hiddenIcons:title hiddenIcons:aria-label">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M4.2 9.8 8 6l3.8 3.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        id="tray-cliprope-btn"
+        class="tray-item tray-brand is-open"
+        aria-label="点击打开或最小化 ClipRope 主工作区"
+        aria-pressed="true"
+        title="ClipRope · 点击隐藏/打开主工作区"
+        data-i18n="workspaceTip:title toggleWorkspace:aria-label"
+      >
+        <!-- The embedded ICO frame also keeps file-origin screenshots readable. -->
+        <img src="data:image/png;base64,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" width="18" height="18" alt="" draggable="false">
+      </button>
+      <div class="tray-status" aria-hidden="true">
+        <!-- Wi-Fi -->
+        <svg viewBox="0 0 16 16" class="tray-glyph">
+          <path d="M2.2 6.1a8.3 8.3 0 0 1 11.6 0M4.5 8.6a5.1 5.1 0 0 1 7 0M6.8 11.1a1.9 1.9 0 0 1 2.4 0" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+          <circle cx="8" cy="13.1" r="0.9" fill="currentColor" />
+        </svg>
+        <!-- Volume -->
+        <svg viewBox="0 0 16 16" class="tray-glyph">
+          <path d="M3 6.3h2.4L8.6 3.6v8.8L5.4 9.7H3V6.3Z" fill="currentColor" />
+          <path d="M10.8 5.6a3.6 3.6 0 0 1 0 4.8M12.6 3.9a6 6 0 0 1 0 8.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="tray-clock" id="taskbar-clock" aria-label="系统时间与日期" data-i18n="clock:aria-label">
+        <span id="clock-time">17:18</span>
+        <span id="clock-date">2026/11/8</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Windows 11 Snipping Tool Overlay (Win + Shift + S style) -->
+  <div id="win11-snip-overlay" aria-hidden="true">
+    <canvas id="snip-overlay-canvas"></canvas>
+
+    <div id="snip-toolbar" role="toolbar" aria-label="Windows 11 截图工具栏" data-i18n="snipToolbar:aria-label">
+      <button
+        type="button"
+        id="snip-mode-rect"
+        class="snip-tool-btn is-selected"
+        aria-label="矩形截图模式"
+        aria-pressed="true"
+        title="矩形模式（拖拽框选截图区域）"
+        data-i18n="rectangleTip:title rectangle:aria-label"
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path
+            d="M3.5 7V5a1.5 1.5 0 0 1 1.5-1.5h2M13 3.5h2A1.5 1.5 0 0 1 16.5 5v2M16.5 13v2a1.5 1.5 0 0 1-1.5 1.5h-2M7 16.5H5A1.5 1.5 0 0 1 3.5 15v-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M9.2 3.5h1.6M16.5 9.2v1.6M9.2 16.5h1.6M3.5 9.2v1.6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span class="snip-indicator" aria-hidden="true"></span>
+      </button>
+
+      <button
+        type="button"
+        id="snip-mode-fullscreen"
+        class="snip-tool-btn"
+        aria-label="全屏截图"
+        title="全屏模式（立即截取整个网页并挂入绳子）"
+        data-i18n="fullScreenTip:title fullScreen:aria-label"
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <rect
+            x="2.8"
+            y="4"
+            width="14.4"
+            height="12"
+            rx="1.8"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.4"
+          />
+          <path
+            d="M5.5 7.8V6.3h1.5M14.5 7.8V6.3H13M5.5 12.2v1.5h1.5M14.5 12.2v1.5H13"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+
+      <span class="snip-divider" aria-hidden="true"></span>
+
+      <button
+        type="button"
+        id="snip-close-btn"
+        class="snip-tool-btn snip-close"
+        aria-label="关闭截图工具"
+        title="关闭 (Esc)"
+        data-i18n="closeEsc:title closeSnip:aria-label"
+      >
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <path
+            d="M5.5 5.5 14.5 14.5M14.5 5.5 5.5 14.5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+</html>

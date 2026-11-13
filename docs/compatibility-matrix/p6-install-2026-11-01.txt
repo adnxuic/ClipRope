@@ -1,0 +1,9 @@
+Candidate SHA256 B4B5314F4B53AC96CE0FB4160E19E27492DF7685FDC9BE4AC3027F20AA64A383
+Predecessor SHA256 430D6B20495A10489C8EBA4A48599621D06D2B73BE78802A7BAAC56A60BC08B6
+Clean predecessor install, real external copy and native restore passed. Startup off. Image 08A57DCBE93F1EC34C6D64FC0DED40B072A0E1A8CAA0592FCA05005733501039
+Installed source revision b7d60fd8b08db5f5a8f463dac3fc1223674fc652
+Upgrade retained both identities and payload hashes. Startup opted in. Image B4E8D968F7CEC2489C1CAA3E41C0509D998788DBCB305F6743853CF1D8AEC588
+Concurrent setup, an unknown previous-slot file and a locked binary stopped setup before changing either package.
+Rollback restored the actual predecessor binary, sign-in choice and seeded history.
+Keep-history uninstall and reinstall retained both original IDs, state and hashes.
+Explicit purge removed the synthetic profile, binaries, shortcut and sign-in value.

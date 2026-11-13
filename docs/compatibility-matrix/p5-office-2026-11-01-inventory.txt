@@ -1,0 +1,282 @@
+Windows=25H2 build=26200.9711 nativeOnly=False
+office kind=Excel cold=False pid=50432 version=16.0.20527.20112
+copy app=Excel case=values method=ribbon-copy
+policy=captured
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	50109	Biff12	1	1	-1	unsupported-format
+format	50095	Biff8	1	1	-1	unsupported-format
+format	50097	Biff5	1	1	-1	unsupported-format
+format	4	CF_SYLK	1	1	-1	unsupported-format
+format	5	CF_DIF	1	1	-1	unsupported-format
+format	49819	XML Spreadsheet	1	1	-1	unsupported-format
+format	49410	HTML Format	1	1	-1	saved
+format	13	CF_UNICODETEXT	1	1	-1	saved
+format	1	CF_TEXT	1	1	-1	unsupported-format
+format	50098	Csv	1	1	-1	unsupported-format
+format	49731	Hyperlink	4	1	-1	unsupported-format
+format	50112	ShadowWorkbook	1	1	-1	unsupported-format
+format	49947	Web Custom Format Map	1	1	-1	unsupported-format
+format	49304	Rich Text Format	1	1	-1	saved
+format	49163	Embed Source	8	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	49165	Link Source	4	1	-1	unsupported-format
+format	49167	Link Source Descriptor	1	1	-1	unsupported-format
+format	50094	Link	1	1	-1	unsupported-format
+format	129	format-129	1	1	-1	unsupported-format
+saved	HTML Format	2306	1	-1
+saved	CF_UNICODETEXT	42	1	-1
+saved	Rich Text Format	4094	1	-1
+explicit-entry=4ee51b4db0ccf1235ad616c9c111a283
+result app=Excel case=values route=native {"paste":"accepted","shapes":0,"charts":0,"values":true,"editableCell":true}
+passive app=Excel case=values states=abandoned,captured
+profile app=Excel case=values route=passive-resident
+readable	HTML Format	1	2306	0a0ee9d20a23bc005c81a5a2665d535e9085209aaf5244b063f75af6114f2035
+readable	CF_UNICODETEXT	1	42	a31f347b500a3d4f8b274cae071e3b1521ba5d377c9bb2cd3b2608c2389baa8c
+readable	Rich Text Format	1	4094	8cf5096f4b2ff57e3615ed2db3f53a4616332c4bf176fe456c627f574c410a8c
+result app=Excel case=values route=warm {"paste":"accepted","shapes":0,"charts":0,"values":true,"editableCell":true}
+ui-label=HTML · Text · RTF · partial
+resident-format	HTML Format	1	2306	0a0ee9d20a23bc005c81a5a2665d535e9085209aaf5244b063f75af6114f2035
+resident-format	CF_UNICODETEXT	1	42	a31f347b500a3d4f8b274cae071e3b1521ba5d377c9bb2cd3b2608c2389baa8c
+resident-format	Rich Text Format	1	4094	8cf5096f4b2ff57e3615ed2db3f53a4616332c4bf176fe456c627f574c410a8c
+copy app=Excel case=formulas method=ribbon-copy
+policy=captured
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	50109	Biff12	1	1	-1	unsupported-format
+format	50095	Biff8	1	1	-1	unsupported-format
+format	50097	Biff5	1	1	-1	unsupported-format
+format	4	CF_SYLK	1	1	-1	unsupported-format
+format	5	CF_DIF	1	1	-1	unsupported-format
+format	49819	XML Spreadsheet	1	1	-1	unsupported-format
+format	49410	HTML Format	1	1	-1	saved
+format	13	CF_UNICODETEXT	1	1	-1	saved
+format	1	CF_TEXT	1	1	-1	unsupported-format
+format	50098	Csv	1	1	-1	unsupported-format
+format	49731	Hyperlink	4	1	-1	unsupported-format
+format	50112	ShadowWorkbook	1	1	-1	unsupported-format
+format	49947	Web Custom Format Map	1	1	-1	unsupported-format
+format	49304	Rich Text Format	1	1	-1	saved
+format	49163	Embed Source	8	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	49165	Link Source	4	1	-1	unsupported-format
+format	49167	Link Source Descriptor	1	1	-1	unsupported-format
+format	50094	Link	1	1	-1	unsupported-format
+format	129	format-129	1	1	-1	unsupported-format
+saved	HTML Format	2304	1	-1
+saved	CF_UNICODETEXT	14	1	-1
+saved	Rich Text Format	4080	1	-1
+explicit-entry=1c6a6e6aa4292b660d55302cd1ba6e18
+result app=Excel case=formulas route=native {"paste":"accepted","shapes":0,"charts":0,"values":true,"formulas":true,"editableCell":true}
+passive app=Excel case=formulas states=abandoned,captured
+profile app=Excel case=formulas route=passive-resident
+readable	HTML Format	1	2304	57cb14ebacfbeea08f2718e36021bce165812bd19d9c142f4fb133f5dbd1a420
+readable	CF_UNICODETEXT	1	14	67d00157a02a2e02b5ba340e478aee5c5fd4f14e3a5f9707f6d9c7e71aa0bde5
+readable	Rich Text Format	1	4080	0d43efb34aea85a0f7ba3289cc2a0f08ef1ebf1d740a0dc0f15615eaa7631561
+result app=Excel case=formulas route=warm {"paste":"accepted","shapes":0,"charts":0,"values":true,"formulas":false,"editableCell":true}
+ui-label=HTML · Text · RTF · partial
+resident-format	HTML Format	1	2304	57cb14ebacfbeea08f2718e36021bce165812bd19d9c142f4fb133f5dbd1a420
+resident-format	CF_UNICODETEXT	1	14	67d00157a02a2e02b5ba340e478aee5c5fd4f14e3a5f9707f6d9c7e71aa0bde5
+resident-format	Rich Text Format	1	4080	0d43efb34aea85a0f7ba3289cc2a0f08ef1ebf1d740a0dc0f15615eaa7631561
+copy app=Excel case=merged method=ribbon-copy
+policy=captured
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	50109	Biff12	1	1	-1	unsupported-format
+format	50095	Biff8	1	1	-1	unsupported-format
+format	50097	Biff5	1	1	-1	unsupported-format
+format	4	CF_SYLK	1	1	-1	unsupported-format
+format	5	CF_DIF	1	1	-1	unsupported-format
+format	49819	XML Spreadsheet	1	1	-1	unsupported-format
+format	49410	HTML Format	1	1	-1	saved
+format	13	CF_UNICODETEXT	1	1	-1	saved
+format	1	CF_TEXT	1	1	-1	unsupported-format
+format	50098	Csv	1	1	-1	unsupported-format
+format	49731	Hyperlink	4	1	-1	unsupported-format
+format	50112	ShadowWorkbook	1	1	-1	unsupported-format
+format	49947	Web Custom Format Map	1	1	-1	unsupported-format
+format	49304	Rich Text Format	1	1	-1	saved
+format	49163	Embed Source	8	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	49165	Link Source	4	1	-1	unsupported-format
+format	49167	Link Source Descriptor	1	1	-1	unsupported-format
+format	50094	Link	1	1	-1	unsupported-format
+format	129	format-129	1	1	-1	unsupported-format
+saved	HTML Format	2369	1	-1
+saved	CF_UNICODETEXT	38	1	-1
+saved	Rich Text Format	4160	1	-1
+explicit-entry=e580834d7e695a038644b19062250d0c
+result app=Excel case=merged route=native {"paste":"accepted","shapes":0,"charts":0,"values":true,"merged":true,"bold":true,"fill":true,"editableCell":true}
+passive app=Excel case=merged states=abandoned,captured
+profile app=Excel case=merged route=passive-resident
+readable	HTML Format	1	2369	effee932b9a2c526de4cc4a32ca35c57ecec6b3a8b33ca98cf409e7afb607fbd
+readable	CF_UNICODETEXT	1	38	5b773eb501feebf0cdc0e2ae431655d4161af15ad079593b3d7bf36ba8a6c568
+readable	Rich Text Format	1	4160	ab10374094e3972ea33a92e8e969b5b450d01912f6e3b63708b7441e0e71086b
+result app=Excel case=merged route=warm {"paste":"accepted","shapes":0,"charts":0,"values":true,"merged":true,"bold":true,"fill":true,"editableCell":true}
+ui-label=HTML · Text · RTF · partial
+resident-format	HTML Format	1	2369	effee932b9a2c526de4cc4a32ca35c57ecec6b3a8b33ca98cf409e7afb607fbd
+resident-format	CF_UNICODETEXT	1	38	5b773eb501feebf0cdc0e2ae431655d4161af15ad079593b3d7bf36ba8a6c568
+resident-format	Rich Text Format	1	4160	ab10374094e3972ea33a92e8e969b5b450d01912f6e3b63708b7441e0e71086b
+copy app=Excel case=chart method=ribbon-copy
+policy=partial
+format	49411	Preferred DropEffect	1	1	-1	invalid-content
+format	49416	InShellDragLoop	1	1	-1	unsupported-format
+format	50111	Excel 2007 Internal Shape	4	1	-1	unsupported-format
+format	49163	Embed Source	8	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	49165	Link Source	4	1	-1	unsupported-format
+format	49167	Link Source Descriptor	1	1	-1	unsupported-format
+format	50032	Art::GVML ClipFormat	4	1	-1	unsupported-format
+format	49548	image/svg+xml	4	1	-1	unsupported-format
+format	49481	PNG	4	1	-1	saved
+format	49480	JFIF	4	1	-1	unsupported-format
+format	49479	GIF	4	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+format	49947	Web Custom Format Map	1	1	-1	unsupported-format
+format	50112	ShadowWorkbook	1	1	-1	unsupported-format
+saved	PNG	6335	4	-1
+explicit-entry=dfde44c7101c6e773a90f2e3c53ebbcd
+result app=Excel case=chart route=native {"paste":"accepted","shapes":1,"charts":1,"title":true,"column":true,"values":true,"editableChart":true}
+passive app=Excel case=chart states=partial
+profile app=Excel case=chart route=passive-resident
+readable	PNG	4	6335	18a36d4603548dde16c8f3bb54aeb47181399f37d885cfcddb8ef1865565882f
+result app=Excel case=chart route=warm {"paste":"accepted","shapes":1,"charts":0,"shapeType":13,"shapeWidth":426,"shapeHeight":214,"pixelMae":8.65}
+ui-label=Image · partial
+resident-format	PNG	4	6335	18a36d4603548dde16c8f3bb54aeb47181399f37d885cfcddb8ef1865565882f
+office kind=Excel cold=True pid=29384 version=16.0.20527.20112
+readable	HTML Format	1	2306	0a0ee9d20a23bc005c81a5a2665d535e9085209aaf5244b063f75af6114f2035
+readable	CF_UNICODETEXT	1	42	a31f347b500a3d4f8b274cae071e3b1521ba5d377c9bb2cd3b2608c2389baa8c
+readable	Rich Text Format	1	4094	8cf5096f4b2ff57e3615ed2db3f53a4616332c4bf176fe456c627f574c410a8c
+result app=Excel case=values route=cold {"paste":"accepted","shapes":0,"charts":0,"values":true,"editableCell":true}
+readable	HTML Format	1	2304	57cb14ebacfbeea08f2718e36021bce165812bd19d9c142f4fb133f5dbd1a420
+readable	CF_UNICODETEXT	1	14	67d00157a02a2e02b5ba340e478aee5c5fd4f14e3a5f9707f6d9c7e71aa0bde5
+readable	Rich Text Format	1	4080	0d43efb34aea85a0f7ba3289cc2a0f08ef1ebf1d740a0dc0f15615eaa7631561
+result app=Excel case=formulas route=cold {"paste":"accepted","shapes":0,"charts":0,"values":true,"formulas":false,"editableCell":true}
+readable	HTML Format	1	2369	effee932b9a2c526de4cc4a32ca35c57ecec6b3a8b33ca98cf409e7afb607fbd
+readable	CF_UNICODETEXT	1	38	5b773eb501feebf0cdc0e2ae431655d4161af15ad079593b3d7bf36ba8a6c568
+readable	Rich Text Format	1	4160	ab10374094e3972ea33a92e8e969b5b450d01912f6e3b63708b7441e0e71086b
+result app=Excel case=merged route=cold {"paste":"accepted","shapes":0,"charts":0,"values":true,"merged":true,"bold":true,"fill":true,"editableCell":true}
+readable	PNG	4	6335	18a36d4603548dde16c8f3bb54aeb47181399f37d885cfcddb8ef1865565882f
+result app=Excel case=chart route=cold {"paste":"accepted","shapes":1,"charts":0,"shapeType":13,"shapeWidth":426,"shapeHeight":214,"pixelMae":8.65}
+office kind=PowerPoint cold=False pid=48660 version=16.0.20527.20112
+copy app=PowerPoint case=text method=ribbon-copy
+policy=partial
+format	49411	Preferred DropEffect	1	1	-1	invalid-content
+format	49416	InShellDragLoop	1	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	50076	PowerPoint 12.0 Internal Theme	1	1	-1	unsupported-format
+format	50077	PowerPoint 12.0 Internal Color Scheme	1	1	-1	unsupported-format
+format	50080	PowerPoint 12.0 Internal Shapes	1	1	-1	unsupported-format
+format	50032	Art::GVML ClipFormat	4	1	-1	unsupported-format
+format	49548	image/svg+xml	4	1	-1	unsupported-format
+format	49481	PNG	4	1	-1	saved
+format	49480	JFIF	4	1	-1	unsupported-format
+format	49479	GIF	4	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+saved	PNG	2734	4	-1
+explicit-entry=97a17665fda895bec78ad8307fe2e13e
+result app=PowerPoint case=text route=native {"paste":"accepted","shapes":1,"type":17,"width":360,"height":72,"text":true,"bold":true,"fontColor":true,"editableText":true}
+passive app=PowerPoint case=text states=partial
+profile app=PowerPoint case=text route=passive-resident
+readable	PNG	4	2734	5dabb236a6b71df34e48ca9664aa7abb1dc42662c26b3c31ffcd8c8bf6eac56a
+result app=PowerPoint case=text route=warm {"paste":"accepted","shapes":1,"type":13,"width":371,"height":78,"pixelMae":10.7}
+ui-label=Image · partial
+resident-format	PNG	4	2734	5dabb236a6b71df34e48ca9664aa7abb1dc42662c26b3c31ffcd8c8bf6eac56a
+copy app=PowerPoint case=group method=ribbon-copy
+policy=partial
+format	49411	Preferred DropEffect	1	1	-1	invalid-content
+format	49416	InShellDragLoop	1	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	50076	PowerPoint 12.0 Internal Theme	1	1	-1	unsupported-format
+format	50077	PowerPoint 12.0 Internal Color Scheme	1	1	-1	unsupported-format
+format	50080	PowerPoint 12.0 Internal Shapes	1	1	-1	unsupported-format
+format	50032	Art::GVML ClipFormat	4	1	-1	unsupported-format
+format	49548	image/svg+xml	4	1	-1	unsupported-format
+format	49481	PNG	4	1	-1	saved
+format	49480	JFIF	4	1	-1	unsupported-format
+format	49479	GIF	4	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+saved	PNG	11437	4	-1
+explicit-entry=82afc9132abd27a052c89e255e1920b8
+result app=PowerPoint case=group route=native {"paste":"accepted","shapes":1,"type":6,"width":216,"height":72,"children":2,"labels":true,"fill":true,"editableGroup":true}
+passive app=PowerPoint case=group states=partial
+profile app=PowerPoint case=group route=passive-resident
+readable	PNG	4	11437	2af2686a3ca212f3822717ccb39a3fcbf7886f9929446450c1f312d85c469168
+result app=PowerPoint case=group route=warm {"paste":"accepted","shapes":1,"type":13,"width":227,"height":80,"pixelMae":13.29}
+ui-label=Image · partial
+resident-format	PNG	4	11437	2af2686a3ca212f3822717ccb39a3fcbf7886f9929446450c1f312d85c469168
+copy app=PowerPoint case=chart method=ribbon-copy
+policy=partial
+format	49411	Preferred DropEffect	1	1	-1	invalid-content
+format	49416	InShellDragLoop	1	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	50076	PowerPoint 12.0 Internal Theme	1	1	-1	unsupported-format
+format	50077	PowerPoint 12.0 Internal Color Scheme	1	1	-1	unsupported-format
+format	50080	PowerPoint 12.0 Internal Shapes	1	1	-1	unsupported-format
+format	50032	Art::GVML ClipFormat	4	1	-1	unsupported-format
+format	49548	image/svg+xml	4	1	-1	unsupported-format
+format	49481	PNG	4	1	-1	saved
+format	49480	JFIF	4	1	-1	unsupported-format
+format	49479	GIF	4	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+saved	PNG	8738	4	-1
+explicit-entry=5f62eaa6251ef0d7b26fcc420097442a
+result app=PowerPoint case=chart route=native {"paste":"accepted","shapes":1,"type":3,"width":504,"height":288,"title":true,"column":true,"values":true,"editableChart":true}
+passive app=PowerPoint case=chart states=partial
+profile app=PowerPoint case=chart route=passive-resident
+readable	PNG	4	8738	6c74d0c0f0baf8734b84effaee3c7a9591f4ec72ca459c14b4030298f82dd00b
+result app=PowerPoint case=chart route=warm {"paste":"accepted","shapes":1,"type":13,"width":504,"height":288,"pixelMae":13.25}
+ui-label=Image · partial
+resident-format	PNG	4	8738	6c74d0c0f0baf8734b84effaee3c7a9591f4ec72ca459c14b4030298f82dd00b
+copy app=PowerPoint case=slide method=ribbon-copy
+policy=partial
+format	49411	Preferred DropEffect	1	1	-1	invalid-content
+format	49416	InShellDragLoop	1	1	-1	unsupported-format
+format	49162	Embedded Object	8	1	-1	unsupported-format
+format	49165	Link Source	4	1	-1	unsupported-format
+format	49166	Object Descriptor	1	1	-1	unsupported-format
+format	49167	Link Source Descriptor	1	1	-1	unsupported-format
+format	49481	PNG	4	1	-1	saved
+format	49480	JFIF	4	1	-1	unsupported-format
+format	49479	GIF	4	1	-1	unsupported-format
+format	2	CF_BITMAP	16	1	-1	unsupported-format
+format	14	CF_ENHMETAFILE	64	1	-1	unsupported-format
+format	3	CF_METAFILEPICT	32	1	-1	unsupported-format
+format	49548	image/svg+xml	4	1	-1	unsupported-format
+format	50076	PowerPoint 12.0 Internal Theme	1	1	-1	unsupported-format
+format	50077	PowerPoint 12.0 Internal Color Scheme	1	1	-1	unsupported-format
+format	50033	PowerPoint 12.0 Internal Slides	1	1	-1	unsupported-format
+format	50031	ActiveClipBoard	1	1	-1	unsupported-format
+format	50074	PowerPoint 14.0 Slides Package	4	1	-1	unsupported-format
+format	49926	Chromium Web Custom MIME Data Format	4	1	-1	unsupported-format
+format	50075	application/x-moz-custom-clipdata	1	1	-1	unsupported-format
+saved	PNG	14164	4	-1
+explicit-entry=ac869b7800597717a85418acba14de40
+result app=PowerPoint case=slide route=native {"paste":"accepted","slides":1,"shapes":2,"firstShapeType":17,"text":true,"fill":true,"editableObjects":true}
+passive app=PowerPoint case=slide states=partial
+profile app=PowerPoint case=slide route=passive-resident
+readable	PNG	4	14164	43784ad83b0b04c15a094e6587dd251ecc71d8ed6f72805baa751494c4e76de6
+result app=PowerPoint case=slide route=warm {"paste":"no insertion","slides":0,"shapes":0}
+ui-label=Image · partial
+resident-format	PNG	4	14164	43784ad83b0b04c15a094e6587dd251ecc71d8ed6f72805baa751494c4e76de6
+office kind=PowerPoint cold=True pid=38036 version=16.0.20527.20112
+readable	PNG	4	2734	5dabb236a6b71df34e48ca9664aa7abb1dc42662c26b3c31ffcd8c8bf6eac56a
+result app=PowerPoint case=text route=cold {"paste":"accepted","shapes":1,"type":13,"width":371,"height":78,"pixelMae":10.7}
+readable	PNG	4	11437	2af2686a3ca212f3822717ccb39a3fcbf7886f9929446450c1f312d85c469168
+result app=PowerPoint case=group route=cold {"paste":"accepted","shapes":1,"type":13,"width":227,"height":80,"pixelMae":13.29}
+readable	PNG	4	8738	6c74d0c0f0baf8734b84effaee3c7a9591f4ec72ca459c14b4030298f82dd00b
+result app=PowerPoint case=chart route=cold {"paste":"accepted","shapes":1,"type":13,"width":504,"height":288,"pixelMae":13.25}
+readable	PNG	4	14164	43784ad83b0b04c15a094e6587dd251ecc71d8ed6f72805baa751494c4e76de6
+result app=PowerPoint case=slide route=cold {"paste":"no insertion","slides":0,"shapes":0}
+MATRIX-COMPLETE

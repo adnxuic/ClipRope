@@ -1,0 +1,1465 @@
+/* ClipRope Website — Windows 11 Desktop Backdrop, Center Project Icon & Taskbar */
+
+:root {
+  --in-oklab: ;
+  --font-ui: "Segoe UI Variable", "Segoe UI", "Microsoft YaHei UI", system-ui, -apple-system, sans-serif;
+
+  /* ClipRope Fluent Light Palette (from src/platform_win/fluent.cpp) */
+  --win-bg: #f5f4f0;
+  --win-panel: #ffffff;
+  --win-subtle: #f0eee9;
+  --win-line: #e7e3da;
+  --win-ink: #242424;
+  --win-muted: #716b64;
+  --win-accent: #a66e3d;
+  --warm-paper: #fbf7ef;
+  --hemp-gold: #dfc59c;
+
+  --taskbar-h: 48px;
+  color-scheme: light;
+}
+
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 100dvb;
+  background-color: var(--win-bg);
+  color: var(--win-ink);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: clip;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: clip;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Windows 11 Desktop Background & Centerpiece ---------- */
+
+#desktop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding-block-start: 0;
+  padding-block-end: var(--taskbar-h);
+  isolation: isolate;
+  pointer-events: none;
+}
+
+#desktop-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      ellipse 68% 58% at 50% 48% var(--in-oklab),
+      #fffcf5 0%,
+      #f7f3ea 48%,
+      #ece6da 100%
+    );
+}
+
+/* Subtle warm architectural bloom matching ClipRope's wood & paper palette */
+.backdrop-halo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle 340px at 50% 48% var(--in-oklab),
+      rgba(218, 178, 124, 0.18) 0%,
+      rgba(218, 178, 124, 0.06) 52%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom var(--in-oklab),
+      rgba(255, 255, 255, 0.68) 0%,
+      rgba(245, 244, 240, 0.12) 36%,
+      rgba(231, 224, 211, 0.35) 100%
+    );
+}
+
+/* Extremely delicate warm paper micro-grid so the desktop feels tactile yet clean */
+.backdrop-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  background-image:
+    radial-gradient(circle, rgba(140, 108, 72, 0.11) 0.75px, transparent 0.85px);
+  background-size: 28px 28px;
+}
+
+#desktop-centerpiece {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#desktop-centerpiece::before {
+  content: "";
+  position: absolute;
+  inline-size: clamp(240px, 28dvb, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle var(--in-oklab),
+    rgba(255, 252, 245, 0.42) 0%,
+    rgba(244, 233, 214, 0.16) 52%,
+    transparent 76%
+  );
+  z-index: -1;
+}
+
+#project-logo {
+  display: block;
+  inline-size: clamp(136px, 20dvb, 204px);
+  block-size: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 14px 28px rgba(78, 54, 28, 0.14))
+    drop-shadow(0 3px 8px rgba(78, 54, 28, 0.09));
+}
+
+/* ---------- Desktop Folder Icons ---------- */
+
+#desktop-icons {
+  position: absolute;
+  inset-block-start: 288px;
+  inset-inline-start: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.desktop-folder {
+  inline-size: 84px;
+  padding: 6px 4px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid transparent;
+  transition: background-color 90ms ease, border-color 90ms ease;
+}
+
+.desktop-folder:hover {
+  background-color: rgba(255, 255, 255, 0.52);
+  border-color: rgba(166, 110, 61, 0.22);
+}
+
+.desktop-folder.is-focused {
+  background-color: rgba(166, 110, 61, 0.14);
+  border-color: rgba(166, 110, 61, 0.42);
+}
+
+.desktop-folder:active {
+  transform: scale(0.96);
+}
+
+.desktop-folder-icon {
+  inline-size: 46px;
+  block-size: 46px;
+  display: block;
+  filter: drop-shadow(0 3px 6px rgba(68, 48, 22, 0.16));
+}
+
+.desktop-folder-icon svg {
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+
+.desktop-folder-name {
+  font-size: 12px;
+  line-height: 1.25;
+  color: #2b251f;
+  text-align: center;
+  word-break: break-word;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Windows 11 File Explorer Window (Always below ClipRope workspace) ---------- */
+
+#win11-explorer {
+  --exp-x: 240px;
+  --exp-y: 292px;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: min(880px, calc(100vw - 48px));
+  block-size: min(490px, calc(100dvb - var(--taskbar-h) - 36px));
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  background: rgba(251, 249, 245, 0.96);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  backdrop-filter: blur(28px) saturate(1.4);
+  border: 1px solid rgba(120, 96, 68, 0.24);
+  border-radius: 10px;
+  box-shadow:
+    0 22px 54px rgba(38, 28, 16, 0.22),
+    0 4px 14px rgba(38, 28, 16, 0.1);
+  overflow: clip;
+  transform: translate3d(var(--exp-x), var(--exp-y), 0) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 150ms ease;
+}
+
+#win11-explorer.is-open {
+  transform: translate3d(var(--exp-x), var(--exp-y), 0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#win11-explorer.is-dragging {
+  transition: none;
+}
+
+#win11-explorer.is-open.is-maximized {
+  inset: 0 0 var(--taskbar-h) 0;
+  inline-size: 100vw;
+  block-size: calc(100dvb - var(--taskbar-h));
+  max-inline-size: none;
+  max-block-size: none;
+  border-radius: 0;
+  border-width: 0;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+#explorer-titlebar {
+  block-size: 40px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding-inline-start: 10px;
+  background: rgba(238, 233, 224, 0.9);
+  border-block-end: 1px solid rgba(140, 116, 86, 0.16);
+  cursor: default;
+}
+
+#explorer-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding-block-start: 6px;
+  overflow-x: auto;
+}
+
+.explorer-tab {
+  block-size: 33px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-inline: 12px;
+  border-radius: 7px 7px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--win-muted);
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid transparent;
+  border-block-end: 0;
+  transition: background-color 100ms ease, color 100ms ease;
+}
+
+.explorer-tab:hover {
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--win-ink);
+}
+
+.explorer-tab.is-active {
+  background: rgba(251, 249, 245, 0.98);
+  color: var(--win-ink);
+  font-weight: 600;
+  border-color: rgba(140, 116, 86, 0.2);
+}
+
+.explorer-tab-dot {
+  inline-size: 12px;
+  block-size: 10px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #f8c338 0%, #df9212 100%);
+  display: inline-block;
+}
+
+.explorer-window-controls {
+  display: flex;
+  align-items: stretch;
+}
+
+.win-caption-btn {
+  inline-size: 46px;
+  block-size: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #3a342e;
+  transition: background-color 90ms ease, color 90ms ease;
+}
+
+.win-caption-btn svg {
+  inline-size: 11px;
+  block-size: 11px;
+}
+
+.win-caption-btn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.win-close-btn:hover {
+  background-color: #c42b1c;
+  color: #ffffff;
+}
+
+.explorer-navbar {
+  block-size: 44px;
+  display: flex;
+  align-items: center;
+  padding-inline: 12px;
+  background: rgba(251, 249, 245, 0.96);
+  border-block-end: 1px solid rgba(140, 116, 86, 0.14);
+}
+
+.explorer-addressbar {
+  flex: 1;
+  block-size: 30px;
+  padding-inline: 11px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(140, 116, 86, 0.22);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--win-muted);
+}
+
+.address-current {
+  color: var(--win-ink);
+  font-weight: 600;
+}
+
+.explorer-body {
+  flex: 1;
+  min-block-size: 0;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.explorer-sidebar {
+  padding: 10px 8px;
+  background: rgba(244, 240, 232, 0.72);
+  border-inline-end: 1px solid rgba(140, 116, 86, 0.15);
+  overflow-y: auto;
+}
+
+.sidebar-group-title {
+  padding: 4px 8px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--win-muted);
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sidebar-folder-item {
+  inline-size: 100%;
+  block-size: 32px;
+  padding-inline: 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--win-ink);
+  transition: background-color 90ms ease;
+}
+
+.sidebar-folder-item:hover {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.sidebar-folder-item.is-active {
+  background-color: rgba(166, 110, 61, 0.16);
+  color: #4f3419;
+  font-weight: 600;
+}
+
+.sidebar-folder-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-folder-count {
+  font-size: 11px;
+  color: var(--win-muted);
+}
+
+.explorer-content-wrap {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  background: rgba(255, 253, 249, 0.85);
+}
+
+.explorer-column-header {
+  block-size: 30px;
+  padding-inline: 16px;
+  display: grid;
+  grid-template-columns: 1fr 160px 90px;
+  align-items: center;
+  font-size: 11.5px;
+  color: var(--win-muted);
+  border-block-end: 1px solid rgba(140, 116, 86, 0.12);
+}
+
+.explorer-files-list {
+  flex: 1;
+  padding: 8px 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.explorer-file-row {
+  inline-size: 100%;
+  block-size: 34px;
+  padding-inline: 8px;
+  border-radius: 6px;
+  display: grid;
+  grid-template-columns: 1fr 160px 90px;
+  align-items: center;
+  text-align: left;
+  font-size: 12.5px;
+  color: var(--win-ink);
+  cursor: pointer;
+  transition: background-color 90ms ease;
+}
+
+.explorer-file-row:hover {
+  background-color: rgba(166, 110, 61, 0.08);
+}
+
+.explorer-file-row.is-selected {
+  background-color: rgba(166, 110, 61, 0.17);
+  font-weight: 600;
+}
+
+.file-row-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-ext-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 34px;
+  block-size: 18px;
+  padding-inline: 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  background: #8a6d4b;
+}
+
+.file-row-meta {
+  font-size: 11.5px;
+  color: var(--win-muted);
+}
+
+.explorer-statusbar {
+  block-size: 28px;
+  padding-inline: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--win-muted);
+  background: rgba(242, 237, 228, 0.9);
+  border-block-start: 1px solid rgba(140, 116, 86, 0.14);
+}
+
+.explorer-focus-badge {
+  color: #5b442a;
+  font-weight: 500;
+}
+
+#win11-explorer.is-front {
+  z-index: 6;
+}
+
+/* ---------- Windows 11 WeChat-Style Desktop Chat Window ---------- */
+
+#win11-wechat {
+  --wc-x: 340px;
+  --wc-y: 286px;
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: min(820px, calc(100vw - 48px));
+  block-size: min(510px, calc(100dvb - var(--taskbar-h) - 32px));
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 54px 210px 1fr;
+  background: #f5f5f5;
+  border: 1px solid rgba(90, 74, 56, 0.24);
+  border-radius: 10px;
+  box-shadow:
+    0 22px 54px rgba(32, 24, 14, 0.22),
+    0 4px 14px rgba(32, 24, 14, 0.1);
+  overflow: clip;
+  transform: translate3d(var(--wc-x), var(--wc-y), 0) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 150ms ease;
+}
+
+#win11-wechat.is-open {
+  transform: translate3d(var(--wc-x), var(--wc-y), 0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#win11-wechat.is-front {
+  z-index: 6;
+}
+
+#win11-wechat.is-open.is-maximized {
+  inset: 0 0 var(--taskbar-h) 0;
+  inline-size: 100vw;
+  block-size: calc(100dvb - var(--taskbar-h));
+  max-inline-size: none;
+  max-block-size: none;
+  border-radius: 0;
+  border-width: 0;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.wechat-nav-rail {
+  background: #2e2e2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: 18px;
+  gap: 20px;
+}
+
+.wechat-my-avatar {
+  inline-size: 34px;
+  block-size: 34px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #2bd979 0%, #07c160 100%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.wechat-rail-icon {
+  inline-size: 28px;
+  block-size: 28px;
+  color: rgba(255, 255, 255, 0.55);
+  display: grid;
+  place-items: center;
+}
+
+.wechat-rail-icon.is-active {
+  color: #07c160;
+}
+
+.wechat-rail-icon svg {
+  inline-size: 21px;
+  block-size: 21px;
+}
+
+.wechat-session-pane {
+  background: #ebe9e7;
+  border-inline-end: 1px solid #d8d6d4;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+.wechat-search-bar {
+  block-size: 52px;
+  padding: 14px 12px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.wechat-search-box {
+  inline-size: 100%;
+  block-size: 25px;
+  padding-inline: 10px;
+  border-radius: 4px;
+  background: #dad8d6;
+  color: #7c7a78;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+}
+
+.wechat-sessions {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.wechat-session-item {
+  inline-size: 100%;
+  padding: 11px 12px;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  transition: background-color 80ms ease;
+}
+
+.wechat-session-item:hover {
+  background: #dedcdb;
+}
+
+.wechat-session-item.is-active {
+  background: #c9c7c6;
+}
+
+.wechat-session-avatar {
+  inline-size: 38px;
+  block-size: 38px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+}
+
+.wechat-session-meta {
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wechat-session-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.wechat-session-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #191919;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wechat-session-time {
+  font-size: 10.5px;
+  color: #8f8d8b;
+  flex-shrink: 0;
+}
+
+.wechat-session-preview {
+  font-size: 11.5px;
+  color: #7d7b79;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wechat-chat-main {
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  min-block-size: 0;
+  background: #f5f5f5;
+}
+
+#wechat-titlebar {
+  block-size: 52px;
+  padding-inline-start: 18px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #f5f5f5;
+  border-block-end: 1px solid #e4e4e4;
+  cursor: default;
+}
+
+.wechat-title-wrap {
+  display: flex;
+  align-items: center;
+}
+
+#wechat-chat-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #191919;
+}
+
+.wechat-messages {
+  flex: 1;
+  min-block-size: 0;
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wechat-msg-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-inline-size: 82%;
+}
+
+.wechat-msg-row.is-self {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.wechat-msg-avatar {
+  inline-size: 34px;
+  block-size: 34px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.wechat-msg-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-inline-size: 0;
+}
+
+.wechat-msg-row.is-self .wechat-msg-col {
+  align-items: flex-end;
+}
+
+.wechat-msg-sender {
+  font-size: 11px;
+  color: #888888;
+}
+
+.wechat-bubble-text {
+  padding: 8.5px 12px;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #191919;
+  font-size: 13px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.wechat-msg-row.is-self .wechat-bubble-text {
+  background: #95ec69;
+}
+
+.wechat-bubble-image {
+  display: block;
+  max-inline-size: 240px;
+  max-block-size: 165px;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.wechat-bubble-file {
+  inline-size: 228px;
+  max-inline-size: 100%;
+  text-align: start;
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.wechat-bubble-file:focus-visible {
+  outline: 2px solid var(--active-ink);
+  outline-offset: 2px;
+}
+
+.wechat-file-info {
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wechat-file-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #191919;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wechat-file-sub {
+  font-size: 11px;
+  color: #888888;
+}
+
+.wechat-file-badge {
+  inline-size: 36px;
+  block-size: 40px;
+  border-radius: 4px;
+  background: #e06338;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.wechat-composer {
+  background: #ffffff;
+  border-block-start: 1px solid #e4e4e4;
+  padding: 10px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wechat-draft-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-block-end: 4px;
+}
+
+.wechat-draft-attachments[hidden] {
+  display: none;
+}
+
+.wechat-draft-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 24px 4px 7px;
+  border-radius: 5px;
+  background: #f2f4f3;
+  border: 1px solid #d7e2db;
+  font-size: 11.5px;
+  color: #202622;
+  max-inline-size: 240px;
+}
+
+.wechat-draft-thumb {
+  inline-size: 32px;
+  block-size: 24px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.wechat-draft-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wechat-draft-remove {
+  position: absolute;
+  inset-inline-end: 4px;
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: 50%;
+  font-size: 11px;
+  color: #666;
+  display: grid;
+  place-items: center;
+}
+
+.wechat-draft-remove:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #111;
+}
+
+.wechat-input {
+  inline-size: 100%;
+  min-block-size: 54px;
+  max-block-size: 84px;
+  border: 0;
+  outline: none;
+  resize: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #191919;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.wechat-input::placeholder {
+  color: #9e9e9e;
+}
+
+.wechat-composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.wechat-send-hint {
+  font-size: 11px;
+  color: #9b9b9b;
+}
+
+.wechat-send-btn {
+  block-size: 28px;
+  padding-inline: 18px;
+  border-radius: 4px;
+  background: #07c160;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: background-color 100ms ease, transform 60ms ease;
+}
+
+.wechat-send-btn:hover {
+  background: #06ad56;
+}
+
+.wechat-send-btn:active {
+  transform: scale(0.96);
+}
+
+/* ---------- Top Hanging Rope Workspace ---------- */
+
+#workspace-stage {
+  --rope-top: 0px;
+  --tray-origin-x: calc(100vw - 110px);
+  --tray-origin-y: calc(100dvb - 24px);
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 15;
+  display: grid;
+  place-items: start center;
+  pointer-events: none;
+  transform-origin: var(--tray-origin-x) var(--tray-origin-y);
+  transform: translate3d(0, var(--rope-top), 0) scale(1);
+  opacity: 1;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease;
+  will-change: transform, opacity;
+}
+
+#workspace-stage.is-dragging-rope {
+  transition: none;
+}
+
+#workspace-stage.is-minimized {
+  transform: translate3d(0, var(--rope-top), 0) scale(0.035);
+  opacity: 0;
+}
+
+#workspace-stage.is-minimized #workspace-canvas {
+  pointer-events: none;
+}
+
+#workspace-canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 288px;
+  cursor: default;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+/* ---------- Desktop Floating Cards & Drag Overlay ---------- */
+
+#floating-layer {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  inset-block-end: var(--taskbar-h);
+  z-index: 20;
+  pointer-events: none;
+}
+
+.floating-card-window {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  display: block;
+  pointer-events: auto;
+  touch-action: none;
+  cursor: grab;
+  border-radius: 2px;
+  filter:
+    drop-shadow(0 12px 24px rgba(36, 26, 14, 0.18))
+    drop-shadow(0 2px 6px rgba(36, 26, 14, 0.11));
+  transition: filter 120ms ease;
+  will-change: transform;
+}
+
+.floating-card-canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.floating-inline-editor {
+  position: absolute;
+  inset-inline: 12px;
+  inset-block-start: 44px;
+  inset-block-end: 10px;
+  border: 0;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  background: transparent;
+  color: #000000;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.floating-card-window:hover {
+  filter:
+    drop-shadow(0 16px 30px rgba(36, 26, 14, 0.22))
+    drop-shadow(0 4px 9px rgba(36, 26, 14, 0.13));
+}
+
+.floating-card-window.is-dragging {
+  cursor: grabbing;
+}
+
+.floating-card-window.is-hanging-preview {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#screenshot-hover-preview {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  display: none;
+  z-index: 32;
+  pointer-events: none;
+  box-shadow:
+    0 16px 36px rgba(32, 22, 12, 0.24),
+    0 3px 10px rgba(32, 22, 12, 0.14);
+}
+
+#screenshot-hover-preview.is-visible {
+  display: block;
+}
+
+#screenshot-hover-canvas {
+  display: block;
+}
+
+#drag-overlay-canvas {
+  position: fixed;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* ---------- Windows 11 Taskbar ---------- */
+
+#win11-taskbar {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--taskbar-h);
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-inline: 14px;
+  background: rgba(243, 240, 234, 0.82);
+  -webkit-backdrop-filter: blur(28px) saturate(1.65);
+  backdrop-filter: blur(28px) saturate(1.65);
+  border-block-start: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow:
+    0 -1px 0 rgba(90, 70, 48, 0.12),
+    0 -8px 24px rgba(46, 35, 22, 0.05);
+}
+
+.taskbar-left {
+  min-inline-size: 1px;
+}
+
+#taskbar-apps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.taskbar-app {
+  position: relative;
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 100ms ease,
+    box-shadow 100ms ease,
+    transform 60ms ease;
+}
+
+.taskbar-app:hover {
+  background-color: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.taskbar-app:active {
+  transform: scale(0.93);
+  background-color: rgba(255, 255, 255, 0.48);
+}
+
+.taskbar-app:focus-visible {
+  outline: 2px solid var(--win-accent);
+  outline-offset: 1px;
+}
+
+.taskbar-icon {
+  inline-size: 26px;
+  block-size: 26px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.14));
+  transition: transform 120ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.taskbar-app:hover .taskbar-icon {
+  transform: translateY(-1px);
+}
+
+/* Windows 11 bottom running indicator pill */
+.taskbar-indicator {
+  position: absolute;
+  inset-block-end: 3px;
+  inline-size: 6px;
+  block-size: 3px;
+  border-radius: 999px;
+  background-color: rgba(94, 81, 68, 0.55);
+  transition: inline-size 140ms ease, background-color 140ms ease;
+}
+
+.taskbar-app:hover .taskbar-indicator,
+.taskbar-app.active .taskbar-indicator {
+  inline-size: 16px;
+  background-color: var(--win-accent);
+}
+
+/* Windows 11 Fluent Tooltip above taskbar icons */
+.taskbar-tooltip {
+  position: absolute;
+  inset-block-end: calc(100% + 10px);
+  inset-inline-start: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(252, 250, 246, 0.95);
+  color: var(--win-ink);
+  font-size: 12px;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 1px rgba(90, 70, 48, 0.14),
+    0 6px 16px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.taskbar-app:hover .taskbar-tooltip,
+.taskbar-app:focus-visible .taskbar-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Windows 11 System Tray ---------- */
+
+#taskbar-tray {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--win-ink);
+}
+
+.tray-item,
+.tray-status,
+.tray-clock {
+  block-size: 36px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 100ms ease;
+}
+
+.tray-item {
+  inline-size: 28px;
+}
+
+.tray-item:hover,
+.tray-status:hover,
+.tray-clock:hover {
+  background-color: rgba(255, 255, 255, 0.62);
+}
+
+.tray-chevron svg {
+  inline-size: 13px;
+  block-size: 13px;
+  color: var(--win-muted);
+}
+
+.tray-brand {
+  position: relative;
+}
+
+.tray-brand img {
+  display: block;
+  inline-size: 18px;
+  block-size: 18px;
+  object-fit: contain;
+  transition: transform 120ms ease;
+}
+
+.tray-brand:active img {
+  transform: scale(0.88);
+}
+
+.tray-brand::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 3px;
+  inline-size: 4px;
+  block-size: 2.5px;
+  border-radius: 999px;
+  background-color: transparent;
+  transition: inline-size 140ms ease, background-color 140ms ease;
+}
+
+.tray-brand.is-open::after {
+  inline-size: 10px;
+  background-color: var(--win-accent);
+}
+
+.tray-status {
+  padding-inline: 7px;
+  gap: 6px;
+}
+
+.tray-glyph {
+  inline-size: 15px;
+  block-size: 15px;
+  color: #3a3530;
+}
+
+.tray-clock {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-inline: 8px;
+  font-size: 11.5px;
+  line-height: 1.22;
+  font-variant-numeric: tabular-nums;
+  color: #2c2824;
+}
+
+/* ---------- Windows 11 Snipping Tool Overlay ---------- */
+
+#win11-snip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+}
+
+#win11-snip-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#snip-overlay-canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+#snip-toolbar {
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px;
+  border-radius: 8px;
+  background: rgba(34, 34, 34, 0.88);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.36),
+    0 2px 6px rgba(0, 0, 0, 0.22);
+  color: #f4f4f4;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#win11-snip-overlay.is-active #snip-toolbar {
+  transform: translateX(-50%) translateY(0);
+}
+
+.snip-tool-btn {
+  position: relative;
+  inline-size: 36px;
+  block-size: 32px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4f4f4;
+  transition: background-color 100ms ease, transform 60ms ease;
+}
+
+.snip-tool-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.snip-tool-btn:active {
+  transform: scale(0.93);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.snip-tool-btn.is-selected {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.snip-tool-btn svg {
+  inline-size: 18px;
+  block-size: 18px;
+}
+
+.snip-indicator {
+  position: absolute;
+  inset-block-end: 2px;
+  inline-size: 14px;
+  block-size: 2.5px;
+  border-radius: 999px;
+  background-color: #60cdff;
+}
+
+.snip-divider {
+  inline-size: 1px;
+  block-size: 20px;
+  margin-inline: 3px;
+  background-color: rgba(255, 255, 255, 0.16);
+}

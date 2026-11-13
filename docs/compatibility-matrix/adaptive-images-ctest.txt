@@ -1,0 +1,137 @@
+[HANDLER_OUTPUT]
+Test project E:/CPlusProject/ClipRope/build/release/qualification
+
+      Start  1: p0.overlay.private_desktop
+ 1/65 Test  #1: p0.overlay.private_desktop .......   Passed    0.10 sec
+      Start  2: IMG-01.file_images
+ 2/65 Test  #2: IMG-01.file_images ...............   Passed    0.49 sec
+      Start  3: P5-02.media_validation
+ 3/65 Test  #3: P5-02.media_validation ...........   Passed    0.19 sec
+      Start  4: P5-02.rich_pixel_restart
+ 4/65 Test  #4: P5-02.rich_pixel_restart .........   Passed    1.27 sec
+      Start  5: P5-02.thumbnail_lifetime
+ 5/65 Test  #5: P5-02.thumbnail_lifetime .........   Passed    0.10 sec
+      Start  6: P5-05.capability_delivery
+ 6/65 Test  #6: P5-05.capability_delivery ........   Passed    3.75 sec
+      Start  7: P0-03.external_capture
+ 7/65 Test  #7: P0-03.external_capture ...........   Passed    5.57 sec
+      Start  8: P0-04.publication_identity
+ 8/65 Test  #8: P0-04.publication_identity .......   Passed    0.16 sec
+      Start  9: P0-05.unselected_private
+ 9/65 Test  #9: P0-05.unselected_private .........   Passed    0.20 sec
+      Start 10: P0-05.desktop_delivery
+10/65 Test #10: P0-05.desktop_delivery ...........   Passed    5.78 sec
+      Start 11: P6-06.higher_integrity
+11/65 Test #11: P6-06.higher_integrity ...........   Passed    0.22 sec
+      Start 12: P1-02.schema_reopen
+12/65 Test #12: P1-02.schema_reopen ..............   Passed    0.03 sec
+      Start 13: P1-07.migration_backup
+13/65 Test #13: P1-07.migration_backup ...........   Passed    0.42 sec
+      Start 14: P1-07.interrupted_writer
+14/65 Test #14: P1-07.interrupted_writer .........   Passed    0.50 sec
+      Start 15: P6-02.release_crash_boundaries
+15/65 Test #15: P6-02.release_crash_boundaries ...   Passed    0.35 sec
+      Start 16: P6-02.damage_and_permissions
+16/65 Test #16: P6-02.damage_and_permissions .....   Passed    0.20 sec
+      Start 17: P6-03.concurrent_backup
+17/65 Test #17: P6-03.concurrent_backup ..........   Passed    0.42 sec
+      Start 18: P6-03.reachable_backup_only
+18/65 Test #18: P6-03.reachable_backup_only ......   Passed    0.10 sec
+      Start 19: P6-03.recovery_cli
+19/65 Test #19: P6-03.recovery_cli ...............   Passed    0.40 sec
+      Start 20: P6-03.previous_version
+20/65 Test #20: P6-03.previous_version ...........   Passed    0.40 sec
+      Start 21: P1-01.rope_order
+21/65 Test #21: P1-01.rope_order .................   Passed    0.01 sec
+      Start 22: P1-04.atomic_commands
+22/65 Test #22: P1-04.atomic_commands ............   Passed    0.15 sec
+      Start 23: P3-04.appearance_and_revision
+23/65 Test #23: P3-04.appearance_and_revision ....   Passed    0.22 sec
+      Start 24: P3-05.plain_publication
+24/65 Test #24: P3-05.plain_publication ..........   Passed    0.08 sec
+      Start 25: P3-05.desktop_editor
+25/65 Test #25: P3-05.desktop_editor .............   Passed    2.28 sec
+      Start 26: MENU-02.desktop_menus
+26/65 Test #26: MENU-02.desktop_menus ............   Passed    3.53 sec
+      Start 27: P4-03.management_transactions
+27/65 Test #27: P4-03.management_transactions ....   Passed    0.15 sec
+      Start 28: P4-01.desktop_management
+28/65 Test #28: P4-01.desktop_management .........   Passed    2.65 sec
+      Start 29: P6-01.native_unicode_recovery
+29/65 Test #29: P6-01.native_unicode_recovery ....   Passed    0.65 sec
+      Start 30: P6-04.offline_roundtrip
+30/65 Test #30: P6-04.offline_roundtrip ..........   Passed    0.53 sec
+      Start 31: P6-01.worker_protocol
+31/65 Test #31: P6-01.worker_protocol ............   Passed    0.17 sec
+      Start 32: P6-01.worker_isolation
+32/65 Test #32: P6-01.worker_isolation ...........   Passed    6.84 sec
+      Start 33: P6-01.stable_reader_contention
+33/65 Test #33: P6-01.stable_reader_contention ...   Passed    0.45 sec
+      Start 34: P5-01.adapter_bounds
+34/65 Test #34: P5-01.adapter_bounds .............   Passed    0.18 sec
+      Start 35: P5-01.flush_native_reader
+35/65 Test #35: P5-01.flush_native_reader ........   Passed    0.15 sec
+      Start 36: P5-01.adapter_contract
+36/65 Test #36: P5-01.adapter_contract ...........   Passed    0.89 sec
+      Start 37: P5-04.virtual_files
+37/65 Test #37: P5-04.virtual_files ..............   Passed    1.58 sec
+      Start 38: P1-05.capture_admission
+38/65 Test #38: P1-05.capture_admission ..........   Passed   16.19 sec
+      Start 39: P1-06.headless_restart
+39/65 Test #39: P1-06.headless_restart ...........   Passed    0.43 sec
+      Start 40: P2-04.private_shortcut
+40/65 Test #40: P2-04.private_shortcut ...........   Passed    0.19 sec
+      Start 41: P2-04.desktop_tray
+41/65 Test #41: P2-04.desktop_tray ...............   Passed    2.18 sec
+      Start 42: P2-02.buffered_viewport
+42/65 Test #42: P2-02.buffered_viewport ..........   Passed    0.21 sec
+      Start 43: VIS-01.hanging_layout
+43/65 Test #43: VIS-01.hanging_layout ............   Passed    0.14 sec
+      Start 44: VIS-02.card_gallery
+44/65 Test #44: VIS-02.card_gallery ..............   Passed    2.43 sec
+      Start 45: P2-02.workspace_surface
+45/65 Test #45: P2-02.workspace_surface ..........   Passed    0.88 sec
+      Start 46: HOV-01.desktop_hover
+46/65 Test #46: HOV-01.desktop_hover .............   Passed    3.04 sec
+      Start 47: P3-01.floating_surface
+47/65 Test #47: P3-01.floating_surface ...........   Passed    0.58 sec
+      Start 48: P4-04.virtualized_overview
+48/65 Test #48: P4-04.virtualized_overview .......   Passed    0.79 sec
+      Start 49: DRAG-03.external_drag_copy
+49/65 Test #49: DRAG-03.external_drag_copy .......   Passed   17.80 sec
+      Start 50: MENU-01.file_commands
+50/65 Test #50: MENU-01.file_commands ............   Passed    0.38 sec
+      Start 51: P6-06.session_notifications
+51/65 Test #51: P6-06.session_notifications ......   Passed    0.79 sec
+      Start 52: P6-06.dpi_notifications
+52/65 Test #52: P6-06.dpi_notifications ..........   Passed    0.10 sec
+      Start 53: P2-01.hidden_capture_restart
+53/65 Test #53: P2-01.hidden_capture_restart .....   Passed    0.59 sec
+      Start 54: P3-01.floating_restart
+54/65 Test #54: P3-01.floating_restart ...........   Passed    0.11 sec
+      Start 55: P4-05.live_rope_races
+55/65 Test #55: P4-05.live_rope_races ............   Passed    0.99 sec
+      Start 56: P5-06.office_matrix
+56/65 Test #56: P5-06.office_matrix ..............   Passed   37.00 sec
+      Start 57: P6-04.privacy_controls
+57/65 Test #57: P6-04.privacy_controls ...........   Passed    6.38 sec
+      Start 58: P0-06.excel_range
+58/65 Test #58: P0-06.excel_range ................   Passed    4.99 sec
+      Start 59: P0-01.host_smoke
+59/65 Test #59: P0-01.host_smoke .................   Passed    0.02 sec
+      Start 60: P1-03.content_lifecycle
+60/65 Test #60: P1-03.content_lifecycle ..........   Passed    0.22 sec
+      Start 61: P2-02.summary_read
+61/65 Test #61: P2-02.summary_read ...............   Passed    0.21 sec
+      Start 62: P5-03.native_file_group
+62/65 Test #62: P5-03.native_file_group ..........   Passed    5.45 sec
+      Start 63: P2-05.desktop_flow
+63/65 Test #63: P2-05.desktop_flow ...............   Passed    5.14 sec
+      Start 64: P3-03.floating_desktop
+64/65 Test #64: P3-03.floating_desktop ...........   Passed   10.43 sec
+      Start 65: P4-02.full_rope_transfers
+65/65 Test #65: P4-02.full_rope_transfers ........   Passed    2.19 sec
+
+100% tests passed, 0 tests failed out of 65
+
+Total Test time (real) = 161.04 sec

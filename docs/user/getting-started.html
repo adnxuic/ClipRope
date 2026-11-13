@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="在记事本里复制两段文字，再取回第一段。这个例子会用到工作区、绳上卡片和一次粘贴。">
+  <title>快速开始 · ClipRope 用户手册</title>
+  <link rel="alternate" hreflang="en" href="en/getting-started.html">
+  <link rel="icon" type="image/x-icon" href="../website/assets/cliprope.ico">
+  <link rel="stylesheet" href="css/manual.css">
+  <script defer src="js/search-index.js"></script>
+  <script defer src="js/manual.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <div class="bar-inner">
+      <button class="icon-button menu-toggle" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="site-nav" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="ClipRope-Docs.html" aria-label="ClipRope 手册首页"><img src="../website/assets/cliprope.png" width="38" height="38" alt=""><span>ClipRope</span></a>
+      <span class="brand-context">用户手册</span>
+      <div class="tools">
+        <a class="toolbar-demo" href="../website/index.html?lang=zh-CN" title="交互演示" aria-label="交互演示">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 8 6 4-6 4z"/></svg><span>交互演示</span>
+        </a>
+        <a class="language-link" href="en/getting-started.html" hreflang="en" lang="en">English</a>
+        <button class="search-trigger" type="button" aria-label="搜索文档" aria-haspopup="dialog" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="icon fluent-icon glyph-search" aria-hidden="true"></span></span><span>搜索文档</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-button theme-toggle" type="button" aria-label="切换手册主题" title="切换手册主题" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17Z" fill="currentColor" stroke="none"/></svg><span class="icon fluent-icon glyph-appearance" aria-hidden="true"></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" id="site-nav" aria-label="手册目录">
+      <p class="nav-label">手册目录</p>
+      <a href="ClipRope-Docs.html"><span class="icon fluent-icon glyph-overview" aria-hidden="true"></span><span>手册首页</span></a>
+      <a href="getting-started.html" aria-current="page"><span class="icon fluent-icon glyph-information" aria-hidden="true"></span><span>快速开始</span></a>
+      <p class="nav-label">使用指南</p>
+      <a href="cards.html"><span class="icon fluent-icon glyph-document" aria-hidden="true"></span><span>使用卡片</span></a>
+      <a href="ropes.html"><span class="icon fluent-icon glyph-rope" aria-hidden="true"></span><span>整理绳子</span></a>
+      <a href="settings.html"><span class="icon fluent-icon glyph-settings" aria-hidden="true"></span><span>设置与隐私</span></a>
+      <p class="nav-label">参考</p>
+      <a href="reference.html"><span class="icon fluent-icon glyph-keyboard" aria-hidden="true"></span><span>操作速查</span></a>
+    </nav>
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置"><a href="ClipRope-Docs.html">手册首页</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">快速开始</span></nav>
+      <div class="article-head"><h1>快速开始</h1><p>在记事本里复制两段文字，再取回第一段。这个例子会用到工作区、绳上卡片和一次粘贴。</p></div>
+      <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
+        <li><a href="#start">启动并找到托盘图标</a></li>
+        <li><a href="#paste">找回第一段文字</a></li>
+        <li><a href="#manual">什么时候手动粘贴？</a></li>
+        <li><a href="#practice">在演示中试一遍</a></li>
+      </ul></nav>
+      <section class="doc-section" id="start" tabindex="-1"><h2>启动并找到托盘图标</h2>
+        <p>运行 Windows x64 安装程序，完成后从开始菜单打开 <strong>ClipRope</strong>。在任务栏通知区域找到衣架图标；如果图标被折叠，可以展开隐藏图标。</p>
+        <p>左键单击图标或按 <kbd>Ctrl+Shift+V</kbd> 可显示或收起工作区。工作区收起后，当前绳子仍会收集新复制的内容。</p>
+      </section>
+      <section class="doc-section" id="paste" tabindex="-1"><h2>找回第一段文字</h2>
+        <ol class="steps">
+        <li><strong>复制两段不同的文字。</strong><p>在记事本中分别选中并复制“会议地点”和“周三上午”，再把光标放到希望插入文字的空行。</p></li>
+        <li><strong>打开工作区，找到“会议地点”。</strong><p>按 <kbd>Ctrl+Shift+V</kbd>。“周三上午”排在绳首，先前复制的“会议地点”在它后面。</p></li>
+        <li><strong>双击“会议地点”的纸面。</strong><p>这张卡片的内容会恢复到剪贴板，卡片回到所属绳子的首位，工作区收起。默认情况下，如果原编辑器仍可接收粘贴，ClipRope 会向它发送一次 <kbd>Ctrl+V</kbd>。先查看空行里是否已出现“会议地点”。</p></li>
+        </ol>
+      </section>
+      <section class="doc-section" id="manual" tabindex="-1"><h2>什么时候手动粘贴？</h2>
+        <p>选择了<strong>仅复制</strong>，或者唤出工作区前没有可用的输入位置时，双击仍会把卡片内容放回剪贴板。点到希望插入的位置，按一次 <kbd>Ctrl+V</kbd>。</p>
+        <p>如果看到“已复制，已发送粘贴快捷键。”，先看目标应用的结果，再决定是否手动粘贴。编辑器或文件夹会自行选择可接收的格式。</p>
+        <p class="related"><a href="settings.html#paste-mode">更改绳上卡片双击操作</a> · <a href="reference.html#troubleshooting">排查粘贴问题</a></p>
+      </section>
+      <section class="doc-section" id="practice" tabindex="-1"><h2>在演示中试一遍</h2>
+        <p>交互演示提供示例聊天和文件夹。打开后，可以在示例内容上练习复制、取回卡片和拖动回绳。</p><a class="text-action" href="../website/index.html?lang=zh-CN">打开交互演示 <span aria-hidden="true">↗</span></a>
+      </section>
+      <nav class="page-turn" aria-label="相邻章节"><a href="ClipRope-Docs.html"><small>上一页</small><strong>手册首页</strong></a><a href="cards.html"><small>下一页</small><strong>使用卡片 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
+      <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>
+    </main>
+  </div>
+</body>
+</html>

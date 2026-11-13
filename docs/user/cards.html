@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="绳上卡片用来取回历史，悬浮卡片可以留在桌面旁。同一张卡片换了位置，双击和关闭的作用也会改变。">
+  <title>使用卡片 · ClipRope 用户手册</title>
+  <link rel="alternate" hreflang="en" href="en/cards.html">
+  <link rel="icon" type="image/x-icon" href="../website/assets/cliprope.ico">
+  <link rel="stylesheet" href="css/manual.css">
+  <script defer src="js/search-index.js"></script>
+  <script defer src="js/manual.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <div class="bar-inner">
+      <button class="icon-button menu-toggle" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="site-nav" hidden><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <a class="brand" href="ClipRope-Docs.html" aria-label="ClipRope 手册首页"><img src="../website/assets/cliprope.png" width="38" height="38" alt=""><span>ClipRope</span></a>
+      <span class="brand-context">用户手册</span>
+      <div class="tools">
+        <a class="toolbar-demo" href="../website/index.html?lang=zh-CN" title="交互演示" aria-label="交互演示">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m10 8 6 4-6 4z"/></svg><span>交互演示</span>
+        </a>
+        <a class="language-link" href="en/cards.html" hreflang="en" lang="en">English</a>
+        <button class="search-trigger" type="button" aria-label="搜索文档" aria-haspopup="dialog" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="icon fluent-icon glyph-search" aria-hidden="true"></span></span><span>搜索文档</span><kbd>Ctrl K</kbd></button>
+        <button class="icon-button theme-toggle" type="button" aria-label="切换手册主题" title="切换手册主题" hidden><span class="icon control-symbol" aria-hidden="true"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17Z" fill="currentColor" stroke="none"/></svg><span class="icon fluent-icon glyph-appearance" aria-hidden="true"></span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="site-nav" id="site-nav" aria-label="手册目录">
+      <p class="nav-label">手册目录</p>
+      <a href="ClipRope-Docs.html"><span class="icon fluent-icon glyph-overview" aria-hidden="true"></span><span>手册首页</span></a>
+      <a href="getting-started.html"><span class="icon fluent-icon glyph-information" aria-hidden="true"></span><span>快速开始</span></a>
+      <p class="nav-label">使用指南</p>
+      <a href="cards.html" aria-current="page"><span class="icon fluent-icon glyph-document" aria-hidden="true"></span><span>使用卡片</span></a>
+      <a href="ropes.html"><span class="icon fluent-icon glyph-rope" aria-hidden="true"></span><span>整理绳子</span></a>
+      <a href="settings.html"><span class="icon fluent-icon glyph-settings" aria-hidden="true"></span><span>设置与隐私</span></a>
+      <p class="nav-label">参考</p>
+      <a href="reference.html"><span class="icon fluent-icon glyph-keyboard" aria-hidden="true"></span><span>操作速查</span></a>
+    </nav>
+    <main id="main" tabindex="-1">
+      <nav class="breadcrumbs" aria-label="当前位置"><a href="ClipRope-Docs.html">手册首页</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">使用卡片</span></nav>
+      <div class="article-head"><h1>使用卡片</h1><p>绳上卡片用来取回历史，悬浮卡片可以留在桌面旁。同一张卡片换了位置，双击和关闭的作用也会改变。</p></div>
+      <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
+        <li><a href="#forms">绳上卡片与悬浮卡片</a></li>
+        <li><a href="#preview">预览截图、打开文件</a></li>
+        <li><a href="#editing">编辑文字或新建快速笔记</a></li>
+        <li><a href="#floating">把悬浮卡片挂回绳子</a></li>
+        <li><a href="#rebin">从回收绳找回误关的悬浮卡片</a></li>
+      </ul></nav>
+      <section class="doc-section" id="forms" tabindex="-1"><h2>绳上卡片与悬浮卡片</h2>
+        <p>新复制的内容先成为当前收集绳上的一张卡片。按住纸面中央拖出所有绳子行，在桌面松开，它就成为一张独立保存的悬浮卡片。</p>
+        <div class="card-forms">
+          <figure><div class="card-frame"><img src="assets/hanging-text.png" width="266" height="279" alt="绳上文字卡片。金属挂钩扣住麻绳，木夹左侧标有 #1/100，纸面显示 Recovery sample。"></div><figcaption><strong>绳上卡片</strong>木夹左侧是编号，右侧是文字类型图标。</figcaption></figure>
+          <figure><div class="card-frame"><img src="assets/floating-text.png" width="300" height="200" alt="同样的文字在悬浮卡片中显示。左上角是 Return 按钮，顶部中央有红色图钉，右上角是关闭按钮。"></div><figcaption><strong>悬浮卡片</strong>左上角的「回绳」在英文界面显示为 Return；右上角的 × 关闭卡片。</figcaption></figure>
+        </div>
+        <table><caption>两种形态的常用操作</caption><thead><tr><th scope="col">操作</th><th scope="col">绳上卡片</th><th scope="col">悬浮卡片</th></tr></thead><tbody>
+        <tr><th scope="row">双击纸面</th><td>恢复内容到剪贴板、移到本绳首位并收起工作区。默认向仍可用的原目标发送粘贴。</td><td>按内容编辑文字、打开文件或截图、定位文件夹或文件组，或查看卡片信息。</td></tr>
+        <tr><th scope="row">移动</th><td>拖到同一绳上的空位可排序；在总览里也可拖到另一根绳。</td><td>在桌面拖动以调整位置。拖到绳内空位，可挂回指定位置。</td></tr>
+        <tr><th scope="row">单击 ×</th><td>默认直接删除。系统回收绳内始终直接删除。</td><td>默认移到回收绳首位，保存成功后关闭悬浮窗口。</td></tr></tbody></table>
+      </section>
+      <section class="doc-section" id="preview" tabindex="-1"><h2>预览截图、打开文件</h2>
+        <p><strong>截图：</strong>将指针停在截图纸面中央约半秒，可看到全图；移开指针即可收起。在<strong>全局设置 → 卡片 → 截图悬停全图预览</strong>中可以关闭这一行为。</p>
+        <p><strong>文件：</strong>在资源管理器中复制图片文件时，卡片保存的是对原文件的引用。双击悬浮文件卡片，会用其默认应用打开原文件；若原文件已移动或删除，查看卡片信息可核对保存的路径。</p>
+        <p><strong>文件夹和文件组：</strong>双击悬浮卡片会在资源管理器中定位相应项目。文件组跨多个文件夹时，先选择要查看的文件夹。其他可保存的内容可以通过卡片信息查看。</p>
+      </section>
+      <section class="doc-section" id="editing" tabindex="-1"><h2>编辑文字或新建快速笔记</h2>
+        <p>双击悬浮文字卡片即可输入。要编辑绳上的文字，右键单击卡片并选择<strong>编辑文字…</strong>。按 <kbd>Enter</kbd> 换行，<kbd>Ctrl+S</kbd> 保存，<kbd>Esc</kbd> 放弃本次修改。保存失败时草稿会保留，可在原处重试。</p>
+        <p>想从空白纸面开始，按全局快捷键 <kbd>Ctrl+Shift+Space</kbd> 新建悬浮快速笔记。即使取消第一次编辑，这张空白卡片也会留在桌面。</p>
+      </section>
+      <section class="doc-section" id="floating" tabindex="-1"><h2>把悬浮卡片挂回绳子</h2>
+        <p>单击悬浮卡片左上角的<strong>回绳</strong>，它就会挂到<strong>点击时的当前收集绳</strong>首位。工作区收起时也可回绳。想指定另一根绳或插入位置，先打开总览，再把纸面拖到目标绳的空位。</p>
+        <p>悬浮卡片可以跨重启保留，悬浮期间不占用任何绳子的容量。挂回已满的绳子时，<a href="ropes.html#capacity">目标绳会移除绳尾卡片</a>。</p>
+      </section>
+      <section class="doc-section" id="rebin" tabindex="-1"><h2>从回收绳找回误关的悬浮卡片</h2>
+        <ol><li>默认设置下，悬浮卡片的 <strong>×</strong> 会把它移入<strong>回收绳（ReBin）</strong>的首位。</li><li>右键单击绳线或木质名牌，使用菜单中的 <strong>ReBin</strong> 选项显示回收绳。显示后，回收绳成为当前收集绳。</li><li>打开总览，把要取回的卡片拖到目标绳上的空位。回收绳没有容量上限；在回收绳上单击 <strong>×</strong> 会立即删除这张卡片。</li></ol>
+        <aside class="note"><strong>找不到刚关的卡片？</strong><p>到<strong>全局设置 → 卡片</strong>查看“悬浮卡片删除方式”或“绳上卡片删除方式”。选择“直接删除”时，关闭的卡片不会进入回收绳。绳上卡片默认使用这个选项。</p></aside>
+      </section>
+      <nav class="page-turn" aria-label="相邻章节"><a href="getting-started.html"><small>上一页</small><strong>快速开始</strong></a><a href="ropes.html"><small>下一页</small><strong>整理绳子 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
+      <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>
+    </main>
+  </div>
+</body>
+</html>
