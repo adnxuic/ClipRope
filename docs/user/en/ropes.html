@@ -48,10 +48,11 @@
         <li><a href="#collector">Create or switch collecting ropes</a></li>
         <li><a href="#overview">Browse and reorder ropes in overview</a></li>
         <li><a href="#move">Move or copy a card</a></li>
+        <li><a href="#rope-menu">Adjust or clear a rope from its menu</a></li>
         <li><a href="#capacity">What happens when a rope is full?</a></li>
       </ul></nav>
       <section class="doc-section" id="collector" tabindex="-1"><h2>Create or switch collecting ropes</h2>
-        <p>Right-click a rope line or its wooden nameplate and choose <strong>Add new rope…</strong>. Enter a name and capacity, save, then choose <strong>Yes</strong> when asked whether to switch. The next item you copy goes to the new rope.</p>
+        <p>Right-click a rope line or its wooden nameplate and choose <strong>Add new rope…</strong>. Enter a nonblank name (up to 256 UTF-16 units; some characters count as two), choose a color and enter a positive whole number for capacity. Save, then choose <strong>Yes</strong> when asked whether to switch. The next item you copy goes to the new rope.</p>
         <p>With the pointer over a visible rope row or the workspace focused, press <kbd>Tab</kbd> to select the next collecting rope. In single-rope view, you can also hold <kbd>Ctrl</kbd> and scroll up for the previous rope or down for the next. By default, switching to a nonempty rope copies its first card to the clipboard. <a href="settings.html#follow">Change when the clipboard follows the first card.</a></p>
       </section>
       <section class="doc-section" id="overview" tabindex="-1"><h2>Browse and reorder ropes in overview</h2>
@@ -61,11 +62,21 @@
         <tr><th scope="row">Ctrl + wheel</th><td>Switch collecting ropes.</td><td>Scroll the list of ropes. The collecting rope stays the same.</td></tr>
         <tr><th scope="row">Drag the line or nameplate up or down</th><td>Set the rope’s height on the screen.</td><td>Drop between rows to reorder the ropes. The first rope collects new copies.</td></tr>
         </tbody></table>
+        <p>A horizontal wheel also scrolls the cards in the row under the pointer. When reordering ropes in overview, release outside the overview workspace to cancel.</p>
       </section>
       <section class="doc-section" id="move" tabindex="-1"><h2>Move or copy a card</h2>
-        <p><strong>Move a card.</strong> Drag the middle of the paper over the target rope. When the neighboring cards leave a gap, release. To reach a position offscreen, hold the pointer at the left or right end of that row and let it scroll. Press <kbd>Esc</kbd> during the drag to cancel.</p>
-        <p><strong>Copy to a rope.</strong> In overview, hold <kbd>Ctrl</kbd> before you start dragging. Drop into a gap on any visible rope to create a copy. Releasing outside all rows cancels the copy.</p>
-        <p><strong>Copy to another app.</strong> In single-rope view, hold <kbd>Ctrl</kbd> and drag the card into an app that accepts its contents. Dropping a file into a File Explorer folder copies the original file. Dropping a screenshot creates a PNG. You can also drag from a Floating card while the workspace is hidden.</p>
+        <p>To <strong>move</strong> a card, drag the middle of its paper over the target rope. Release when the neighboring cards leave a gap. To reach a position offscreen, hold the pointer at either end of the row and let it scroll. Press <kbd>Esc</kbd> to cancel.</p>
+        <p>To <strong>copy</strong>, hold <kbd>Ctrl</kbd> before dragging the paper. The view at the start of the drag determines the destination:</p>
+        <dl class="definitions"><dt>Overview: copy onto a rope</dt><dd>Drag a Hanging or Floating card into a gap on any visible rope. A Floating original stays on the desktop. Release outside all rows to cancel. The destination’s <a href="#capacity">capacity limit</a> still applies.</dd>
+        <dt>Single-rope view or workspace hidden: copy to another app</dt><dd>Drag a Hanging card from single-rope view to an app that accepts its contents. A Floating card can do the same with the single rope visible or the workspace hidden. Drop into a File Explorer folder to copy a file or save a screenshot as an image. To duplicate a card on the same rope, open overview first.</dd></dl>
+        <p>During a drag to another app, press the right mouse button or <kbd>Esc</kbd> before releasing the left button to cancel the drop.</p>
+      </section>
+      <section class="doc-section" id="rope-menu" tabindex="-1"><h2>Adjust or clear a rope from its menu</h2>
+        <p>Right-click the line or nameplate of the rope you want. In overview, the menu acts on the row you clicked.</p>
+        <dl class="definitions"><dt>Edit style… · Card density</dt><dd>Change the name, color or capacity inline. Use − / + or type an exact capacity. Review the affected tail cards before confirming a decrease. Compact or Regular density is remembered separately for each rope.</dd>
+        <dt>Back to first card · Previous rope / Next rope</dt><dd>Back to first card scrolls to the head without copying it. Previous and Next switch the collecting rope.</dd>
+        <dt>Rope overview · Find in Cards · Show / hide ReBin</dt><dd>Switch between All ropes and This rope, <a href="reference.html#find">search the Hanging history</a>, or <a href="cards.html#rebin">recover cards from ReBin</a>.</dd>
+        <dt>Add new rope… · Clear Hanging cards… · Delete this rope…</dt><dd>Clearing keeps the rope; deleting removes it as well. Both show the number of affected Hanging cards before you confirm and leave Floating cards alone. Neither main nor the system ReBin can be renamed or deleted. ReBin always has unlimited capacity.</dd></dl>
       </section>
       <section class="doc-section" id="capacity" tabindex="-1"><h2>What happens when a rope is full?</h2>
         <p>Each ordinary rope has its own limit. Card 1 is at the front and the last card is at the tail. Copying a new item or clicking <strong>Return</strong> adds a card at the front. If this puts the rope over capacity, it loses its last card.</p>

@@ -47,37 +47,64 @@
       <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
         <li><a href="#forms">绳上卡片与悬浮卡片</a></li>
         <li><a href="#preview">预览截图、打开文件</a></li>
+        <li><a href="#card-details">读懂卡片上的图标和预览</a></li>
+        <li><a href="#card-menu">按内容使用卡片右键菜单</a></li>
+        <li><a href="#expand">把文件组拆成独立卡片</a></li>
         <li><a href="#editing">编辑文字或新建快速笔记</a></li>
         <li><a href="#floating">把悬浮卡片挂回绳子</a></li>
-        <li><a href="#rebin">从回收绳找回误关的悬浮卡片</a></li>
+        <li><a href="#rebin">从回收绳（ReBin）找回卡片</a></li>
       </ul></nav>
       <section class="doc-section" id="forms" tabindex="-1"><h2>绳上卡片与悬浮卡片</h2>
         <p>新复制的内容先成为当前收集绳上的一张卡片。按住纸面中央拖出所有绳子行，在桌面松开，它就成为一张独立保存的悬浮卡片。</p>
         <div class="card-forms">
-          <figure><div class="card-frame"><img src="assets/hanging-text.png" width="266" height="279" alt="绳上文字卡片。金属挂钩扣住麻绳，木夹左侧标有 #1/100，纸面显示 Recovery sample。"></div><figcaption><strong>绳上卡片</strong>木夹左侧是编号，右侧是文字类型图标。</figcaption></figure>
-          <figure><div class="card-frame"><img src="assets/floating-text.png" width="300" height="200" alt="同样的文字在悬浮卡片中显示。左上角是 Return 按钮，顶部中央有红色图钉，右上角是关闭按钮。"></div><figcaption><strong>悬浮卡片</strong>左上角的「回绳」在英文界面显示为 Return；右上角的 × 关闭卡片。</figcaption></figure>
+          <figure><div class="card-frame"><img src="assets/hanging-text.png" width="536" height="426" alt="一张记录饮品订单的文字卡片挂在绳上，木夹标有 #1/50。"></div><figcaption><strong>绳上卡片</strong>木夹左侧是编号，右侧是文字类型图标。</figcaption></figure>
+          <figure><div class="card-frame"><img src="assets/floating-text.png" width="480" height="320" alt="同一份订单已悬浮在桌面。左上角是回绳，右上角是关闭。"></div><figcaption><strong>悬浮卡片</strong>左上角的“回绳”把卡片挂回去，右上角的 × 关闭卡片。中央的红色图钉只是装饰，不能切换置顶。</figcaption></figure>
         </div>
         <table><caption>两种形态的常用操作</caption><thead><tr><th scope="col">操作</th><th scope="col">绳上卡片</th><th scope="col">悬浮卡片</th></tr></thead><tbody>
         <tr><th scope="row">双击纸面</th><td>恢复内容到剪贴板、移到本绳首位并收起工作区。默认向仍可用的原目标发送粘贴。</td><td>按内容编辑文字、打开文件或截图、定位文件夹或文件组，或查看卡片信息。</td></tr>
         <tr><th scope="row">移动</th><td>拖到同一绳上的空位可排序；在总览里也可拖到另一根绳。</td><td>在桌面拖动以调整位置。拖到绳内空位，可挂回指定位置。</td></tr>
         <tr><th scope="row">单击 ×</th><td>默认直接删除。系统回收绳内始终直接删除。</td><td>默认移到回收绳首位，保存成功后关闭悬浮窗口。</td></tr></tbody></table>
+        <p>绳上卡片可拖两侧、底边或底角调整大小，顶边固定在木夹下；悬浮卡片的四边、四角都能拖。缩放范围是原尺寸的 75%–200%（悬浮文字卡片默认 240 × 160 DIP）。松手保存，拖动中按 <kbd>Esc</kbd> 取消。回绳或重启后保留所选大小。</p>
       </section>
       <section class="doc-section" id="preview" tabindex="-1"><h2>预览截图、打开文件</h2>
         <p><strong>截图：</strong>将指针停在截图纸面中央约半秒，可看到全图；移开指针即可收起。在<strong>全局设置 → 卡片 → 截图悬停全图预览</strong>中可以关闭这一行为。</p>
         <p><strong>文件：</strong>在资源管理器中复制图片文件时，卡片保存的是对原文件的引用。双击悬浮文件卡片，会用其默认应用打开原文件；若原文件已移动或删除，查看卡片信息可核对保存的路径。</p>
         <p><strong>文件夹和文件组：</strong>双击悬浮卡片会在资源管理器中定位相应项目。文件组跨多个文件夹时，先选择要查看的文件夹。其他可保存的内容可以通过卡片信息查看。</p>
       </section>
+      <section class="doc-section" id="card-details" tabindex="-1"><h2>读懂卡片上的图标和预览</h2>
+        <dl class="definitions"><dt>纸面右下角的小圆点</dt><dd>橙点表示部分格式未保存，红点表示内容损坏或不可用。右键选“卡片信息…”可查看具体格式。在宽度至少 120 DIP 的普通绳上纸卡上悬停，底部可显示已保存的格式；编辑和查找匹配时不显示这条提示。</dd>
+        <dt>链接、图文和富文本</dt><dd>不含空格、制表符或换行，且以 <code>http://</code>、<code>https://</code>、<code>www.</code> 或 <code>ftp://</code> 开头的文字，最多 2,048 个 UTF-16 单元时可显示为链接。普通文字带有图片预览时，图在上、文字在下。只有 HTML 或 RTF 而没有纯文本的卡片仍可取回，但右键菜单没有“编辑文字…”、字号或配色。</dd>
+        <dt>图片上有提示，却没有弹出全图</dt><dd>图片文件卡片通常显示文字提示：在图片上停留约 0.42 秒，可查看来源或路径、格式及预览状态。启用全图预览的截图则优先在约半秒后显示图像。截图原图每边不得超过 8,192 像素，总计最多 8,388,608 像素；解码等待超过 2 秒就不显示。预览按比例缩小以适应屏幕：不超过 960 × 720 DIP、可用屏幕宽高的 80%、每边 2,048 像素及总计 2,097,152 像素。</dd>
+        <dt>图片太小，难以点中纸面</dt><dd>自适应图片的短边不足 12 DIP 时，可直接双击边缘或角点，作用与双击纸面相同。按住 <kbd>Ctrl</kbd> 从边缘拖动则执行<a href="ropes.html#move">当前视图的复制手势</a>，不会缩放。</dd></dl>
+      </section>
+      <section class="doc-section" id="card-menu" tabindex="-1"><h2>按内容使用卡片右键菜单</h2>
+        <p>右键单击纸面。每种卡片都有<strong>卡片信息…</strong>：可查看本地保存时间、来源应用、捕获是否完整，以及哪些 Windows 格式已保存、已跳过或失败。文件卡片还列出原路径、当前可用性与预览状态。</p>
+        <dl class="definitions"><dt>文字</dt><dd>选择“编辑文字…”修改内容；也可以单独设置字号（6–96 DIP）、粗体、文字颜色、背景颜色和不透明度（0–100%）。右键菜单把字号数值标为 px；它和全局设置里的 DIP 是同一字号尺度，无需换算。</dd>
+        <dt>截图</dt><dd>选“打开原始文件”或“在文件资源管理器中显示”。没有可用的原始文件位置时，ClipRope 可用保存的像素生成本地 PNG；如果只知道截图文件夹，定位操作可直接打开该文件夹。</dd>
+        <dt>文件、文件夹和文件组</dt><dd>都可以在资源管理器中定位。单个文件还可直接打开。原文件移回原路径后，选“刷新文件预览”重新检查。文件组另有“展开文件组”；其他类型只提供卡片信息。</dd></dl>
+        <p><strong>选色：</strong>可选“默认”或七个常用色，也可输入 HEX、RGB，或调整色相、饱和度与明度。在色轴上用 <kbd>←</kbd> / <kbd>→</kbd> 微调。只有文字卡片的背景颜色支持透明度；文字、绳子和查找高亮颜色不支持。对照原始颜色后，点“应用”保存或取消放弃。文字对比度低于 4.5:1（大字为 3:1）会提示；卡片不透明度低于 100% 时，对比度提示会注明“未计入桌面背景”。</p>
+      </section>
+      <section class="doc-section" id="expand" tabindex="-1"><h2>把文件组拆成独立卡片</h2>
+        <p>右键单击文件组，选<strong>展开文件组</strong>。默认保留原组，另为每个成员创建一张卡片。若只想留下单独的卡片，先关闭<strong>全局设置 → 卡片 → 展开后保留原文件组</strong>。</p>
+        <p>绳上文件组在原绳展开。若要挤掉绳尾卡片，先核对数量再确认；若无法容纳展开的成员，按提示提高容量后重试。悬浮文件组会变成平铺在桌面上的独立悬浮卡片。展开不会拆分或移动磁盘上的文件。</p>
+      </section>
       <section class="doc-section" id="editing" tabindex="-1"><h2>编辑文字或新建快速笔记</h2>
         <p>双击悬浮文字卡片即可输入。要编辑绳上的文字，右键单击卡片并选择<strong>编辑文字…</strong>。按 <kbd>Enter</kbd> 换行，<kbd>Ctrl+S</kbd> 保存，<kbd>Esc</kbd> 放弃本次修改。保存失败时草稿会保留，可在原处重试。</p>
         <p>想从空白纸面开始，按全局快捷键 <kbd>Ctrl+Shift+Space</kbd> 新建悬浮快速笔记。即使取消第一次编辑，这张空白卡片也会留在桌面。</p>
+        <p>把指针停在可编辑的文字卡片上，就会出现铅笔。绳上卡片的铅笔在纸面上方、木夹右端；悬浮卡片的铅笔在工具栏 × 的左侧。点铅笔即可编辑。编辑框内用滚轮浏览文字；按 <kbd>Tab</kbd> 或 <kbd>Shift+Tab</kbd> 在文字框、保存（✓）和取消（×）之间移动，按 <kbd>Enter</kbd> 执行选中的按钮。每次编辑最多 4,194,303 个 UTF-16 单元。</p>
+        <p>看到“将保存为纯文本”时，修改并保存会用纯文本替换原来的 HTML 或 RTF 格式；取消或保持原文不变可保留富格式。收起正在编辑绳上卡片的工作区时，ClipRope 会先尝试保存；失败时工作区与草稿会保留。</p>
+        <p>使用输入法时，若保存提示“请先完成输入”，先确认正在输入的字，再按 <kbd>Ctrl+S</kbd>。关闭编辑窗口也会尝试保存；想放弃修改请按 <kbd>Esc</kbd>。若卡片不透明度是 0%，预览仍保留 ×，编辑时纸面会暂时变为不透明，便于看清文字。</p>
       </section>
       <section class="doc-section" id="floating" tabindex="-1"><h2>把悬浮卡片挂回绳子</h2>
         <p>单击悬浮卡片左上角的<strong>回绳</strong>，它就会挂到<strong>点击时的当前收集绳</strong>首位。工作区收起时也可回绳。想指定另一根绳或插入位置，先打开总览，再把纸面拖到目标绳的空位。</p>
         <p>悬浮卡片可以跨重启保留，悬浮期间不占用任何绳子的容量。挂回已满的绳子时，<a href="ropes.html#capacity">目标绳会移除绳尾卡片</a>。</p>
+        <p>想在桌面保留原卡，同时把副本挂上绳？先打开总览，再<a href="ropes.html#move">按住 Ctrl 拖到目标绳</a>。</p>
+        <p>悬浮窗口始终置顶，不受“工作区置顶”设置影响，也不能用 <kbd>Alt+F4</kbd> 关闭。要移走它，请用卡片上的 × 或“回绳”。宽度不足 200 DIP 时，工具栏不显示图钉，“回绳”只显示箭头，作用不变。</p>
       </section>
-      <section class="doc-section" id="rebin" tabindex="-1"><h2>从回收绳找回误关的悬浮卡片</h2>
-        <ol><li>默认设置下，悬浮卡片的 <strong>×</strong> 会把它移入<strong>回收绳（ReBin）</strong>的首位。</li><li>右键单击绳线或木质名牌，使用菜单中的 <strong>ReBin</strong> 选项显示回收绳。显示后，回收绳成为当前收集绳。</li><li>打开总览，把要取回的卡片拖到目标绳上的空位。回收绳没有容量上限；在回收绳上单击 <strong>×</strong> 会立即删除这张卡片。</li></ol>
+      <section class="doc-section" id="rebin" tabindex="-1"><h2>从回收绳（ReBin）找回卡片</h2>
+        <ol><li>默认设置下，悬浮卡片的 <strong>×</strong> 会把它移入<strong>回收绳（ReBin）</strong>的首位。</li><li>右键单击绳线或木质名牌，选择<strong>显示／隐藏 ReBin</strong>。显示后，回收绳成为当前收集绳。</li><li>打开总览，把要取回的卡片拖到目标绳上的空位。回收绳没有容量上限；在回收绳上单击 <strong>×</strong> 会立即删除这张卡片。</li></ol>
         <aside class="note"><strong>找不到刚关的卡片？</strong><p>到<strong>全局设置 → 卡片</strong>查看“悬浮卡片删除方式”或“绳上卡片删除方式”。选择“直接删除”时，关闭的卡片不会进入回收绳。绳上卡片默认使用这个选项。</p></aside>
+        <p>ReBin 收集期间，新复制的内容和用“回绳”送回的悬浮卡片都会进入这里。在 ReBin 的单绳视图中，按 <kbd>Tab</kbd>、按住 <kbd>Ctrl</kbd> 滚动滚轮，或在绳子菜单选“上一条绳子 / 下一条绳子”，都会隐藏 ReBin，恢复原来的收集绳。从总览回到其他绳子的单绳视图也会隐藏 ReBin。重启后它默认隐藏，里面的卡片仍会保存。</p>
       </section>
       <nav class="page-turn" aria-label="相邻章节"><a href="getting-started.html"><small>上一页</small><strong>快速开始</strong></a><a href="ropes.html"><small>下一页</small><strong>整理绳子 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
       <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>

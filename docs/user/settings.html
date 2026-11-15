@@ -45,30 +45,51 @@
       <nav class="breadcrumbs" aria-label="当前位置"><a href="ClipRope-Docs.html">手册首页</a><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg><span aria-current="page">设置与隐私</span></nav>
       <div class="article-head"><h1>设置与隐私</h1><p>右键单击托盘图标，打开全局设置。这里可以更改双击动作、指定哪些应用跳过捕获，或把历史记录迁移到其他文件夹。</p></div>
       <nav class="on-page" aria-label="本页目录"><strong>本页目录</strong><ul>
+        <li><a href="#general">更改语言、置顶和登录启动</a></li>
         <li><a href="#paste-mode">让双击仅复制</a></li>
+        <li><a href="#card-display">调整字号、图片预览和文件组</a></li>
         <li><a href="#follow">切换绳子或首卡时更新剪贴板</a></li>
         <li><a href="#privacy">排除指定应用的捕获</a></li>
         <li><a href="#storage">查看或迁移历史目录</a></li>
         <li><a href="#shortcuts-settings">自定义快捷键与外观</a></li>
       </ul></nav>
+      <section class="doc-section" id="general" tabindex="-1"><h2>更改语言、置顶和登录启动</h2>
+        <p>打开<strong>全局设置 → 常规</strong>。“语言”可选“自动（跟随 Windows）”、English 或简体中文，选择后立即生效。“工作区置顶”默认开启，控制绳子工作区是否盖在其他窗口上。</p>
+        <p>打开“随 Windows 启动”后，登录时 ClipRope 会出现在通知区域。用 <code>--profile</code> 打开的独立配置不能更改登录启动。需要核对版本时，到<strong>关于 ClipRope</strong>查看版本号和存储引擎（SQLite）。</p>
+        <p><strong>重置设置…</strong>需要确认，会恢复卡片偏好、新绳容量、快捷键和外观，重新启用工作区置顶，并把语言设为自动。在可管理登录启动的日常安装中，也会开启登录启动。已有历史、单卡和单绳样式、数据目录与捕获排除列表都会保留。</p>
+        <p>设置窗口最小尺寸为 680 × 480 DIP；内容区宽度不足 760 DIP 时，左侧只显示分类图标，加宽可重新看到名称。在字号或新绳容量输入框中，<kbd>Enter</kbd> 应用输入，<kbd>Esc</kbd> 恢复已保存的值。在外观主题选项上用 <kbd>←</kbd> / <kbd>→</kbd> 切换主题；焦点不在输入框或下拉选择框时，可用 <kbd>PageUp</kbd>、<kbd>PageDown</kbd>、<kbd>Home</kbd>、<kbd>End</kbd> 浏览页面。</p>
+      </section>
       <section class="doc-section" id="paste-mode" tabindex="-1"><h2>让双击仅复制</h2>
         <p>打开<strong>全局设置 → 卡片 → 绳上卡片双击操作</strong>。默认的<strong>复制并粘贴</strong>会向仍可接收内容的原目标发送粘贴。选择<strong>仅复制</strong>后，双击会恢复剪贴板内容、把卡片移到所属绳首并收起工作区。随后由你选择位置并按 <kbd>Ctrl+V</kbd>。</p>
         <p>同页的<strong>绳上卡片删除方式</strong>和<strong>悬浮卡片删除方式</strong>分别控制两种卡片的 ×。<a href="cards.html#rebin">查看回收和直接删除的区别</a></p>
       </section>
+      <section class="doc-section" id="card-display" tabindex="-1"><h2>调整字号、图片预览和文件组</h2>
+        <dl class="definitions"><dt>卡片 → 字号（DIP）</dt><dd>默认 14，可设为 6–96 之间的数值，支持小数。单张文字卡片上设置的字号优先。</dd>
+        <dt>悬停时显示原始分辨率 · 截图悬停全图预览 · 显示图像文件缩略图</dt><dd>三项默认都开启，且相互独立。只想看图片尺寸就保留第一项；不想让截图放大就关闭第二项；文件卡片是否显示图片缩略图由第三项控制。</dd>
+        <dt>展开后保留原文件组</dt><dd>默认开启。关闭后，<a href="cards.html#expand">展开文件组</a>会用成员卡片替换原组。</dd></dl>
+      </section>
       <section class="doc-section" id="follow" tabindex="-1"><h2>切换绳子或首卡时更新剪贴板</h2>
         <dl class="definitions"><dt>绳子 → 切换收集绳时更新剪贴板</dt><dd>默认开启。切换到有内容的收集绳时，ClipRope 将它的第一张卡片复制到剪贴板，供下次手动粘贴。</dd><dt>卡片 → 首卡变化时更新剪贴板</dt><dd>默认开启。手动调整当前收集绳后，如果首卡改变，或首卡文字的修改已保存，剪贴板随之更新。</dd></dl>
         <p>仅滚动浏览、取消拖动或切到空绳时，剪贴板保留原内容。上述两个选项只负责更新剪贴板，不会向其他窗口发送粘贴。</p>
+        <p><strong>绳子 → 新绳默认容量</strong>决定以后新建的绳子默认能挂多少张卡片。默认是 100，只接受不小于 1 的整数。改这项不会缩减现有绳子；要更改已有绳子的容量，请用它的<a href="ropes.html#capacity">编辑样式…</a>。</p>
       </section>
       <section class="doc-section" id="privacy" tabindex="-1"><h2>排除指定应用的捕获</h2>
         <ol><li>在<strong>存储与隐私 → 剪贴板捕获排除列表</strong>中选择<strong>编辑列表…</strong>。</li><li>输入应用的可执行文件名，例如 <code>KeePass.exe</code>，然后选择<strong>添加</strong>。文件名不需要包含路径。</li><li>选择<strong>保存</strong>。之后从列表内应用复制的内容将跳过捕获；先前已保存的卡片仍在历史记录中。</li></ol>
+        <p>最多添加 64 个程序，每个文件名最多 255 个字符，不区分大小写。不接受路径、通配符或重复项。若“保存”提示还有待添加的名称，点“添加”或清空输入框后再保存；关闭编辑器会放弃未保存的列表修改。</p>
+        <p>即使应用不在排除列表中，ClipRope 也尊重该次复制携带的 Windows 隐私标记。应用提供 <code>ExcludeClipboardContentFromMonitorProcessing</code>，或提供 <code>CanIncludeInClipboardHistory</code> 但其值不是 1 时，这次复制不会进入历史。只禁止云同步的标记不影响本地捕获。若希望某个应用的所有复制都跳过，请将它加入列表。</p>
       </section>
       <section class="doc-section" id="storage" tabindex="-1"><h2>查看或迁移历史目录</h2>
         <p>日常使用的默认数据目录为 <code>%LOCALAPPDATA%\ClipRope</code>。在<strong>存储与隐私</strong>中查看当前<strong>数据目录</strong>和<strong>磁盘占用</strong>。历史和悬浮卡片位置保存在本机；引用的外部文件仍在原位置。</p>
-        <p>要迁移历史，在<strong>数据目录</strong>旁选择<strong>浏览…</strong>，选一个空文件夹。选择<strong>立即重启</strong>可开始迁移；选择<strong>稍后</strong>会继续使用当前目录，直到下次启动。迁移前可选择<strong>取消迁移</strong>。</p>
+        <p>要迁移历史，在<strong>数据目录</strong>旁选择<strong>浏览…</strong>，选择本地磁盘上已有、可写的空文件夹。目标不能是盘符根目录或网络共享，路径中不能经过符号链接、目录联接等重解析点。目标必须与当前历史目录、<code>%LOCALAPPDATA%\ClipRope.Settings</code> 分开：不能是这两者本身，也不能是它们的上级或子目录。选择<strong>立即重启</strong>可开始迁移；选择<strong>稍后</strong>会继续使用当前目录，直到下次启动。迁移前可选择<strong>取消迁移</strong>。</p>
+        <p>看到“此路径由 <code>--profile</code> 指定”时，当前运行的是独立历史目录；这次启动使用命令行给出的路径。<a href="reference.html#launch">查看启动参数与卸载时的数据选择</a>。</p>
+        <p>“磁盘占用”显示已识别的历史数据、备份、缩略图以及已登记截图在磁盘上占用的空间，按 B、KiB、MiB 或 GiB 显示（每级相差 1,024 倍）。自行放入的无关文件和未登记的截图不计入，因此数值可能与资源管理器的文件夹大小不同。</p>
       </section>
       <section class="doc-section" id="shortcuts-settings" tabindex="-1"><h2>自定义快捷键与外观</h2>
-        <p>在<strong>快捷键</strong>页选择相应操作，录入组合键，用<strong>检查</strong>确认是否可用。如果默认唤出键已被其他应用占用，仍可通过托盘图标打开工作区。<a href="reference.html#shortcuts">查看默认快捷键与生效范围</a></p>
-        <p>在<strong>外观 → 主题</strong>选择浅色、深色或跟随系统。同页的<strong>查找高亮颜色</strong>用于标出卡片中当前匹配的位置。手册页顶的主题按钮仅调整手册的显示。</p>
+        <p>在<strong>快捷键</strong>页可单独启停每个操作。点组合键录制新按键，按 <kbd>Esc</kbd> 可取消。点<strong>检查</strong>验证可用性。若启动时无法注册已启用的工作区唤出键，ClipRope 会打开设置；仍可从托盘打开工作区。<a href="reference.html#shortcuts">查看默认键位和生效范围</a>。</p>
+        <p>可使用 A–Z、0–9、Space、Tab 或 F1–F24，配合 Ctrl、Alt、Shift；不支持 Win，也不能把 Alt 与 Tab 搭配。全局快捷键必须带修饰键，且不能用 F12。只有悬停快捷键允许单独使用 Tab 或功能键。</p>
+        <dl class="definitions"><dt>✓ 已注册 · ✓ 可用 · 可用（已关闭）</dt><dd>分别表示全局组合键已注册、悬停或工作区焦点下可用、组合键通过检查但开关未开启。</dd>
+        <dt>尚未验证 · 受限 · 不可用</dt><dd>尚未验证时，先打开一次工作区。受限表示悬停检测失败；可<a href="reference.html#shortcuts">通过任务栏聚焦工作区</a>后再按，并记下提示中的 Windows 错误码。“不可用”时查看冲突或无效按键提示，换一组键再检查。</dd></dl>
+        <p>在<strong>外观 → 主题</strong>选择浅色、深色或跟随系统。“查找高亮颜色”标出卡片中的当前匹配。手册页顶的主题按钮只改变网页显示。</p>
       </section>
       <nav class="page-turn" aria-label="相邻章节"><a href="ropes.html"><small>上一页</small><strong>整理绳子</strong></a><a href="reference.html"><small>下一页</small><strong>操作速查 <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></strong></a></nav>
       <footer class="page-footer" id="developer"><span>ClipRope 用户手册</span><a href="../developer/README.md">开发者指南（英文）</a></footer>

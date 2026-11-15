@@ -48,11 +48,14 @@
         <li><a href="#start">启动并找到托盘图标</a></li>
         <li><a href="#paste">找回第一段文字</a></li>
         <li><a href="#manual">什么时候手动粘贴？</a></li>
+        <li><a href="#tray">从托盘取回最近的卡片</a></li>
         <li><a href="#practice">在演示中试一遍</a></li>
       </ul></nav>
       <section class="doc-section" id="start" tabindex="-1"><h2>启动并找到托盘图标</h2>
         <p>运行 Windows x64 安装程序，完成后从开始菜单打开 <strong>ClipRope</strong>。在任务栏通知区域找到衣架图标；如果图标被折叠，可以展开隐藏图标。</p>
         <p>左键单击图标或按 <kbd>Ctrl+Shift+V</kbd> 可显示或收起工作区。工作区收起后，当前绳子仍会收集新复制的内容。</p>
+        <p>首次安装默认勾选随 Windows 登录启动；升级会沿用现有选择。如果安装程序提示 ClipRope 正在运行，从托盘菜单选择<strong>退出</strong>后再试。<a href="reference.html#launch">安装选项和卸载时如何保留历史</a>。</p>
+        <p>工作区打开时，任务栏会显示它的窗口按钮。在任务栏关闭该窗口，或在工作区已获得焦点时按 <kbd>Alt+F4</kbd>，都只会收起工作区，ClipRope 会继续收集。空闲时按 <kbd>Esc</kbd> 不会收起工作区。要停止程序，请用<strong>托盘菜单 → 退出</strong>。</p>
       </section>
       <section class="doc-section" id="paste" tabindex="-1"><h2>找回第一段文字</h2>
         <ol class="steps">
@@ -65,6 +68,11 @@
         <p>选择了<strong>仅复制</strong>，或者唤出工作区前没有可用的输入位置时，双击仍会把卡片内容放回剪贴板。点到希望插入的位置，按一次 <kbd>Ctrl+V</kbd>。</p>
         <p>如果看到“已复制，已发送粘贴快捷键。”，先看目标应用的结果，再决定是否手动粘贴。编辑器或文件夹会自行选择可接收的格式。</p>
         <p class="related"><a href="settings.html#paste-mode">更改绳上卡片双击操作</a> · <a href="reference.html#troubleshooting">排查粘贴问题</a></p>
+      </section>
+      <section class="doc-section" id="tray" tabindex="-1"><h2>从托盘取回最近的卡片</h2>
+        <p>右键单击通知区域的 ClipRope 图标。点顶部的当前绳名可打开工作区；其下最多列出该绳前五张卡片。点预览或按 <kbd>1</kbd>–<kbd>5</kbd>（小键盘也可）把对应卡片复制到剪贴板，并移到本绳首位。点回目标窗口，按 <kbd>Ctrl+V</kbd> 粘贴。按 <kbd>H</kbd> 则取回首卡。</p>
+        <p>同一菜单还可新建<strong>快速笔记</strong>、打开<strong>全局设置</strong>（<kbd>S</kbd>）或<strong>退出</strong>（<kbd>X</kbd>）。有隐藏的悬浮卡片时，会出现<strong>显示一张隐藏的悬浮卡片</strong>；每次选择会尝试恢复一张，多张隐藏时会轮流尝试。这些单键仅在托盘菜单打开时生效。</p>
+        <p>在通知区域用键盘选中 ClipRope 后按 <kbd>Enter</kbd>，和左键单击图标一样会切换工作区。中键没有绑定操作。如果 Windows 资源管理器重启，ClipRope 会重新添加托盘图标。</p>
       </section>
       <section class="doc-section" id="practice" tabindex="-1"><h2>在演示中试一遍</h2>
         <p>交互演示提供示例聊天和文件夹。打开后，可以在示例内容上练习复制、取回卡片和拖动回绳。</p><a class="text-action" href="../website/index.html?lang=zh-CN">打开交互演示 <span aria-hidden="true">↗</span></a>

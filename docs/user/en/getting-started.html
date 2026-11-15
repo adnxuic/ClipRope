@@ -48,11 +48,14 @@
         <li><a href="#start">Open ClipRope</a></li>
         <li><a href="#paste">Paste an earlier copy</a></li>
         <li><a href="#manual">When to paste manually</a></li>
+        <li><a href="#tray">Recall recent cards from the tray</a></li>
         <li><a href="#practice">Try the interactive demo</a></li>
       </ul></nav>
       <section class="doc-section" id="start" tabindex="-1"><h2>Open ClipRope</h2>
         <p>Run the Windows x64 installer, then open <strong>ClipRope</strong> from the Start menu. Look for the wooden hanger icon in the taskbar notification area. If you don’t see it, open the hidden icons.</p>
         <p>Click the icon or press <kbd>Ctrl+Shift+V</kbd> to show or hide the workspace. The current rope keeps collecting what you copy while the workspace is hidden.</p>
+        <p>A fresh installation enables Start with Windows by default; an upgrade keeps your existing choice. If setup says ClipRope is running, choose <strong>Exit</strong> from the tray menu, then retry. See <a href="reference.html#launch">setup options and how to keep history when uninstalling</a>.</p>
+        <p>The open workspace has a taskbar button. Closing it from the taskbar, or pressing <kbd>Alt+F4</kbd> while the workspace has focus, hides the workspace and leaves capture running. <kbd>Esc</kbd> does not dismiss an idle workspace. To stop ClipRope, choose <strong>Exit</strong> from the tray menu.</p>
       </section>
       <section class="doc-section" id="paste" tabindex="-1"><h2>Paste an earlier copy</h2>
         <ol class="steps">
@@ -65,6 +68,11 @@
         <p>If you chose <strong>Copy only</strong>, or no writable destination was selected when you opened the workspace, the card’s contents are still available after a successful copy. Click where you want them and press <kbd>Ctrl+V</kbd>.</p>
         <p>If ClipRope reports “Copied. Paste shortcut sent.”, check the destination before pressing paste again. The receiving app decides which clipboard format it can use.</p>
         <p class="related"><a href="settings.html#paste-mode">Change the double-click action</a> · <a href="reference.html#troubleshooting">Troubleshoot a paste</a></p>
+      </section>
+      <section class="doc-section" id="tray" tabindex="-1"><h2>Recall recent cards from the tray</h2>
+        <p>Right-click the ClipRope icon in the notification area. Click the current rope’s name at the top to open the workspace. Below it are up to five cards from the front of that rope. Click a preview or press <kbd>1</kbd>–<kbd>5</kbd> (including the numeric keypad) to copy that card to the clipboard and move it to the front. Click the destination and press <kbd>Ctrl+V</kbd> to paste. Press <kbd>H</kbd> to recall the first card.</p>
+        <p>The same menu offers <strong>Quick note</strong>, <strong>Global settings</strong> (<kbd>S</kbd>) and <strong>Exit</strong> (<kbd>X</kbd>). If a Floating card is hidden, choose <strong>Show a hidden Floating card</strong> to try restoring one. Choose it again to cycle through other hidden cards. These single-key commands work only while the tray menu is open.</p>
+        <p>Select ClipRope in the notification area using the keyboard and press <kbd>Enter</kbd> to toggle the workspace, just like a left-click. The middle button has no assigned action. ClipRope restores its tray icon after Windows Explorer restarts.</p>
       </section>
       <section class="doc-section" id="practice" tabindex="-1"><h2>Try the interactive demo</h2>
         <p>The browser demo includes a sample chat and folders. Try copying a message, recalling it from history, and dragging a card back onto a rope.</p>

@@ -48,6 +48,10 @@
         <li><a href="#shortcuts">默认快捷键与生效范围</a></li>
         <li><a href="#find">在桌面应用中查找卡片</a></li>
         <li><a href="#troubleshooting">双击后没有看到粘贴内容</a></li>
+        <li><a href="#paste-target">已复制，哪些位置能自动粘贴？</a></li>
+        <li><a href="#storage-errors">历史无法读取或保存</a></li>
+        <li><a href="#limits">剪贴板和虚拟文件能保存多少</a></li>
+        <li><a href="#launch">安装、启动参数与卸载</a></li>
         <li><a href="#faq">常见问题</a></li>
       </ul></nav>
       <section class="doc-section" id="shortcuts" tabindex="-1"><h2>默认快捷键与生效范围</h2>
@@ -59,15 +63,46 @@
         <tr><th scope="row"><kbd>Ctrl+F</kbd></th><td>查找卡片</td><td>与 Tab 相同</td></tr>
         <tr><th scope="row"><kbd>Ctrl+S</kbd> / <kbd>Esc</kbd></th><td>保存 / 取消本次文字编辑</td><td>卡片文字编辑器</td></tr></tbody></table>
         <p>网页手册用 <kbd>Ctrl+K</kbd> 搜索文档。桌面应用的默认组合键可在<strong>全局设置 → 快捷键</strong>中调整。</p>
+        <p><strong>悬停快捷键没有反应：</strong>普通点击纸面或绳线会保留原应用的键盘焦点。工作区打开时，点任务栏上的 ClipRope 工作区按钮，或用 <kbd>Alt+Tab</kbd> 选中该窗口，再按快捷键。若错误提示提到绳子菜单的“键盘导航”，当前菜单没有这一项；可以直接用菜单里的“下一条绳子”“绳子总览”或“查找卡片”。收起并重新打开工作区可重试悬停检测。</p>
       </section>
       <section class="doc-section" id="find" tabindex="-1"><h2>在桌面应用中查找卡片</h2>
-        <p>打开工作区，将指针移到绳子行上并按 <kbd>Ctrl+F</kbd>，或在绳子菜单选择<strong>查找卡片</strong>。输入文字、链接或部分文件路径，按 <kbd>Enter</kbd> 跳到下一处，按 <kbd>Shift+Enter</kbd> 回到上一处，按 <kbd>Esc</kbd> 关闭查找。</p>
-        <p>单绳视图只查找当前绳上的卡片。总览可跨绳查找，回收绳显示时也在范围内。查找依据卡片已保存的信息，不会读取文件正文或识别截图中的文字；浏览匹配项会保留收集绳和剪贴板。</p>
+        <p>打开工作区，将指针移到绳子行上按 <kbd>Ctrl+F</kbd>，或在绳子菜单中选<strong>查找卡片</strong>。只查绳上卡片，不查桌面悬浮卡片。单绳视图只查当前绳；总览跨绳查找，ReBin 可见时也包括在内。</p>
+        <p>可以输入文字（包括从 HTML 或 RTF 保存的正文）、链接、部分文件路径、虚拟文件名或来源应用名，例如 <code>notepad.exe</code>。不会读取引用文件的正文，也不会识别截图中的文字。</p>
+        <p>在查找框按 <kbd>Enter</kbd> 或 <kbd>↓</kbd> 到下一处，按 <kbd>Shift+Enter</kbd> 或 <kbd>↑</kbd> 到上一处，也可点框旁的箭头。再按 <kbd>Ctrl+F</kbd> 选中搜索词，按 <kbd>Esc</kbd> 关闭。浏览匹配项不会更换收集绳或剪贴板内容。</p>
+        <p>查找只对 ASCII 字母 A–Z 忽略大小写；其他字符按原样匹配。如果命中的是图片卡片、全透明卡片或未显示的路径、来源等字段，请看纸面底部的高亮片段。</p>
       </section>
       <section class="doc-section" id="troubleshooting" tabindex="-1"><h2>双击后没有看到粘贴内容</h2>
-        <dl class="definitions"><dt>卡片回到绳首，目标位置仍为空</dt><dd>先在<strong>全局设置 → 卡片</strong>检查是否选择了“仅复制”。如果已复制，点回正确的输入位置按 <kbd>Ctrl+V</kbd>。自动粘贴要求原输入区域仍然有效。</dd>
-        <dt>看到“已复制，已发送粘贴快捷键。”</dt><dd>先检查目标位置，避免重复粘贴。目标应用决定接收哪种格式；可以用记事本验证文字，用资源管理器的文件夹接收文件、文件夹或截图 PNG。</dd>
-        <dt>看到“剪贴板发布失败，卡片仍然可用。”</dt><dd>此次未能恢复卡片内容。回到绳上重试；如果卡片引用文件，可先确认原文件仍在原位置并且可以访问。</dd></dl>
+        <p>先读提示的两部分：内容是否已复制到剪贴板，以及是否向原窗口发送了粘贴。卡片是否回到绳首是另外一次历史更新。</p>
+        <dl class="definitions"><dt>“已复制。”或“已复制，所选输入区域无法接收此项目。”</dt><dd>点回能接收该内容的位置，按 <kbd>Ctrl+V</kbd>。若每次都需要手动粘贴，可查<strong>全局设置 → 卡片 → 绳上卡片双击操作</strong>是否为“仅复制”。</dd>
+        <dt>“已复制，已发送粘贴快捷键。”或“已复制，无法确认粘贴快捷键是否已发送。”</dt><dd>先查看原目标，避免重复粘贴。若仍为空，选择兼容的位置手动粘贴；例如用记事本接收文字，用资源管理器文件夹接收文件或截图。</dd>
+        <dt>“剪贴板发布失败，卡片仍然可用。”</dt><dd>不要假定剪贴板已有这张卡片。打开“卡片信息…”检查保存的格式和文件路径，确认原文件可访问，再从绳上重试。</dd>
+        <dt>提示末尾有“历史更新失败。”</dt><dd>复制成功后，移到绳首仍可能失败。先核对粘贴目标，再检查下方的存储提示，不必为调整顺序重复粘贴。</dd>
+        <dt>“剪贴板未更新。”</dt><dd>切绳或更改首卡后，历史可能已经保存，但剪贴板没有跟上。手动取回想要的卡片，确认已复制后再粘贴。</dd></dl>
+      </section>
+      <section class="doc-section" id="paste-target" tabindex="-1"><h2>已复制，哪些位置能自动粘贴？</h2>
+        <p>双击前先选好目标。ClipRope 要能再次确认是同一可写位置，才会发送 <kbd>Ctrl+V</kbd>。例如，普通权限运行的 ClipRope 不能向以管理员身份运行的窗口发送粘贴。若只提示“已复制”，点回有权限编辑的位置手动粘贴即可。</p>
+        <dl class="definitions"><dt>Word、Excel、PowerPoint</dt><dd>原文档和选区都必须仍然可编辑。Word 会检查正文选区，受保护文档或内容控件不符合条件；Excel 会核对工作簿、选区和活动单元格，受保护工作表上的锁定单元格不符合条件；PowerPoint 会核对窗格、幻灯片或所选对象。只读文件或更改了选区都可能让自动粘贴跳过。</dd>
+        <dt>从资源管理器复制的图片文件</dt><dd>卡片交给目标的是原文件引用。文件夹可复制文件；支持附件粘贴的网页编辑框、Office 选区或兼容的富文本编辑框可按自身规则处理。记事本、浏览器地址栏不接收此类自动文件粘贴。即使看到“已发送粘贴快捷键”，也要检查目标应用是否实际插入了附件。</dd></dl>
+      </section>
+      <section class="doc-section" id="storage-errors" tabindex="-1"><h2>历史无法读取或保存</h2>
+        <dl class="definitions"><dt>数据文件夹不可写 · 历史存储正忙 · 磁盘已满</dt><dd>在<a href="settings.html#storage">存储与隐私</a>核对当前目录，确认文件夹可访问且可写。若提示正忙，从托盘退出使用同一份历史的其他实例；若磁盘已满，释放该磁盘的空间后再试。</dd>
+        <dt>内容丢失或未通过校验 · 数据库损坏</dt><dd>保留现有数据目录。检查是否指向正确的历史；若需恢复，请使用已验证的备份。外部引用文件丢失时，先到“卡片信息…”核对原路径。</dd>
+        <dt>数据库版本不受支持</dt><dd>当前版本要求 v11 数据库。先确认选择的是正确的配置目录，使用与该历史兼容的版本或备份。重置全局设置不会转换数据库。</dd></dl>
+      </section>
+      <section class="doc-section" id="limits" tabindex="-1"><h2>剪贴板和虚拟文件能保存多少</h2>
+        <p>一次复制最多检查 256 个格式描述项，总共最多保留 64 MiB 数据。从资源管理器复制普通文件时，卡片保存路径引用，原文件的大小不等于卡片的大小。若只捕获了部分格式，到<a href="cards.html#card-menu">卡片信息</a>查看具体保留了什么。</p>
+        <table><caption>单种格式的捕获上限</caption><thead><tr><th scope="col">格式</th><th scope="col">上限</th></tr></thead><tbody>
+        <tr><th scope="row">Unicode 纯文本、HTML、RTF</th><td>每种 8 MiB。</td></tr>
+        <tr><th scope="row">PNG、DIB、DIBV5</th><td>每种 32 MiB；原图每边最多 8,192 像素，总计最多 8,388,608 像素。</td></tr>
+        <tr><th scope="row">文件路径列表（CF_HDROP）</th><td>4 MiB，计算的是路径列表，不是所指文件。</td></tr></tbody></table>
+        <p>有些应用提供虚拟文件，即交给接收方的文件流，而不是已有文件的路径。每组最多 16 个，每个最多 8 MiB，整组最多 32 MiB。粘贴完成前请保持 ClipRope 运行。正常退出时，若剪贴板上仍是 ClipRope 提供的虚拟文件，程序会移除虚拟文件格式，仅保留可独立使用的伴随格式（如文字）。只有虚拟文件时，退出后就没有文件可粘贴；重新打开程序并取回该卡即可。</p>
+        <p>把仅含像素的截图粘贴到原先选中的资源管理器文件夹时，ClipRope 会提供以本地时间命名的 <code>Screenshot-YYYYMMDD-HHMMSS-mmm.png</code>。向文件夹拖出时，如有经核实的原图文件可直接复制它，否则提供同样命名的 PNG。</p>
+      </section>
+      <section class="doc-section" id="launch" tabindex="-1"><h2>安装、启动参数与卸载</h2>
+        <dl class="definitions"><dt>安装或更新</dt><dd>若 ClipRope 正在运行，先从托盘退出。首次安装可选新的或空的本地文件夹。安装版支持用 <code>/S</code> 静默安装。安装程序的 <code>/STARTUP</code> 或 <code>/NOSTARTUP</code> 指定是否随登录启动；首次安装自定路径时，将 <code>/D=D:\My Apps\ClipRope</code> 放在最后，不加引号。升级使用已登记的目录；有先前版本时，<code>/ROLLBACK</code> 可在该目录回退程序版本。</dd>
+        <dt>启动 ClipRope.exe</dt><dd><code>--show</code> 启动后即打开工作区。<code>--profile "D:\ClipRope-Test"</code> 为这次运行指定独立历史目录，适合测试。未安装的开发构建必须指定此参数；否则会直接以退出码 2 结束，不会打开日常历史。<code>--export-diagnostics-on-exit</code> 会在正常退出时将本次会话的汇总计数写入数据目录下的 <code>diagnostics.txt</code>。报告不包含剪贴板正文或文件路径；超过 4,096 字节或目标目录是重解析点时不会写入。</dd>
+        <dt>卸载并保留历史</dt><dd>从 Windows“已安装的应用”卸载安装版。询问是否保留历史和本地备份时，选“是”（默认），之后重装仍可使用。选“否”或向安装版卸载程序传入 <code>/PURGEHISTORY</code> 则请求删除该配置的历史、悬浮卡片及本地备份。安装版卸载程序单用 <code>/S</code> 静默卸载会保留数据；只有同时指定 <code>/PURGEHISTORY</code> 才会请求删除。若另一份安装拥有启动登记，删除历史可能会被阻止。</dd>
+        <dt>移除自行构建的副本</dt><dd>运行该构建目录自己的 <code>Uninstall.exe</code>。默认保留数据；只有在确实要删除日常配置历史和备份时才打开删除开关。独立的 <code>--profile</code> 目录不在此清理范围内。</dd></dl>
       </section>
       <section class="doc-section" id="faq" tabindex="-1"><h2>常见问题</h2>
         <dl class="definitions"><dt>关闭的悬浮卡片在哪里？</dt><dd>默认在回收绳的首位。<a href="cards.html#rebin">显示回收绳并找回卡片</a></dd>
